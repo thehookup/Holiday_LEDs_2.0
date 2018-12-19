@@ -1544,10 +1544,10 @@ void SingleRace_firstZone()
 void Crash_firstZone()
 {
   fadeToBlackBy( firstZone, FIRSTZONE_LEDS, 15);
-  #ifdef ZONESIX_SECTION1_START
-  int pos_SECTION1 = beatsin8( raceSpeed, 0, (ZONESIX_SECTION1_START - ZONESIX_SECTION1_END) );
-  firstZone[ZONESIX_SECTION1_START + pos_SECTION1] = CRGB(red1,green1,blue1);
-  firstZone[ZONESIX_SECTION1_END - pos_SECTION1] = CRGB(red2,green2,blue2);
+  #ifdef ZONEONE_SECTION1_START
+  int pos_SECTION1 = beatsin8( raceSpeed, 0, (ZONEONE_SECTION1_START - ZONEONE_SECTION1_END) );
+  firstZone[ZONEONE_SECTION1_START + pos_SECTION1] = CRGB(red1,green1,blue1);
+  firstZone[ZONEONE_SECTION1_END - pos_SECTION1] = CRGB(red2,green2,blue2);
   #endif
 
   #ifdef ZONEONE_SECTION2_START
