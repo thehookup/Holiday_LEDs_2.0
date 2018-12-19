@@ -46,176 +46,176 @@
 /*****************  ZONEONE ROOF SETUP              *********************************/
 /*****************  COMMENT OUT ANY UNUSED SECTIONS *********************************/
 #define ZONEONE_SECTION1_START 0
-#define ZONEONE_SECTION1_END 300
+#define ZONEONE_SECTION1_END 30
 
 #define ZONEONE_SECTION2_START 0
-#define ZONEONE_SECTION2_END 300
+#define ZONEONE_SECTION2_END 30
 
 #define ZONEONE_SECTION3_START 0
-#define ZONEONE_SECTION3_END 300
+#define ZONEONE_SECTION3_END 30
 
 #define ZONEONE_SECTION4_START 0
-#define ZONEONE_SECTION4_END 300
+#define ZONEONE_SECTION4_END 30
 
 #define ZONEONE_SECTION5_START 0
-#define ZONEONE_SECTION5_END 300
+#define ZONEONE_SECTION5_END 30
 
 #define ZONEONE_SECTION6_START 0
-#define ZONEONE_SECTION6_END 300
+#define ZONEONE_SECTION6_END 30
 
 #define ZONEONE_SECTION7_START 0
-#define ZONEONE_SECTION7_END 300
+#define ZONEONE_SECTION7_END 30
 
 #define ZONEONE_SECTION8_START 0
-#define ZONEONE_SECTION8_END 300
+#define ZONEONE_SECTION8_END 30
 
 #define ZONEONE_SECTION9_START 0
-#define ZONEONE_SECTION9_END 300
+#define ZONEONE_SECTION9_END 30
 
 /*****************  ZONETWO ROOF SETUP              *********************************/
 /*****************  COMMENT OUT ANY UNUSED SECTIONS *********************************/
 #define ZONETWO_SECTION1_START 0
-#define ZONETWO_SECTION1_END 300
+#define ZONETWO_SECTION1_END 30
 
 #define ZONETWO_SECTION2_START 0
-#define ZONETWO_SECTION2_END 300
+#define ZONETWO_SECTION2_END 30
 
 #define ZONETWO_SECTION3_START 0
-#define ZONETWO_SECTION3_END 300
+#define ZONETWO_SECTION3_END 30
 
 #define ZONETWO_SECTION4_START 0
-#define ZONETWO_SECTION4_END 300
+#define ZONETWO_SECTION4_END 30
 
 #define ZONETWO_SECTION5_START 0
-#define ZONETWO_SECTION5_END 300
+#define ZONETWO_SECTION5_END 30
 
 #define ZONETWO_SECTION6_START 0
-#define ZONETWO_SECTION6_END 300
+#define ZONETWO_SECTION6_END 30
 
 #define ZONETWO_SECTION7_START 0
-#define ZONETWO_SECTION7_END 300
+#define ZONETWO_SECTION7_END 30
 
 #define ZONETWO_SECTION8_START 0
-#define ZONETWO_SECTION8_END 300
+#define ZONETWO_SECTION8_END 30
 
 #define ZONETWO_SECTION9_START 0
-#define ZONETWO_SECTION9_END 300
+#define ZONETWO_SECTION9_END 30
 
 /*****************  ZONETHREE ROOF SETUP            *********************************/
 /*****************  COMMENT OUT ANY UNUSED SECTIONS *********************************/
 #define ZONETHREE_SECTION1_START 0
-#define ZONETHREE_SECTION1_END 300
+#define ZONETHREE_SECTION1_END 30
 
 #define ZONETHREE_SECTION2_START 0
-#define ZONETHREE_SECTION2_END 300
+#define ZONETHREE_SECTION2_END 30
 
 #define ZONETHREE_SECTION3_START 0
-#define ZONETHREE_SECTION3_END 300
+#define ZONETHREE_SECTION3_END 30
 
 #define ZONETHREE_SECTION4_START 0
-#define ZONETHREE_SECTION4_END 300
+#define ZONETHREE_SECTION4_END 30
 
 #define ZONETHREE_SECTION5_START 0
-#define ZONETHREE_SECTION5_END 300
+#define ZONETHREE_SECTION5_END 30
 
 #define ZONETHREE_SECTION6_START 0
-#define ZONETHREE_SECTION6_END 300
+#define ZONETHREE_SECTION6_END 30
 
 #define ZONETHREE_SECTION7_START 0
-#define ZONETHREE_SECTION7_END 300
+#define ZONETHREE_SECTION7_END 30
 
 #define ZONETHREE_SECTION8_START 0
-#define ZONETHREE_SECTION8_END 300
+#define ZONETHREE_SECTION8_END 30
 
 #define ZONETHREE_SECTION9_START 0
-#define ZONETHREE_SECTION9_END 300
+#define ZONETHREE_SECTION9_END 30
 
 /*****************  ZONEFOUR ROOF SETUP             *********************************/
 /*****************  COMMENT OUT ANY UNUSED SECTIONS *********************************/
 #define ZONEFOUR_SECTION1_START 0
-#define ZONEFOUR_SECTION1_END 300
+#define ZONEFOUR_SECTION1_END 30
 
 #define ZONEFOUR_SECTION2_START 0
-#define ZONEFOUR_SECTION2_END 300
+#define ZONEFOUR_SECTION2_END 30
 
 #define ZONEFOUR_SECTION3_START 0
-#define ZONEFOUR_SECTION3_END 300
+#define ZONEFOUR_SECTION3_END 30
 
 #define ZONEFOUR_SECTION4_START 0
-#define ZONEFOUR_SECTION4_END 300
+#define ZONEFOUR_SECTION4_END 30
 
 #define ZONEFOUR_SECTION5_START 0
-#define ZONEFOUR_SECTION5_END 300
+#define ZONEFOUR_SECTION5_END 30
 
 #define ZONEFOUR_SECTION6_START 0
-#define ZONEFOUR_SECTION6_END 300
+#define ZONEFOUR_SECTION6_END 30
 
 #define ZONEFOUR_SECTION7_START 0
-#define ZONEFOUR_SECTION7_END 300
+#define ZONEFOUR_SECTION7_END 30
 
 #define ZONEFOUR_SECTION8_START 0
-#define ZONEFOUR_SECTION8_END 300
+#define ZONEFOUR_SECTION8_END 30
 
 #define ZONEFOUR_SECTION9_START 0
-#define ZONEFOUR_SECTION9_END 300
+#define ZONEFOUR_SECTION9_END 30
 
 /*****************  ZONEFIVE ROOF SETUP             *********************************/
 /*****************  COMMENT OUT ANY UNUSED SECTIONS *********************************/
 #define ZONEFIVE_SECTION1_START 0
-#define ZONEFIVE_SECTION1_END 300
+#define ZONEFIVE_SECTION1_END 30
 
 #define ZONEFIVE_SECTION2_START 0
-#define ZONEFIVE_SECTION2_END 300
+#define ZONEFIVE_SECTION2_END 30
 
 #define ZONEFIVE_SECTION3_START 0
-#define ZONEFIVE_SECTION3_END 300
+#define ZONEFIVE_SECTION3_END 30
 
 #define ZONEFIVE_SECTION4_START 0
-#define ZONEFIVE_SECTION4_END 300
+#define ZONEFIVE_SECTION4_END 30
 
 #define ZONEFIVE_SECTION5_START 0
-#define ZONEFIVE_SECTION5_END 300
+#define ZONEFIVE_SECTION5_END 30
 
 #define ZONEFIVE_SECTION6_START 0
-#define ZONEFIVE_SECTION6_END 300
+#define ZONEFIVE_SECTION6_END 30
 
 #define ZONEFIVE_SECTION7_START 0
-#define ZONEFIVE_SECTION7_END 300
+#define ZONEFIVE_SECTION7_END 30
 
 #define ZONEFIVE_SECTION8_START 0
-#define ZONEFIVE_SECTION8_END 300
+#define ZONEFIVE_SECTION8_END 30
 
 #define ZONEFIVE_SECTION9_START 0
-#define ZONEFIVE_SECTION9_END 300
+#define ZONEFIVE_SECTION9_END 30
 
 /*****************  ZONESIX ROOF SETUP              *********************************/
 /*****************  COMMENT OUT ANY UNUSED SECTIONS *********************************/
 #define ZONESIX_SECTION1_START 0
-#define ZONESIX_SECTION1_END 300
+#define ZONESIX_SECTION1_END 30
 
 #define ZONESIX_SECTION2_START 0
-#define ZONESIX_SECTION2_END 300
+#define ZONESIX_SECTION2_END 30
 
 #define ZONESIX_SECTION3_START 0
-#define ZONESIX_SECTION3_END 300
+#define ZONESIX_SECTION3_END 30
 
 #define ZONESIX_SECTION4_START 0
-#define ZONESIX_SECTION4_END 300
+#define ZONESIX_SECTION4_END 30
 
 #define ZONESIX_SECTION5_START 0
-#define ZONESIX_SECTION5_END 300
+#define ZONESIX_SECTION5_END 30
 
 #define ZONESIX_SECTION6_START 0
-#define ZONESIX_SECTION6_END 300
+#define ZONESIX_SECTION6_END 30
 
 #define ZONESIX_SECTION7_START 0
-#define ZONESIX_SECTION7_END 300
+#define ZONESIX_SECTION7_END 30
 
 #define ZONESIX_SECTION8_START 0
-#define ZONESIX_SECTION8_END 300
+#define ZONESIX_SECTION8_END 30
 
 #define ZONESIX_SECTION9_START 0
-#define ZONESIX_SECTION9_END 300
+#define ZONESIX_SECTION9_END 30
 
 /*****************  END USER CONFIG SECTION *********************************/
 /*****************  END USER CONFIG SECTION *********************************/
@@ -301,7 +301,6 @@ uint8_t glitterChance = 250;
 int chaseDelay = 1000;
 int lastPosition = 1;
 int lightning = 1;
-int ledLocator = 0;
 int raceSpeed = 12;
 int BeatsPerMinute = 62;
 uint8_t numberOfRainbows = 7;
@@ -324,6 +323,10 @@ byte green3 = 0;
 byte blue3 = 255;
 byte brightness = 255;
 char charPayload[50];
+int maxLEDs = 0;
+int locatorLED = 0;
+char MQTT_locatorLED[50];
+int locatorDelay = 1000;
 
 
 /*****************  SYSTEM FUNCTIONS  *************************************/
@@ -402,6 +405,28 @@ void reconnect()
   }
 }
 
+void calculateMax()
+{
+  #ifdef ZONETWO
+  maxLEDs = max(FIRSTZONE_LEDS, SECONDZONE_LEDS);
+  #endif
+
+  #ifdef ZONETHREE
+  maxLEDs = max(maxLEDs, THIRDZONE_LEDS);
+  #endif
+
+  #ifdef ZONEFOUR
+  maxLEDs = max(maxLEDs, FOURTHZONE_LEDS);
+  #endif
+
+  #ifdef ZONEFIVE
+  maxLEDs = max(maxLEDs, FIFTHZONE_LEDS);
+  #endif
+
+  #ifdef ZONESIX
+  maxLEDs = max(maxLEDs, SIXTHZONE_LEDS);
+  #endif 
+}
 
 /************************** MQTT CALLBACK ***********************/
 /************************** MQTT CALLBACK ***********************/
@@ -483,6 +508,11 @@ void callback(char* topic, byte* payload, unsigned int length)
     #ifdef ZONESIX
     fill_solid(sixthZone, SIXTHZONE_LEDS, CRGB::Black);
     #endif  
+
+    if(effect == "LED_Locator")
+    {
+      locator_Move();
+    }
   }
   
   if (newTopic == USER_MQTT_CLIENT_NAME "/color1")
@@ -593,10 +623,6 @@ void callback(char* topic, byte* payload, unsigned int length)
   if (newTopic == USER_MQTT_CLIENT_NAME"/modifier")
   {
     client.publish(USER_MQTT_CLIENT_NAME "/modifierState", charPayload); 
-    if(effect == "LED_Locator")
-    {
-      ledLocator = intPayload;
-    }
     if(effect == "Double_Crash" || effect == "Single_Race")
     {
       raceSpeed = (intPayload/20);
@@ -627,7 +653,11 @@ void callback(char* topic, byte* payload, unsigned int length)
     }
     if(effect == "Spooky_Eyes")
     {
-      eyeChance = map(intPayload, 0, 500, 225, 255);
+      eyeChance = map(intPayload, 0, 500, 0, 255);
+    }
+    if(effect == "LED_Locator")
+    {
+      locatorDelay = map(intPayload, 0, 500, 500, 5000);
     }
   }
 }
@@ -1308,6 +1338,26 @@ void setupZones()
 }
 
 
+void locator_Move()
+{
+  if(effect == "LED_Locator")
+  {
+    if(locatorLED <= maxLEDs)
+    {
+      String temp_str = String(locatorLED);
+      temp_str.toCharArray(MQTT_locatorLED, temp_str.length() + 1);
+      client.publish(USER_MQTT_CLIENT_NAME"/locator", MQTT_locatorLED);
+      locatorLED++;    
+    }
+    else
+    {
+      locatorLED == 0;
+    }
+    timer.setTimeout(locatorDelay, locator_Move);
+  }
+}
+
+
 
 /*****************  SETUP FUNCTION  ****************************************/
 /*****************  SETUP FUNCTION  ****************************************/
@@ -1384,9 +1434,6 @@ void loop()
   
 }
 
-
-
-/****************** BEGIN ANIMATION SECTION ************************/
 
 
 /*****************  firstZone Animations  ****************************************/
@@ -1742,10 +1789,10 @@ void Solid_firstZone()
 
 void Locator_firstZone()
 {
-  if(ledLocator < FIRSTZONE_LEDS)
+  if(locatorLED <= FIRSTZONE_LEDS)
   {
-    fadeToBlackBy( firstZone, FIRSTZONE_LEDS, 64);
-    firstZone[ledLocator]=CRGB(red1, green1, blue1);
+    fill_solid(firstZone, FIRSTZONE_LEDS, CRGB::Black); 
+    firstZone[locatorLED]=CRGB(red1, green1, blue1);
   }
 }
 
@@ -2103,10 +2150,10 @@ void Solid_secondZone()
 
 void Locator_secondZone()
 {
-  if(ledLocator < SECONDZONE_LEDS)
+  if(locatorLED <= SECONDZONE_LEDS)
   {
-    fadeToBlackBy( secondZone, SECONDZONE_LEDS, 64);
-    secondZone[ledLocator]=CRGB(red1, green1, blue1);
+    fill_solid(secondZone, SECONDZONE_LEDS, CRGB::Black); 
+    secondZone[locatorLED]=CRGB(red1, green1, blue1);
   }
 }
 
@@ -2464,10 +2511,10 @@ void Solid_thirdZone()
 
 void Locator_thirdZone()
 {
-  if(ledLocator < THIRDZONE_LEDS)
+  if(locatorLED <= THIRDZONE_LEDS)
   {
-    fadeToBlackBy( thirdZone, THIRDZONE_LEDS, 64);
-    thirdZone[ledLocator]=CRGB(red1, green1, blue1);
+    fill_solid(thirdZone, THIRDZONE_LEDS, CRGB::Black); 
+    thirdZone[locatorLED]=CRGB(red1, green1, blue1);
   }
 }
 
@@ -2825,10 +2872,10 @@ void Solid_fourthZone()
 
 void Locator_fourthZone()
 {
-  if(ledLocator < FOURTHZONE_LEDS)
+  if(locatorLED <= FOURTHZONE_LEDS)
   {
-    fadeToBlackBy( fourthZone, FOURTHZONE_LEDS, 64);
-    fourthZone[ledLocator]=CRGB(red1, green1, blue1);
+    fill_solid(fourthZone, FOURTHZONE_LEDS, CRGB::Black); 
+    fourthZone[locatorLED]=CRGB(red1, green1, blue1);
   }
 }
 
@@ -3186,10 +3233,10 @@ void Solid_fifthZone()
 
 void Locator_fifthZone()
 {
-  if(ledLocator < FIFTHZONE_LEDS)
+  if(locatorLED <= FIFTHZONE_LEDS)
   {
-    fadeToBlackBy( fifthZone, FIFTHZONE_LEDS, 64);
-    fifthZone[ledLocator]=CRGB(red1, green1, blue1);
+    fill_solid(fifthZone, FIFTHZONE_LEDS, CRGB::Black); 
+    fifthZone[locatorLED]=CRGB(red1, green1, blue1);
   }
 }
 
@@ -3547,10 +3594,10 @@ void Solid_sixthZone()
 
 void Locator_sixthZone()
 {
-  if(ledLocator < SIXTHZONE_LEDS)
+  if(locatorLED <= SIXTHZONE_LEDS)
   {
-    fadeToBlackBy( sixthZone, SIXTHZONE_LEDS, 64);
-    sixthZone[ledLocator]=CRGB(red1, green1, blue1);
+    fill_solid(sixthZone, SIXTHZONE_LEDS, CRGB::Black); 
+    sixthZone[locatorLED]=CRGB(red1, green1, blue1);
   }
 }
 
