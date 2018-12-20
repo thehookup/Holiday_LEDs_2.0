@@ -1598,55 +1598,55 @@ void Crash_firstZone()
 {
   fadeToBlackBy( firstZone, FIRSTZONE_LEDS, 15);
   #ifdef ZONEONE_SECTION1_START
-  int pos_SECTION1 = beatsin8( raceSpeed, 0, (ZONEONE_SECTION1_START - ZONEONE_SECTION1_END) );
+  int pos_SECTION1 = beatsin8( raceSpeed, 0, (ZONEONE_SECTION1_END - ZONEONE_SECTION1_START) );
   firstZone[ZONEONE_SECTION1_START + pos_SECTION1] = CRGB(red1,green1,blue1);
   firstZone[ZONEONE_SECTION1_END - pos_SECTION1] = CRGB(red2,green2,blue2);
   #endif
 
   #ifdef ZONEONE_SECTION2_START
-  int pos_SECTION2 = beatsin8( raceSpeed, 0, (ZONEONE_SECTION2_START - ZONEONE_SECTION2_END) );
+  int pos_SECTION2 = beatsin8( raceSpeed, 0, (ZONEONE_SECTION2_END - ZONEONE_SECTION2_START) );
   firstZone[ZONEONE_SECTION2_START + pos_SECTION2] = CRGB(red1,green1,blue1);
   firstZone[ZONEONE_SECTION2_END - pos_SECTION2] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONEONE_SECTION3_START
-  int pos_SECTION3 = beatsin8( raceSpeed, 0, (ZONEONE_SECTION3_START - ZONEONE_SECTION3_END) );
+  int pos_SECTION3 = beatsin8( raceSpeed, 0, (ZONEONE_SECTION3_END - ZONEONE_SECTION3_START) );
   firstZone[ZONEONE_SECTION3_START + pos_SECTION3] = CRGB(red1,green1,blue1);
   firstZone[ZONEONE_SECTION3_END - pos_SECTION3] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONEONE_SECTION4_START
-  int pos_SECTION4 = beatsin8( raceSpeed, 0, (ZONEONE_SECTION4_START - ZONEONE_SECTION4_END) );
+  int pos_SECTION4 = beatsin8( raceSpeed, 0, (ZONEONE_SECTION4_END - ZONEONE_SECTION4_START) );
   firstZone[ZONEONE_SECTION4_START + pos_SECTION4] = CRGB(red1,green1,blue1);
   firstZone[ZONEONE_SECTION4_END - pos_SECTION4] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONEONE_SECTION5_START
-  int pos_SECTION5 = beatsin8( raceSpeed, 0, (ZONEONE_SECTION5_START - ZONEONE_SECTION5_END) );
+  int pos_SECTION5 = beatsin8( raceSpeed, 0, (ZONEONE_SECTION5_END - ZONEONE_SECTION5_START) );
   firstZone[ZONEONE_SECTION5_START + pos_SECTION5] = CRGB(red1,green1,blue1);
   firstZone[ZONEONE_SECTION5_END - pos_SECTION5] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONEONE_SECTION6_START
-  int pos_SECTION6 = beatsin8( raceSpeed, 0, (ZONEONE_SECTION6_START - ZONEONE_SECTION6_END) );
+  int pos_SECTION6 = beatsin8( raceSpeed, 0, (ZONEONE_SECTION6_END - ZONEONE_SECTION6_START) );
   firstZone[ZONEONE_SECTION6_START + pos_SECTION6] = CRGB(red1,green1,blue1);
   firstZone[ZONEONE_SECTION6_END - pos_SECTION6] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONEONE_SECTION7_START
-  int pos_SECTION7 = beatsin8( raceSpeed, 0, (ZONEONE_SECTION7_START - ZONEONE_SECTION7_END) );
+  int pos_SECTION7 = beatsin8( raceSpeed, 0, (ZONEONE_SECTION7_END - ZONEONE_SECTION7_START) );
   firstZone[ZONEONE_SECTION7_START + pos_SECTION7] = CRGB(red1,green1,blue1);
   firstZone[ZONEONE_SECTION7_END - pos_SECTION7] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONEONE_SECTION8_START
-  int pos_SECTION8 = beatsin8( raceSpeed, 0, (ZONEONE_SECTION8_START - ZONEONE_SECTION8_END) );
+  int pos_SECTION8 = beatsin8( raceSpeed, 0, (ZONEONE_SECTION8_END - ZONEONE_SECTION8_START) );
   firstZone[ZONEONE_SECTION8_START + pos_SECTION8] = CRGB(red1,green1,blue1);
   firstZone[ZONEONE_SECTION8_END - pos_SECTION8] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONEONE_SECTION9_START
-  int pos_SECTION9 = beatsin8( raceSpeed, 0, (ZONEONE_SECTION9_START - ZONEONE_SECTION9_END) );
+  int pos_SECTION9 = beatsin8( raceSpeed, 0, (ZONEONE_SECTION9_END - ZONEONE_SECTION9_START) );
   firstZone[ZONEONE_SECTION9_START + pos_SECTION9] = CRGB(red1,green1,blue1);
   firstZone[ZONEONE_SECTION9_END - pos_SECTION9] = CRGB(red2,green2,blue2);
   #endif
@@ -1959,55 +1959,55 @@ void Crash_secondZone()
 {
   fadeToBlackBy( secondZone, SECONDZONE_LEDS, 15);
   #ifdef ZONETWO_SECTION1_START
-  int pos_SECTION1 = beatsin8( raceSpeed, 0, (ZONETWO_SECTION1_START - ZONETWO_SECTION1_END) );
+  int pos_SECTION1 = beatsin8( raceSpeed, 0, (ZONETWO_SECTION1_END - ZONETWO_SECTION1_START) );
   secondZone[ZONETWO_SECTION1_START + pos_SECTION1] = CRGB(red1,green1,blue1);
   secondZone[ZONETWO_SECTION1_END - pos_SECTION1] = CRGB(red2,green2,blue2);
   #endif
 
   #ifdef ZONETWO_SECTION2_START
-  int pos_SECTION2 = beatsin8( raceSpeed, 0, (ZONETWO_SECTION2_START - ZONETWO_SECTION2_END) );
+  int pos_SECTION2 = beatsin8( raceSpeed, 0, (ZONETWO_SECTION2_END - ZONETWO_SECTION2_START) );
   secondZone[ZONETWO_SECTION2_START + pos_SECTION2] = CRGB(red1,green1,blue1);
   secondZone[ZONETWO_SECTION2_END - pos_SECTION2] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONETWO_SECTION3_START
-  int pos_SECTION3 = beatsin8( raceSpeed, 0, (ZONETWO_SECTION3_START - ZONETWO_SECTION3_END) );
+  int pos_SECTION3 = beatsin8( raceSpeed, 0, (ZONETWO_SECTION3_END - ZONETWO_SECTION3_START) );
   secondZone[ZONETWO_SECTION3_START + pos_SECTION3] = CRGB(red1,green1,blue1);
   secondZone[ZONETWO_SECTION3_END - pos_SECTION3] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONETWO_SECTION4_START
-  int pos_SECTION4 = beatsin8( raceSpeed, 0, (ZONETWO_SECTION4_START - ZONETWO_SECTION4_END) );
+  int pos_SECTION4 = beatsin8( raceSpeed, 0, (ZONETWO_SECTION4_END - ZONETWO_SECTION4_START) );
   secondZone[ZONETWO_SECTION4_START + pos_SECTION4] = CRGB(red1,green1,blue1);
   secondZone[ZONETWO_SECTION4_END - pos_SECTION4] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONETWO_SECTION5_START
-  int pos_SECTION5 = beatsin8( raceSpeed, 0, (ZONETWO_SECTION5_START - ZONETWO_SECTION5_END) );
+  int pos_SECTION5 = beatsin8( raceSpeed, 0, (ZONETWO_SECTION5_END - ZONETWO_SECTION5_START) );
   secondZone[ZONETWO_SECTION5_START + pos_SECTION5] = CRGB(red1,green1,blue1);
   secondZone[ZONETWO_SECTION5_END - pos_SECTION5] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONETWO_SECTION6_START
-  int pos_SECTION6 = beatsin8( raceSpeed, 0, (ZONETWO_SECTION6_START - ZONETWO_SECTION6_END) );
+  int pos_SECTION6 = beatsin8( raceSpeed, 0, (ZONETWO_SECTION6_END - ZONETWO_SECTION6_START) );
   secondZone[ZONETWO_SECTION6_START + pos_SECTION6] = CRGB(red1,green1,blue1);
   secondZone[ZONETWO_SECTION6_END - pos_SECTION6] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONETWO_SECTION7_START
-  int pos_SECTION7 = beatsin8( raceSpeed, 0, (ZONETWO_SECTION7_START - ZONETWO_SECTION7_END) );
+  int pos_SECTION7 = beatsin8( raceSpeed, 0, (ZONETWO_SECTION7_END - ZONETWO_SECTION7_START) );
   secondZone[ZONETWO_SECTION7_START + pos_SECTION7] = CRGB(red1,green1,blue1);
   secondZone[ZONETWO_SECTION7_END - pos_SECTION7] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONETWO_SECTION8_START
-  int pos_SECTION8 = beatsin8( raceSpeed, 0, (ZONETWO_SECTION8_START - ZONETWO_SECTION8_END) );
+  int pos_SECTION8 = beatsin8( raceSpeed, 0, (ZONETWO_SECTION8_END - ZONETWO_SECTION8_START) );
   secondZone[ZONETWO_SECTION8_START + pos_SECTION8] = CRGB(red1,green1,blue1);
   secondZone[ZONETWO_SECTION8_END - pos_SECTION8] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONETWO_SECTION9_START
-  int pos_SECTION9 = beatsin8( raceSpeed, 0, (ZONETWO_SECTION9_START - ZONETWO_SECTION9_END) );
+  int pos_SECTION9 = beatsin8( raceSpeed, 0, (ZONETWO_SECTION9_END - ZONETWO_SECTION9_START) );
   secondZone[ZONETWO_SECTION9_START + pos_SECTION9] = CRGB(red1,green1,blue1);
   secondZone[ZONETWO_SECTION9_END - pos_SECTION9] = CRGB(red2,green2,blue2);
   #endif
@@ -2320,55 +2320,55 @@ void SingleRace_thirdZone()
 {
   fadeToBlackBy( thirdZone, THIRDZONE_LEDS, 15);
   #ifdef ZONETHREE_SECTION1_START
-  int pos_SECTION1 = beatsin8( raceSpeed, 0, (ZONETHREE_SECTION1_START - ZONETHREE_SECTION1_END) );
+  int pos_SECTION1 = beatsin8( raceSpeed, 0, (ZONETHREE_SECTION1_END - ZONETHREE_SECTION1_START) );
   thirdZone[ZONETHREE_SECTION1_START + pos_SECTION1] = CRGB(red1,green1,blue1);
   thirdZone[ZONETHREE_SECTION1_END - pos_SECTION1] = CRGB(red2,green2,blue2);
   #endif
 
   #ifdef ZONETHREE_SECTION2_START
-  int pos_SECTION2 = beatsin8( raceSpeed, 0, (ZONETHREE_SECTION2_START - ZONETHREE_SECTION2_END) );
+  int pos_SECTION2 = beatsin8( raceSpeed, 0, (ZONETHREE_SECTION2_END - ZONETHREE_SECTION2_START) );
   thirdZone[ZONETHREE_SECTION2_START + pos_SECTION2] = CRGB(red1,green1,blue1);
   thirdZone[ZONETHREE_SECTION2_END - pos_SECTION2] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONETHREE_SECTION3_START
-  int pos_SECTION3 = beatsin8( raceSpeed, 0, (ZONETHREE_SECTION3_START - ZONETHREE_SECTION3_END) );
+  int pos_SECTION3 = beatsin8( raceSpeed, 0, (ZONETHREE_SECTION3_END - ZONETHREE_SECTION3_START) );
   thirdZone[ZONETHREE_SECTION3_START + pos_SECTION3] = CRGB(red1,green1,blue1);
   thirdZone[ZONETHREE_SECTION3_END - pos_SECTION3] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONETHREE_SECTION4_START
-  int pos_SECTION4 = beatsin8( raceSpeed, 0, (ZONETHREE_SECTION4_START - ZONETHREE_SECTION4_END) );
+  int pos_SECTION4 = beatsin8( raceSpeed, 0, (ZONETHREE_SECTION4_END - ZONETHREE_SECTION4_START) );
   thirdZone[ZONETHREE_SECTION4_START + pos_SECTION4] = CRGB(red1,green1,blue1);
   thirdZone[ZONETHREE_SECTION4_END - pos_SECTION4] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONETHREE_SECTION5_START
-  int pos_SECTION5 = beatsin8( raceSpeed, 0, (ZONETHREE_SECTION5_START - ZONETHREE_SECTION5_END) );
+  int pos_SECTION5 = beatsin8( raceSpeed, 0, (ZONETHREE_SECTION5_END - ZONETHREE_SECTION5_START) );
   thirdZone[ZONETHREE_SECTION5_START + pos_SECTION5] = CRGB(red1,green1,blue1);
   thirdZone[ZONETHREE_SECTION5_END - pos_SECTION5] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONETHREE_SECTION6_START
-  int pos_SECTION6 = beatsin8( raceSpeed, 0, (ZONETHREE_SECTION6_START - ZONETHREE_SECTION6_END) );
+  int pos_SECTION6 = beatsin8( raceSpeed, 0, (ZONETHREE_SECTION6_END - ZONETHREE_SECTION6_START) );
   thirdZone[ZONETHREE_SECTION6_START + pos_SECTION6] = CRGB(red1,green1,blue1);
   thirdZone[ZONETHREE_SECTION6_END - pos_SECTION6] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONETHREE_SECTION7_START
-  int pos_SECTION7 = beatsin8( raceSpeed, 0, (ZONETHREE_SECTION7_START - ZONETHREE_SECTION7_END) );
+  int pos_SECTION7 = beatsin8( raceSpeed, 0, (ZONETHREE_SECTION7_END - ZONETHREE_SECTION7_START) );
   thirdZone[ZONETHREE_SECTION7_START + pos_SECTION7] = CRGB(red1,green1,blue1);
   thirdZone[ZONETHREE_SECTION7_END - pos_SECTION7] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONETHREE_SECTION8_START
-  int pos_SECTION8 = beatsin8( raceSpeed, 0, (ZONETHREE_SECTION8_START - ZONETHREE_SECTION8_END) );
+  int pos_SECTION8 = beatsin8( raceSpeed, 0, (ZONETHREE_SECTION8_END - ZONETHREE_SECTION8_START) );
   thirdZone[ZONETHREE_SECTION8_START + pos_SECTION8] = CRGB(red1,green1,blue1);
   thirdZone[ZONETHREE_SECTION8_END - pos_SECTION8] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONETHREE_SECTION9_START
-  int pos_SECTION9 = beatsin8( raceSpeed, 0, (ZONETHREE_SECTION9_START - ZONETHREE_SECTION9_END) );
+  int pos_SECTION9 = beatsin8( raceSpeed, 0, (ZONETHREE_SECTION9_END - ZONETHREE_SECTION9_START) );
   thirdZone[ZONETHREE_SECTION9_START + pos_SECTION9] = CRGB(red1,green1,blue1);
   thirdZone[ZONETHREE_SECTION9_END - pos_SECTION9] = CRGB(red2,green2,blue2);
   #endif
@@ -2681,55 +2681,55 @@ void SingleRace_fourthZone()
 {
   fadeToBlackBy( fourthZone, FOURTHZONE_LEDS, 15);
   #ifdef ZONEFOUR_SECTION1_START
-  int pos_SECTION1 = beatsin8( raceSpeed, 0, (ZONEFOUR_SECTION1_START - ZONEFOUR_SECTION1_END) );
+  int pos_SECTION1 = beatsin8( raceSpeed, 0, (ZONEFOUR_SECTION1_END - ZONEFOUR_SECTION1_START) );
   fourthZone[ZONEFOUR_SECTION1_START + pos_SECTION1] = CRGB(red1,green1,blue1);
   fourthZone[ZONEFOUR_SECTION1_END - pos_SECTION1] = CRGB(red2,green2,blue2);
   #endif
 
   #ifdef ZONEFOUR_SECTION2_START
-  int pos_SECTION2 = beatsin8( raceSpeed, 0, (ZONEFOUR_SECTION2_START - ZONEFOUR_SECTION2_END) );
+  int pos_SECTION2 = beatsin8( raceSpeed, 0, (ZONEFOUR_SECTION2_END - ZONEFOUR_SECTION2_START) );
   fourthZone[ZONEFOUR_SECTION2_START + pos_SECTION2] = CRGB(red1,green1,blue1);
   fourthZone[ZONEFOUR_SECTION2_END - pos_SECTION2] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONEFOUR_SECTION3_START
-  int pos_SECTION3 = beatsin8( raceSpeed, 0, (ZONEFOUR_SECTION3_START - ZONEFOUR_SECTION3_END) );
+  int pos_SECTION3 = beatsin8( raceSpeed, 0, (ZONEFOUR_SECTION3_END - ZONEFOUR_SECTION3_START) );
   fourthZone[ZONEFOUR_SECTION3_START + pos_SECTION3] = CRGB(red1,green1,blue1);
   fourthZone[ZONEFOUR_SECTION3_END - pos_SECTION3] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONEFOUR_SECTION4_START
-  int pos_SECTION4 = beatsin8( raceSpeed, 0, (ZONEFOUR_SECTION4_START - ZONEFOUR_SECTION4_END) );
+  int pos_SECTION4 = beatsin8( raceSpeed, 0, (ZONEFOUR_SECTION4_END - ZONEFOUR_SECTION4_START) );
   fourthZone[ZONEFOUR_SECTION4_START + pos_SECTION4] = CRGB(red1,green1,blue1);
   fourthZone[ZONEFOUR_SECTION4_END - pos_SECTION4] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONEFOUR_SECTION5_START
-  int pos_SECTION5 = beatsin8( raceSpeed, 0, (ZONEFOUR_SECTION5_START - ZONEFOUR_SECTION5_END) );
+  int pos_SECTION5 = beatsin8( raceSpeed, 0, (ZONEFOUR_SECTION5_END - ZONEFOUR_SECTION5_START) );
   fourthZone[ZONEFOUR_SECTION5_START + pos_SECTION5] = CRGB(red1,green1,blue1);
   fourthZone[ZONEFOUR_SECTION5_END - pos_SECTION5] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONEFOUR_SECTION6_START
-  int pos_SECTION6 = beatsin8( raceSpeed, 0, (ZONEFOUR_SECTION6_START - ZONEFOUR_SECTION6_END) );
+  int pos_SECTION6 = beatsin8( raceSpeed, 0, (ZONEFOUR_SECTION6_END - ZONEFOUR_SECTION6_START) );
   fourthZone[ZONEFOUR_SECTION6_START + pos_SECTION6] = CRGB(red1,green1,blue1);
   fourthZone[ZONEFOUR_SECTION6_END - pos_SECTION6] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONEFOUR_SECTION7_START
-  int pos_SECTION7 = beatsin8( raceSpeed, 0, (ZONEFOUR_SECTION7_START - ZONEFOUR_SECTION7_END) );
+  int pos_SECTION7 = beatsin8( raceSpeed, 0, (ZONEFOUR_SECTION7_END - ZONEFOUR_SECTION7_START) );
   fourthZone[ZONEFOUR_SECTION7_START + pos_SECTION7] = CRGB(red1,green1,blue1);
   fourthZone[ZONEFOUR_SECTION7_END - pos_SECTION7] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONEFOUR_SECTION8_START
-  int pos_SECTION8 = beatsin8( raceSpeed, 0, (ZONEFOUR_SECTION8_START - ZONEFOUR_SECTION8_END) );
+  int pos_SECTION8 = beatsin8( raceSpeed, 0, (ZONEFOUR_SECTION8_END - ZONEFOUR_SECTION8_START) );
   fourthZone[ZONEFOUR_SECTION8_START + pos_SECTION8] = CRGB(red1,green1,blue1);
   fourthZone[ZONEFOUR_SECTION8_END - pos_SECTION8] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONEFOUR_SECTION9_START
-  int pos_SECTION9 = beatsin8( raceSpeed, 0, (ZONEFOUR_SECTION9_START - ZONEFOUR_SECTION9_END) );
+  int pos_SECTION9 = beatsin8( raceSpeed, 0, (ZONEFOUR_SECTION9_END - ZONEFOUR_SECTION9_START) );
   fourthZone[ZONEFOUR_SECTION9_START + pos_SECTION9] = CRGB(red1,green1,blue1);
   fourthZone[ZONEFOUR_SECTION9_END - pos_SECTION9] = CRGB(red2,green2,blue2);
   #endif
@@ -3042,55 +3042,55 @@ void SingleRace_fifthZone()
 {
   fadeToBlackBy( fifthZone, FIFTHZONE_LEDS, 15);
   #ifdef ZONEFIVE_SECTION1_START
-  int pos_SECTION1 = beatsin8( raceSpeed, 0, (ZONEFIVE_SECTION1_START - ZONEFIVE_SECTION1_END) );
+  int pos_SECTION1 = beatsin8( raceSpeed, 0, (ZONEFIVE_SECTION1_END - ZONEFIVE_SECTION1_START) );
   fifthZone[ZONEFIVE_SECTION1_START + pos_SECTION1] = CRGB(red1,green1,blue1);
   fifthZone[ZONEFIVE_SECTION1_END - pos_SECTION1] = CRGB(red2,green2,blue2);
   #endif
 
   #ifdef ZONEFIVE_SECTION2_START
-  int pos_SECTION2 = beatsin8( raceSpeed, 0, (ZONEFIVE_SECTION2_START - ZONEFIVE_SECTION2_END) );
+  int pos_SECTION2 = beatsin8( raceSpeed, 0, (ZONEFIVE_SECTION2_END - ZONEFIVE_SECTION2_START) );
   fifthZone[ZONEFIVE_SECTION2_START + pos_SECTION2] = CRGB(red1,green1,blue1);
   fifthZone[ZONEFIVE_SECTION2_END - pos_SECTION2] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONEFIVE_SECTION3_START
-  int pos_SECTION3 = beatsin8( raceSpeed, 0, (ZONEFIVE_SECTION3_START - ZONEFIVE_SECTION3_END) );
+  int pos_SECTION3 = beatsin8( raceSpeed, 0, (ZONEFIVE_SECTION3_END - ZONEFIVE_SECTION3_START) );
   fifthZone[ZONEFIVE_SECTION3_START + pos_SECTION3] = CRGB(red1,green1,blue1);
   fifthZone[ZONEFIVE_SECTION3_END - pos_SECTION3] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONEFIVE_SECTION4_START
-  int pos_SECTION4 = beatsin8( raceSpeed, 0, (ZONEFIVE_SECTION4_START - ZONEFIVE_SECTION4_END) );
+  int pos_SECTION4 = beatsin8( raceSpeed, 0, (ZONEFIVE_SECTION4_END - ZONEFIVE_SECTION4_START) );
   fifthZone[ZONEFIVE_SECTION4_START + pos_SECTION4] = CRGB(red1,green1,blue1);
   fifthZone[ZONEFIVE_SECTION4_END - pos_SECTION4] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONEFIVE_SECTION5_START
-  int pos_SECTION5 = beatsin8( raceSpeed, 0, (ZONEFIVE_SECTION5_START - ZONEFIVE_SECTION5_END) );
+  int pos_SECTION5 = beatsin8( raceSpeed, 0, (ZONEFIVE_SECTION5_END - ZONEFIVE_SECTION5_START) );
   fifthZone[ZONEFIVE_SECTION5_START + pos_SECTION5] = CRGB(red1,green1,blue1);
   fifthZone[ZONEFIVE_SECTION5_END - pos_SECTION5] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONEFIVE_SECTION6_START
-  int pos_SECTION6 = beatsin8( raceSpeed, 0, (ZONEFIVE_SECTION6_START - ZONEFIVE_SECTION6_END) );
+  int pos_SECTION6 = beatsin8( raceSpeed, 0, (ZONEFIVE_SECTION6_END - ZONEFIVE_SECTION6_START) );
   fifthZone[ZONEFIVE_SECTION6_START + pos_SECTION6] = CRGB(red1,green1,blue1);
   fifthZone[ZONEFIVE_SECTION6_END - pos_SECTION6] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONEFIVE_SECTION7_START
-  int pos_SECTION7 = beatsin8( raceSpeed, 0, (ZONEFIVE_SECTION7_START - ZONEFIVE_SECTION7_END) );
+  int pos_SECTION7 = beatsin8( raceSpeed, 0, (ZONEFIVE_SECTION7_END - ZONEFIVE_SECTION7_START) );
   fifthZone[ZONEFIVE_SECTION7_START + pos_SECTION7] = CRGB(red1,green1,blue1);
   fifthZone[ZONEFIVE_SECTION7_END - pos_SECTION7] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONEFIVE_SECTION8_START
-  int pos_SECTION8 = beatsin8( raceSpeed, 0, (ZONEFIVE_SECTION8_START - ZONEFIVE_SECTION8_END) );
+  int pos_SECTION8 = beatsin8( raceSpeed, 0, (ZONEFIVE_SECTION8_END - ZONEFIVE_SECTION8_START) );
   fifthZone[ZONEFIVE_SECTION8_START + pos_SECTION8] = CRGB(red1,green1,blue1);
   fifthZone[ZONEFIVE_SECTION8_END - pos_SECTION8] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONEFIVE_SECTION9_START
-  int pos_SECTION9 = beatsin8( raceSpeed, 0, (ZONEFIVE_SECTION9_START - ZONEFIVE_SECTION9_END) );
+  int pos_SECTION9 = beatsin8( raceSpeed, 0, (ZONEFIVE_SECTION9_END - ZONEFIVE_SECTION9_START) );
   fifthZone[ZONEFIVE_SECTION9_START + pos_SECTION9] = CRGB(red1,green1,blue1);
   fifthZone[ZONEFIVE_SECTION9_END - pos_SECTION9] = CRGB(red2,green2,blue2);
   #endif
@@ -3403,55 +3403,55 @@ void SingleRace_sixthZone()
 {
   fadeToBlackBy( sixthZone, SIXTHZONE_LEDS, 15);
   #ifdef ZONESIX_SECTION1_START
-  int pos_SECTION1 = beatsin8( raceSpeed, 0, (ZONESIX_SECTION1_START - ZONESIX_SECTION1_END) );
+  int pos_SECTION1 = beatsin8( raceSpeed, 0, (ZONESIX_SECTION1_END - ZONESIX_SECTION1_START) );
   sixthZone[ZONESIX_SECTION1_START + pos_SECTION1] = CRGB(red1,green1,blue1);
   sixthZone[ZONESIX_SECTION1_END - pos_SECTION1] = CRGB(red2,green2,blue2);
   #endif
 
   #ifdef ZONESIX_SECTION2_START
-  int pos_SECTION2 = beatsin8( raceSpeed, 0, (ZONESIX_SECTION2_START - ZONESIX_SECTION2_END) );
+  int pos_SECTION2 = beatsin8( raceSpeed, 0, (ZONESIX_SECTION2_END - ZONESIX_SECTION2_START) );
   sixthZone[ZONESIX_SECTION2_START + pos_SECTION2] = CRGB(red1,green1,blue1);
   sixthZone[ZONESIX_SECTION2_END - pos_SECTION2] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONESIX_SECTION3_START
-  int pos_SECTION3 = beatsin8( raceSpeed, 0, (ZONESIX_SECTION3_START - ZONESIX_SECTION3_END) );
+  int pos_SECTION3 = beatsin8( raceSpeed, 0, (ZONESIX_SECTION3_END - ZONESIX_SECTION3_START) );
   sixthZone[ZONESIX_SECTION3_START + pos_SECTION3] = CRGB(red1,green1,blue1);
   sixthZone[ZONESIX_SECTION3_END - pos_SECTION3] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONESIX_SECTION4_START
-  int pos_SECTION4 = beatsin8( raceSpeed, 0, (ZONESIX_SECTION4_START - ZONESIX_SECTION4_END) );
+  int pos_SECTION4 = beatsin8( raceSpeed, 0, (ZONESIX_SECTION4_END - ZONESIX_SECTION4_START) );
   sixthZone[ZONESIX_SECTION4_START + pos_SECTION4] = CRGB(red1,green1,blue1);
   sixthZone[ZONESIX_SECTION4_END - pos_SECTION4] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONESIX_SECTION5_START
-  int pos_SECTION5 = beatsin8( raceSpeed, 0, (ZONESIX_SECTION5_START - ZONESIX_SECTION5_END) );
+  int pos_SECTION5 = beatsin8( raceSpeed, 0, (ZONESIX_SECTION5_END - ZONESIX_SECTION5_START) );
   sixthZone[ZONESIX_SECTION5_START + pos_SECTION5] = CRGB(red1,green1,blue1);
   sixthZone[ZONESIX_SECTION5_END - pos_SECTION5] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONESIX_SECTION6_START
-  int pos_SECTION6 = beatsin8( raceSpeed, 0, (ZONESIX_SECTION6_START - ZONESIX_SECTION6_END) );
+  int pos_SECTION6 = beatsin8( raceSpeed, 0, (ZONESIX_SECTION6_END - ZONESIX_SECTION6_START) );
   sixthZone[ZONESIX_SECTION6_START + pos_SECTION6] = CRGB(red1,green1,blue1);
   sixthZone[ZONESIX_SECTION6_END - pos_SECTION6] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONESIX_SECTION7_START
-  int pos_SECTION7 = beatsin8( raceSpeed, 0, (ZONESIX_SECTION7_START - ZONESIX_SECTION7_END) );
+  int pos_SECTION7 = beatsin8( raceSpeed, 0, (ZONESIX_SECTION7_END - ZONESIX_SECTION7_START) );
   sixthZone[ZONESIX_SECTION7_START + pos_SECTION7] = CRGB(red1,green1,blue1);
   sixthZone[ZONESIX_SECTION7_END - pos_SECTION7] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONESIX_SECTION8_START
-  int pos_SECTION8 = beatsin8( raceSpeed, 0, (ZONESIX_SECTION8_START - ZONESIX_SECTION8_END) );
+  int pos_SECTION8 = beatsin8( raceSpeed, 0, (ZONESIX_SECTION8_END - ZONESIX_SECTION8_START) );
   sixthZone[ZONESIX_SECTION8_START + pos_SECTION8] = CRGB(red1,green1,blue1);
   sixthZone[ZONESIX_SECTION8_END - pos_SECTION8] = CRGB(red2,green2,blue2);
   #endif
   
   #ifdef ZONESIX_SECTION9_START
-  int pos_SECTION9 = beatsin8( raceSpeed, 0, (ZONESIX_SECTION9_START - ZONESIX_SECTION9_END) );
+  int pos_SECTION9 = beatsin8( raceSpeed, 0, (ZONESIX_SECTION9_END - ZONESIX_SECTION9_START) );
   sixthZone[ZONESIX_SECTION9_START + pos_SECTION9] = CRGB(red1,green1,blue1);
   sixthZone[ZONESIX_SECTION9_END - pos_SECTION9] = CRGB(red2,green2,blue2);
   #endif
