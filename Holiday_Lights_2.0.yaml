@@ -2,6 +2,11 @@
 ##The "W" slider under the main "holiday LED" switch modifies each effect
 ##You must replace the [MQTT_CLIENT_ID] with the USER_MQTT_CLIENT_NAME you specified in the arduino USER CONFIGURATION section
 
+sensor:
+  - platform: mqtt
+    name: "Current LED"
+    state_topic: "[MQTT_CLIENT_ID]/locator"
+
 switch:
   - platform: mqtt
     name: "Audio Effects"
@@ -24,7 +29,7 @@ switch:
     payload_on: "Lightning On"
     payload_off: "Lightning Off"
     retain: false
-	
+
 light:
   - platform: mqtt
     name: "Holiday Lights"
