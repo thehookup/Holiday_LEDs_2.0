@@ -1774,12 +1774,12 @@ void locator_Move()
       String temp_str = String(locatorLED);
       temp_str.toCharArray(MQTT_locatorLED, temp_str.length() + 1);
       client.publish(USER_MQTT_CLIENT_NAME"/locator", MQTT_locatorLED);
-      locatorLED++;    
     }
     else
     {
       locatorLED == 0;
     }
+    locatorLED++; 
     timer.setTimeout(locatorDelay, locator_Move);
   }
 }
