@@ -1,7 +1,7 @@
 /*****************  NEEDED TO MAKE NODEMCU WORK ***************************/
 #define FASTLED_INTERRUPT_RETRY_COUNT 0
 #define FASTLED_ESP8266_RAW_PIN_ORDER
-#define NUM_LEDS 100
+
 /******************  LIBRARY SECTION *************************************/
 
 #include <FastLED.h>        //https://github.com/FastLED/FastLED
@@ -25,210 +25,444 @@
 #define USER_MQTT_CLIENT_NAME     "LightMCU"           // Used to define MQTT topics, MQTT Client ID, and ArduinoOTA
 
 
-#define ZONEONE                                        //Comment out any unused zones, ZONEONE is pin D1
-#define FIRSTZONE_LEDS 300                             //Number of LEDS in this zone (comment out if zone is unused)
-#define FIRSTZONE_COLOR_ORDER GRB                      //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
+#define ZONEONE                         1                   //ZONEONE is pin D1, 1 = zone used 0 = zone unused
+#define FIRSTZONE_SECTIONS              1                   //Number of roof sections setup below
+#define FIRSTZONE_LEDS                  300                 //Number of LEDS in this zone (comment out if zone is unused)
+#define FIRSTZONE_COLOR_ORDER           GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
 
-#define ZONETWO                                        //Comment out any unused zones, ZONETWO is pin D2
-#define SECONDZONE_LEDS 300                            //Number of LEDS in this zone (comment out if zone is unused)
-#define SECONDZONE_COLOR_ORDER GRB                     //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
 
-#define ZONETHREE                                      //Comment out any unused zones, ZONETHREE is pin D3
-#define THIRDZONE_LEDS 300                             //Number of LEDS in this zone (comment out if zone is unused)
-#define THIRDZONE_COLOR_ORDER GRB                      //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
+#define ZONETWO                         1                   //ZONETWO is pin D2, 1 = zone used 0 = zone unused
+#define SECONDZONE_SECTIONS             1                   //Number of roof sections setup below
+#define SECONDZONE_LEDS                 300                 //Number of LEDS in this zone (comment out if zone is unused)
+#define SECONDZONE_COLOR_ORDER          GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
 
-#define ZONEFOUR                                       //Comment out any unused zones, ZONEFOUR is pin D5
-#define FOURTHZONE_LEDS 300                            //Number of LEDS in this zone (comment out if zone is unused)
-#define FOURTHZONE_COLOR_ORDER GRB                     //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
 
-#define ZONEFIVE                                       //Comment out any unused zones, ZONEFIVE is pin D6
-#define FIFTHZONE_LEDS 300                             //Number of LEDS in this zone (comment out if zone is unused)
-#define FIFTHZONE_COLOR_ORDER GRB                      //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
+#define ZONETHREE                       1                   //ZONETHREE is pin D3, 1 = zone used 0 = zone unused
+#define THIRDZONE_SECTIONS              1                   //Number of roof sections setup below
+#define THIRDZONE_LEDS                  300                 //Number of LEDS in this zone (comment out if zone is unused)
+#define THIRDZONE_COLOR_ORDER           GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
 
-#define ZONESIX                                        //Comment out any unused zones, ZONESIX is pin D7
-#define SIXTHZONE_LEDS 300                             //Number of LEDS in this zone (comment out if zone is unused)
-#define SIXTHZONE_COLOR_ORDER GRB                      //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
 
-/*****************  ZONEONE ROOF SETUP              *********************************/
-/*****************  COMMENT OUT ANY UNUSED SECTIONS *********************************/
-#define ZONEONE_SECTION1_START 0
-#define ZONEONE_SECTION1_END 30
+#define ZONEFOUR                        1                   //ZONEFOUR is pin D5, 1 = zone used 0 = zone unused
+#define FOURTHZONE_SECTIONS             1                   //Number of roof sections setup below
+#define FOURTHZONE_LEDS                 300                 //Number of LEDS in this zone (comment out if zone is unused)
+#define FOURTHZONE_COLOR_ORDER          GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
 
-#define ZONEONE_SECTION2_START 0
-#define ZONEONE_SECTION2_END 30
+#define ZONEFIVE                        1                   //ZONEFIVE is pin D6, 1 = zone used 0 = zone unused
+#define FIFTHZONE_SECTIONS              1                   //Number of roof sections setup below
+#define FIFTHZONE_LEDS                  300                 //Number of LEDS in this zone (comment out if zone is unused)
+#define FIFTHZONE_COLOR_ORDER           GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
 
-#define ZONEONE_SECTION3_START 0
-#define ZONEONE_SECTION3_END 30
+#define ZONESIX                         1                   //ZONESIX is pin D7, 1 = zone used 0 = zone unused
+#define SIXTHZONE_SECTIONS              1                   //Number of roof sections setup below
+#define SIXTHZONE_LEDS                  300                 //Number of LEDS in this zone (comment out if zone is unused)
+#define SIXTHZONE_COLOR_ORDER           GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
 
-#define ZONEONE_SECTION4_START 0
-#define ZONEONE_SECTION4_END 30
+/*****************************    ZONEONE ROOF SETUP    *************************************/
+/*****************************    ZONEONE ROOF SETUP    *************************************/
 
-#define ZONEONE_SECTION5_START 0
-#define ZONEONE_SECTION5_END 30
+#if  FIRSTZONE_SECTIONS >= 1        
+#define ZONEONE_SECTION1_START            0           //starting LED for this zone
+#define ZONEONE_SECTION1_END              100         //ending LED for this zone
+#define ZONEONE_SECTION1_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEONE_SECTION1_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONEONE_SECTION6_START 0
-#define ZONEONE_SECTION6_END 30
+#if  FIRSTZONE_SECTIONS >= 2
+#define ZONEONE_SECTION2_START            0           //starting LED for this zone
+#define ZONEONE_SECTION2_END              100         //ending LED for this zone
+#define ZONEONE_SECTION2_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEONE_SECTION2_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONEONE_SECTION7_START 0
-#define ZONEONE_SECTION7_END 30
+#if  FIRSTZONE_SECTIONS >= 3
+#define ZONEONE_SECTION3_START            0           //starting LED for this zone
+#define ZONEONE_SECTION3_END              100         //ending LED for this zone
+#define ZONEONE_SECTION3_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEONE_SECTION3_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONEONE_SECTION8_START 0
-#define ZONEONE_SECTION8_END 30
+#if  FIRSTZONE_SECTIONS >= 4
+#define ZONEONE_SECTION4_START            0           //starting LED for this zone
+#define ZONEONE_SECTION4_END              100         //ending LED for this zone
+#define ZONEONE_SECTION4_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEONE_SECTION4_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONEONE_SECTION9_START 0
-#define ZONEONE_SECTION9_END 30
+#if  FIRSTZONE_SECTIONS >= 5
+#define ZONEONE_SECTION5_START            0           //starting LED for this zone
+#define ZONEONE_SECTION5_END              100         //ending LED for this zone
+#define ZONEONE_SECTION5_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEONE_SECTION5_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-/*****************  ZONETWO ROOF SETUP              *********************************/
-/*****************  COMMENT OUT ANY UNUSED SECTIONS *********************************/
-#define ZONETWO_SECTION1_START 0
-#define ZONETWO_SECTION1_END 30
+#if  FIRSTZONE_SECTIONS >= 6
+#define ZONEONE_SECTION6_START            0           //starting LED for this zone
+#define ZONEONE_SECTION6_END              100         //ending LED for this zone
+#define ZONEONE_SECTION6_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEONE_SECTION6_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONETWO_SECTION2_START 0
-#define ZONETWO_SECTION2_END 30
+#if  FIRSTZONE_SECTIONS >= 7
+#define ZONEONE_SECTION7_START            0          //starting LED for this zone
+#define ZONEONE_SECTION7_END              100        //ending LED for this zone
+#define ZONEONE_SECTION7_START_FIRE       1          //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEONE_SECTION7_END_FIRE         1          //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONETWO_SECTION3_START 0
-#define ZONETWO_SECTION3_END 30
+#if  FIRSTZONE_SECTIONS >= 8
+#define ZONEONE_SECTION8_START            0          //starting LED for this zone
+#define ZONEONE_SECTION8_END              100        //ending LED for this zone
+#define ZONEONE_SECTION8_START_FIRE       1          //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEONE_SECTION8_END_FIRE         1          //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONETWO_SECTION4_START 0
-#define ZONETWO_SECTION4_END 30
+#if  FIRSTZONE_SECTIONS >= 9
+#define ZONEONE_SECTION9_START            0          //starting LED for this zone
+#define ZONEONE_SECTION9_END              100        //ending LED for this zone
+#define ZONEONE_SECTION9_START_FIRE       1          //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEONE_SECTION9_END_FIRE         1          //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONETWO_SECTION5_START 0
-#define ZONETWO_SECTION5_END 30
+/*****************************    ZONETWO ROOF SETUP    *************************************/
+/*****************************    ZONETWO ROOF SETUP    *************************************/
 
-#define ZONETWO_SECTION6_START 0
-#define ZONETWO_SECTION6_END 30
+#if  SECONDZONE_SECTIONS >= 1        
+#define ZONETWO_SECTION1_START            0           //starting LED for this zone
+#define ZONETWO_SECTION1_END              100         //ending LED for this zone
+#define ZONETWO_SECTION1_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONETWO_SECTION1_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONETWO_SECTION7_START 0
-#define ZONETWO_SECTION7_END 30
+#if  SECONDZONE_SECTIONS >= 2
+#define ZONETWO_SECTION2_START            0           //starting LED for this zone
+#define ZONETWO_SECTION2_END              100         //ending LED for this zone
+#define ZONETWO_SECTION2_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONETWO_SECTION2_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONETWO_SECTION8_START 0
-#define ZONETWO_SECTION8_END 30
+#if  SECONDZONE_SECTIONS >= 3
+#define ZONETWO_SECTION3_START            0           //starting LED for this zone
+#define ZONETWO_SECTION3_END              100         //ending LED for this zone
+#define ZONETWO_SECTION3_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONETWO_SECTION3_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONETWO_SECTION9_START 0
-#define ZONETWO_SECTION9_END 30
+#if  SECONDZONE_SECTIONS >= 4
+#define ZONETWO_SECTION4_START            0           //starting LED for this zone
+#define ZONETWO_SECTION4_END              100         //ending LED for this zone
+#define ZONETWO_SECTION4_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONETWO_SECTION4_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-/*****************  ZONETHREE ROOF SETUP            *********************************/
-/*****************  COMMENT OUT ANY UNUSED SECTIONS *********************************/
-#define ZONETHREE_SECTION1_START 0
-#define ZONETHREE_SECTION1_END 30
+#if  SECONDZONE_SECTIONS >= 5
+#define ZONETWO_SECTION5_START            0           //starting LED for this zone
+#define ZONETWO_SECTION5_END              100         //ending LED for this zone
+#define ZONETWO_SECTION5_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONETWO_SECTION5_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONETHREE_SECTION2_START 0
-#define ZONETHREE_SECTION2_END 30
+#if  SECONDZONE_SECTIONS >= 6
+#define ZONETWO_SECTION6_START            0           //starting LED for this zone
+#define ZONETWO_SECTION6_END              100         //ending LED for this zone
+#define ZONETWO_SECTION6_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONETWO_SECTION6_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONETHREE_SECTION3_START 0
-#define ZONETHREE_SECTION3_END 30
+#if  SECONDZONE_SECTIONS >= 7
+#define ZONETWO_SECTION7_START            0          //starting LED for this zone
+#define ZONETWO_SECTION7_END              100        //ending LED for this zone
+#define ZONETWO_SECTION7_START_FIRE       1          //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONETWO_SECTION7_END_FIRE         1          //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONETHREE_SECTION4_START 0
-#define ZONETHREE_SECTION4_END 30
+#if  SECONDZONE_SECTIONS >= 8
+#define ZONETWO_SECTION8_START            0          //starting LED for this zone
+#define ZONETWO_SECTION8_END              100        //ending LED for this zone
+#define ZONETWO_SECTION8_START_FIRE       1          //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONETWO_SECTION8_END_FIRE         1          //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONETHREE_SECTION5_START 0
-#define ZONETHREE_SECTION5_END 30
+#if  SECONDZONE_SECTIONS >= 9
+#define ZONETWO_SECTION9_START            0          //starting LED for this zone
+#define ZONETWO_SECTION9_END              100        //ending LED for this zone
+#define ZONETWO_SECTION9_START_FIRE       1          //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONETWO_SECTION9_END_FIRE         1          //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONETHREE_SECTION6_START 0
-#define ZONETHREE_SECTION6_END 30
 
-#define ZONETHREE_SECTION7_START 0
-#define ZONETHREE_SECTION7_END 30
+/*****************************    ZONETHREE ROOF SETUP    *************************************/
+/*****************************    ZONETHREE ROOF SETUP    *************************************/
 
-#define ZONETHREE_SECTION8_START 0
-#define ZONETHREE_SECTION8_END 30
+#if  THIRDZONE_SECTIONS >= 1        
+#define ZONETHREE_SECTION1_START            0           //starting LED for this zone
+#define ZONETHREE_SECTION1_END              100         //ending LED for this zone
+#define ZONETHREE_SECTION1_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONETHREE_SECTION1_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONETHREE_SECTION9_START 0
-#define ZONETHREE_SECTION9_END 30
+#if  THIRDZONE_SECTIONS >= 2
+#define ZONETHREE_SECTION2_START            0           //starting LED for this zone
+#define ZONETHREE_SECTION2_END              100         //ending LED for this zone
+#define ZONETHREE_SECTION2_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONETHREE_SECTION2_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-/*****************  ZONEFOUR ROOF SETUP             *********************************/
-/*****************  COMMENT OUT ANY UNUSED SECTIONS *********************************/
-#define ZONEFOUR_SECTION1_START 0
-#define ZONEFOUR_SECTION1_END 30
+#if  THIRDZONE_SECTIONS >= 3
+#define ZONETHREE_SECTION3_START            0           //starting LED for this zone
+#define ZONETHREE_SECTION3_END              100         //ending LED for this zone
+#define ZONETHREE_SECTION3_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONETHREE_SECTION3_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONEFOUR_SECTION2_START 0
-#define ZONEFOUR_SECTION2_END 30
+#if  THIRDZONE_SECTIONS >= 4
+#define ZONETHREE_SECTION4_START            0           //starting LED for this zone
+#define ZONETHREE_SECTION4_END              100         //ending LED for this zone
+#define ZONETHREE_SECTION4_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONETHREE_SECTION4_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONEFOUR_SECTION3_START 0
-#define ZONEFOUR_SECTION3_END 30
+#if  THIRDZONE_SECTIONS >= 5
+#define ZONETHREE_SECTION5_START            0           //starting LED for this zone
+#define ZONETHREE_SECTION5_END              100         //ending LED for this zone
+#define ZONETHREE_SECTION5_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONETHREE_SECTION5_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONEFOUR_SECTION4_START 0
-#define ZONEFOUR_SECTION4_END 30
+#if  THIRDZONE_SECTIONS >= 6
+#define ZONETHREE_SECTION6_START            0           //starting LED for this zone
+#define ZONETHREE_SECTION6_END              100         //ending LED for this zone
+#define ZONETHREE_SECTION6_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONETHREE_SECTION6_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONEFOUR_SECTION5_START 0
-#define ZONEFOUR_SECTION5_END 30
+#if  THIRDZONE_SECTIONS >= 7
+#define ZONETHREE_SECTION7_START            0          //starting LED for this zone
+#define ZONETHREE_SECTION7_END              100        //ending LED for this zone
+#define ZONETHREE_SECTION7_START_FIRE       1          //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONETHREE_SECTION7_END_FIRE         1          //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONEFOUR_SECTION6_START 0
-#define ZONEFOUR_SECTION6_END 30
+#if  THIRDZONE_SECTIONS >= 8
+#define ZONETHREE_SECTION8_START            0          //starting LED for this zone
+#define ZONETHREE_SECTION8_END              100        //ending LED for this zone
+#define ZONETHREE_SECTION8_START_FIRE       1          //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONETHREE_SECTION8_END_FIRE         1          //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONEFOUR_SECTION7_START 0
-#define ZONEFOUR_SECTION7_END 30
+#if  THIRDZONE_SECTIONS >= 9
+#define ZONETHREE_SECTION9_START            0          //starting LED for this zone
+#define ZONETHREE_SECTION9_END              100        //ending LED for this zone
+#define ZONETHREE_SECTION9_START_FIRE       1          //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONETHREE_SECTION9_END_FIRE         1          //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONEFOUR_SECTION8_START 0
-#define ZONEFOUR_SECTION8_END 30
+/*****************************    ZONEFOUR ROOF SETUP    *************************************/
+/*****************************    ZONEFOUR ROOF SETUP    *************************************/
 
-#define ZONEFOUR_SECTION9_START 0
-#define ZONEFOUR_SECTION9_END 30
+#if  FOURTHZONE_SECTIONS >= 1        
+#define ZONEFOUR_SECTION1_START            0           //starting LED for this zone
+#define ZONEFOUR_SECTION1_END              100         //ending LED for this zone
+#define ZONEFOUR_SECTION1_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEFOUR_SECTION1_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-/*****************  ZONEFIVE ROOF SETUP             *********************************/
-/*****************  COMMENT OUT ANY UNUSED SECTIONS *********************************/
-#define ZONEFIVE_SECTION1_START 0
-#define ZONEFIVE_SECTION1_END 30
+#if  FOURTHZONE_SECTIONS >= 2
+#define ZONEFOUR_SECTION2_START            0           //starting LED for this zone
+#define ZONEFOUR_SECTION2_END              100         //ending LED for this zone
+#define ZONEFOUR_SECTION2_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEFOUR_SECTION2_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONEFIVE_SECTION2_START 0
-#define ZONEFIVE_SECTION2_END 30
+#if  FOURTHZONE_SECTIONS >= 3
+#define ZONEFOUR_SECTION3_START            0           //starting LED for this zone
+#define ZONEFOUR_SECTION3_END              100         //ending LED for this zone
+#define ZONEFOUR_SECTION3_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEFOUR_SECTION3_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONEFIVE_SECTION3_START 0
-#define ZONEFIVE_SECTION3_END 30
+#if  FOURTHZONE_SECTIONS >= 4
+#define ZONEFOUR_SECTION4_START            0           //starting LED for this zone
+#define ZONEFOUR_SECTION4_END              100         //ending LED for this zone
+#define ZONEFOUR_SECTION4_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEFOUR_SECTION4_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONEFIVE_SECTION4_START 0
-#define ZONEFIVE_SECTION4_END 30
+#if  FOURTHZONE_SECTIONS >= 5
+#define ZONEFOUR_SECTION5_START            0           //starting LED for this zone
+#define ZONEFOUR_SECTION5_END              100         //ending LED for this zone
+#define ZONEFOUR_SECTION5_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEFOUR_SECTION5_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONEFIVE_SECTION5_START 0
-#define ZONEFIVE_SECTION5_END 30
+#if  FOURTHZONE_SECTIONS >= 6
+#define ZONEFOUR_SECTION6_START            0           //starting LED for this zone
+#define ZONEFOUR_SECTION6_END              100         //ending LED for this zone
+#define ZONEFOUR_SECTION6_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEFOUR_SECTION6_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONEFIVE_SECTION6_START 0
-#define ZONEFIVE_SECTION6_END 30
+#if  FOURTHZONE_SECTIONS >= 7
+#define ZONEFOUR_SECTION7_START            0          //starting LED for this zone
+#define ZONEFOUR_SECTION7_END              100        //ending LED for this zone
+#define ZONEFOUR_SECTION7_START_FIRE       1          //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEFOUR_SECTION7_END_FIRE         1          //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONEFIVE_SECTION7_START 0
-#define ZONEFIVE_SECTION7_END 30
+#if  FOURTHZONE_SECTIONS >= 8
+#define ZONEFOUR_SECTION8_START            0          //starting LED for this zone
+#define ZONEFOUR_SECTION8_END              100        //ending LED for this zone
+#define ZONEFOUR_SECTION8_START_FIRE       1          //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEFOUR_SECTION8_END_FIRE         1          //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONEFIVE_SECTION8_START 0
-#define ZONEFIVE_SECTION8_END 30
+#if  FOURTHZONE_SECTIONS >= 9
+#define ZONEFOUR_SECTION9_START            0          //starting LED for this zone
+#define ZONEFOUR_SECTION9_END              100        //ending LED for this zone
+#define ZONEFOUR_SECTION9_START_FIRE       1          //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEFOUR_SECTION9_END_FIRE         1          //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONEFIVE_SECTION9_START 0
-#define ZONEFIVE_SECTION9_END 30
 
-/*****************  ZONESIX ROOF SETUP              *********************************/
-/*****************  COMMENT OUT ANY UNUSED SECTIONS *********************************/
-#define ZONESIX_SECTION1_START 0
-#define ZONESIX_SECTION1_END 30
+/*****************************    ZONEFIVE ROOF SETUP    *************************************/
+/*****************************    ZONEFIVE ROOF SETUP    *************************************/
 
-#define ZONESIX_SECTION2_START 0
-#define ZONESIX_SECTION2_END 30
+#if  FIFTHZONE_SECTIONS >= 1        
+#define ZONEFIVE_SECTION1_START            0           //starting LED for this zone
+#define ZONEFIVE_SECTION1_END              100         //ending LED for this zone
+#define ZONEFIVE_SECTION1_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEFIVE_SECTION1_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONESIX_SECTION3_START 0
-#define ZONESIX_SECTION3_END 30
+#if  FIFTHZONE_SECTIONS >= 2
+#define ZONEFIVE_SECTION2_START            0           //starting LED for this zone
+#define ZONEFIVE_SECTION2_END              100         //ending LED for this zone
+#define ZONEFIVE_SECTION2_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEFIVE_SECTION2_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONESIX_SECTION4_START 0
-#define ZONESIX_SECTION4_END 30
+#if  FIFTHZONE_SECTIONS >= 3
+#define ZONEFIVE_SECTION3_START            0           //starting LED for this zone
+#define ZONEFIVE_SECTION3_END              100         //ending LED for this zone
+#define ZONEFIVE_SECTION3_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEFIVE_SECTION3_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONESIX_SECTION5_START 0
-#define ZONESIX_SECTION5_END 30
+#if  FIFTHZONE_SECTIONS >= 4
+#define ZONEFIVE_SECTION4_START            0           //starting LED for this zone
+#define ZONEFIVE_SECTION4_END              100         //ending LED for this zone
+#define ZONEFIVE_SECTION4_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEFIVE_SECTION4_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONESIX_SECTION6_START 0
-#define ZONESIX_SECTION6_END 30
+#if  FIFTHZONE_SECTIONS >= 5
+#define ZONEFIVE_SECTION5_START            0           //starting LED for this zone
+#define ZONEFIVE_SECTION5_END              100         //ending LED for this zone
+#define ZONEFIVE_SECTION5_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEFIVE_SECTION5_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONESIX_SECTION7_START 0
-#define ZONESIX_SECTION7_END 30
+#if  FIFTHZONE_SECTIONS >= 6
+#define ZONEFIVE_SECTION6_START            0           //starting LED for this zone
+#define ZONEFIVE_SECTION6_END              100         //ending LED for this zone
+#define ZONEFIVE_SECTION6_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEFIVE_SECTION6_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONESIX_SECTION8_START 0
-#define ZONESIX_SECTION8_END 30
+#if  FIFTHZONE_SECTIONS >= 7
+#define ZONEFIVE_SECTION7_START            0          //starting LED for this zone
+#define ZONEFIVE_SECTION7_END              100        //ending LED for this zone
+#define ZONEFIVE_SECTION7_START_FIRE       1          //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEFIVE_SECTION7_END_FIRE         1          //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
 
-#define ZONESIX_SECTION9_START 0
-#define ZONESIX_SECTION9_END 30
+#if  FIFTHZONE_SECTIONS >= 8
+#define ZONEFIVE_SECTION8_START            0          //starting LED for this zone
+#define ZONEFIVE_SECTION8_END              100        //ending LED for this zone
+#define ZONEFIVE_SECTION8_START_FIRE       1          //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEFIVE_SECTION8_END_FIRE         1          //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
+
+#if  FIFTHZONE_SECTIONS >= 9
+#define ZONEFIVE_SECTION9_START            0          //starting LED for this zone
+#define ZONEFIVE_SECTION9_END              100        //ending LED for this zone
+#define ZONEFIVE_SECTION9_START_FIRE       1          //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONEFIVE_SECTION9_END_FIRE         1          //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
+
+
+/*****************************    ZONESIX ROOF SETUP    *************************************/
+/*****************************    ZONESIX ROOF SETUP    *************************************/
+
+#if  SIXTHZONE_SECTIONS >= 1        
+#define ZONESIX_SECTION1_START            0           //starting LED for this zone
+#define ZONESIX_SECTION1_END              100         //ending LED for this zone
+#define ZONESIX_SECTION1_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONESIX_SECTION1_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
+
+#if  SIXTHZONE_SECTIONS >= 2
+#define ZONESIX_SECTION2_START            0           //starting LED for this zone
+#define ZONESIX_SECTION2_END              100         //ending LED for this zone
+#define ZONESIX_SECTION2_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONESIX_SECTION2_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
+
+#if  SIXTHZONE_SECTIONS >= 3
+#define ZONESIX_SECTION3_START            0           //starting LED for this zone
+#define ZONESIX_SECTION3_END              100         //ending LED for this zone
+#define ZONESIX_SECTION3_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONESIX_SECTION3_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
+
+#if  SIXTHZONE_SECTIONS >= 4
+#define ZONESIX_SECTION4_START            0           //starting LED for this zone
+#define ZONESIX_SECTION4_END              100         //ending LED for this zone
+#define ZONESIX_SECTION4_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONESIX_SECTION4_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
+
+#if  SIXTHZONE_SECTIONS >= 5
+#define ZONESIX_SECTION5_START            0           //starting LED for this zone
+#define ZONESIX_SECTION5_END              100         //ending LED for this zone
+#define ZONESIX_SECTION5_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONESIX_SECTION5_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
+
+#if  SIXTHZONE_SECTIONS >= 6
+#define ZONESIX_SECTION6_START            0           //starting LED for this zone
+#define ZONESIX_SECTION6_END              100         //ending LED for this zone
+#define ZONESIX_SECTION6_START_FIRE       1           //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONESIX_SECTION6_END_FIRE         1           //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
+
+#if  SIXTHZONE_SECTIONS >= 7
+#define ZONESIX_SECTION7_START            0          //starting LED for this zone
+#define ZONESIX_SECTION7_END              100        //ending LED for this zone
+#define ZONESIX_SECTION7_START_FIRE       1          //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONESIX_SECTION7_END_FIRE         1          //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
+
+#if  SIXTHZONE_SECTIONS >= 8
+#define ZONESIX_SECTION8_START            0          //starting LED for this zone
+#define ZONESIX_SECTION8_END              100        //ending LED for this zone
+#define ZONESIX_SECTION8_START_FIRE       1          //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONESIX_SECTION8_END_FIRE         1          //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
+
+#if  SIXTHZONE_SECTIONS >= 9
+#define ZONESIX_SECTION9_START            0          //starting LED for this zone
+#define ZONESIX_SECTION9_END              100        //ending LED for this zone
+#define ZONESIX_SECTION9_START_FIRE       1          //would you like fire to begin from this point? 0 = no 1 = yes
+#define ZONESIX_SECTION9_END_FIRE         1          //would you like fire to begin from this point? 0 = no 1 = yes
+#endif
+
 
 /*****************  END USER CONFIG SECTION *********************************/
 /*****************  END USER CONFIG SECTION *********************************/
 /*****************  END USER CONFIG SECTION *********************************/
 /*****************  END USER CONFIG SECTION *********************************/
 /*****************  END USER CONFIG SECTION *********************************/
-
 
 /***********************  WIFI AND MQTT SETUP *****************************/
 /***********************  DON'T CHANGE THIS INFO *****************************/
@@ -246,7 +480,7 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 SimpleTimer timer;
 
-#ifdef ZONEONE
+#if ZONEONE == 1
 CRGB firstZone[FIRSTZONE_LEDS];
 const int Pin_firstZone = 5; //marked as D1 on the board
 int center_firstZone = 0;
@@ -254,7 +488,7 @@ int step_firstZone = -1;
 int previousLED_firstZone = 0;
 #endif
 
-#ifdef ZONETWO
+#if ZONETWO == 1
 CRGB secondZone[SECONDZONE_LEDS];
 const int Pin_secondZone = 4; //marked as D2 on the board
 int center_secondZone = 0;
@@ -262,7 +496,7 @@ int step_secondZone = -1;
 int previousLED_secondZone = 0;
 #endif
 
-#ifdef ZONETHREE
+#if ZONETHREE == 1
 CRGB thirdZone[THIRDZONE_LEDS];
 const int Pin_thirdZone = 0; //marked as D3 on the board
 int center_thirdZone = 0;
@@ -270,7 +504,7 @@ int step_thirdZone = -1;
 int previousLED_thirdZone = 0;
 #endif
 
-#ifdef ZONEFOUR
+#if ZONEFOUR == 1
 CRGB fourthZone[FOURTHZONE_LEDS];
 const int Pin_fourthZone = 14; //marked as D5 on the board
 int center_fourthZone = 0;
@@ -278,7 +512,7 @@ int step_fourthZone = -1;
 int previousLED_fourthZone = 0;
 #endif
 
-#ifdef ZONEFIVE
+#if ZONEFIVE == 1
 CRGB fifthZone[FIFTHZONE_LEDS];
 const int Pin_fifthZone = 12; //marked as D6 on the board
 int center_fifthZone = 0;
@@ -286,7 +520,7 @@ int step_fifthZone = -1;
 int previousLED_fifthZone = 0;
 #endif
 
-#ifdef ZONESIX
+#if ZONESIX == 1
 CRGB sixthZone[SIXTHZONE_LEDS];
 const int Pin_sixthZone = 13; //marked as D7 on the board
 int center_sixthZone = 0;
@@ -299,6 +533,9 @@ int previousLED_sixthZone = 0;
 /*****************  GENERAL VARIABLES  *************************************/
 
 CRGBPalette16 gPal;
+int firesize = 40;
+int SPARKING = 85;
+int COOLING =  120;
 bool gReverseDirection = false;
 uint8_t mark = 0;
 uint8_t gHue = 0; 
@@ -329,7 +566,7 @@ byte green3 = 0;
 byte blue3 = 255;
 byte brightness = 255;
 char charPayload[50];
-int maxLEDs = 0;
+int maxLEDs = 500;
 int locatorLED = 0;
 char MQTT_locatorLED[50];
 int locatorDelay = 1000;
@@ -385,6 +622,7 @@ void reconnect()
         }
         // ... and resubscribe
         client.subscribe(USER_MQTT_CLIENT_NAME"/configure");
+        client.subscribe(USER_MQTT_CLIENT_NAME"/modifier");
         client.subscribe(USER_MQTT_CLIENT_NAME"/effect");
         client.subscribe(USER_MQTT_CLIENT_NAME"/state");
         client.subscribe(USER_MQTT_CLIENT_NAME"/color1");
@@ -413,23 +651,23 @@ void reconnect()
 
 void calculateMax()
 {
-  #ifdef ZONETWO
+  #if ZONETWO == 1
   maxLEDs = max(FIRSTZONE_LEDS, SECONDZONE_LEDS);
   #endif
 
-  #ifdef ZONETHREE
+  #if ZONETHREE == 1
   maxLEDs = max(maxLEDs, THIRDZONE_LEDS);
   #endif
 
-  #ifdef ZONEFOUR
+  #if ZONEFOUR == 1
   maxLEDs = max(maxLEDs, FOURTHZONE_LEDS);
   #endif
 
-  #ifdef ZONEFIVE
+  #if ZONEFIVE == 1
   maxLEDs = max(maxLEDs, FIFTHZONE_LEDS);
   #endif
 
-  #ifdef ZONESIX
+  #if ZONESIX == 1
   maxLEDs = max(maxLEDs, SIXTHZONE_LEDS);
   #endif 
 }
@@ -453,6 +691,46 @@ void callback(char* topic, byte* payload, unsigned int length)
   Serial.println(newPayload);
   Serial.println();
   newPayload.toCharArray(charPayload, newPayload.length() + 1); 
+  if (newTopic == USER_MQTT_CLIENT_NAME"/modifier")
+  {
+    client.publish(USER_MQTT_CLIENT_NAME"/modifierState", charPayload);
+    if(effect == "Double_Crash" || effect == "Single_Race")
+    {
+      raceSpeed = (intPayload/20);
+    }
+    if(effect == "BPM")
+    {
+      BeatsPerMinute = (intPayload/4);
+    }
+    if(effect == "Color_Chase" || effect == "Blocked_Colors")
+    {
+      chaseDelay = (intPayload*5);
+      if(chaseDelay < 100)
+      {
+        chaseDelay = 100;
+      }
+    }
+    if(effect == "Color_Glitter")
+    {
+      glitterChance = (intPayload/2);
+    }
+    if(effect == "Rainbow")
+    {
+      numberOfRainbows = (intPayload/30);
+    }
+    if(effect == "Twinkle")
+    {
+      twinkleChance = map(intPayload, 0, 500, 0, 255);
+    }
+    if(effect == "Spooky_Eyes")
+    {
+      eyeChance = map(intPayload, 0, 500, 0, 255);
+    }
+    if(effect == "LED_Locator")
+    {
+      locatorDelay = map(intPayload, 0, 500, 500, 5000);
+    }
+  }
   if (newTopic == USER_MQTT_CLIENT_NAME"/addEffects")
   {
     if(newPayload == "Audio On")
@@ -491,27 +769,27 @@ void callback(char* topic, byte* payload, unsigned int length)
     effect = newPayload;
     client.publish(USER_MQTT_CLIENT_NAME"/effectState", charPayload);
     
-    #ifdef ZONEONE  
+    #if ZONEONE == 1
     fill_solid(firstZone, FIRSTZONE_LEDS, CRGB::Black); 
     #endif
 
-    #ifdef ZONETWO
+    #if ZONETWO == 1
     fill_solid(secondZone, SECONDZONE_LEDS, CRGB::Black); 
     #endif
 
-    #ifdef ZONETHREE
+    #if ZONETHREE == 1
     fill_solid(thirdZone, THIRDZONE_LEDS, CRGB::Black);
     #endif
 
-    #ifdef ZONEFOUR
+    #if ZONEFOUR == 1
     fill_solid(fourthZone, FOURTHZONE_LEDS, CRGB::Black);
     #endif
 
-    #ifdef ZONEFIVE
+    #if ZONEFIVE == 1
     fill_solid(fifthZone, FIFTHZONE_LEDS, CRGB::Black); 
     #endif
     
-    #ifdef ZONESIX
+    #if ZONESIX == 1
     fill_solid(sixthZone, SIXTHZONE_LEDS, CRGB::Black);
     #endif  
 
@@ -581,7 +859,7 @@ void callback(char* topic, byte* payload, unsigned int length)
 
   if (newTopic == USER_MQTT_CLIENT_NAME "/color3")
   {
-    client.publish(USER_MQTT_CLIENT_NAME "/color3State3", charPayload); 
+    client.publish(USER_MQTT_CLIENT_NAME "/color3State", charPayload); 
     // get the position of the first and second commas
     uint8_t firstIndex = newPayload.indexOf(',');
     uint8_t lastIndex = newPayload.lastIndexOf(',');
@@ -626,46 +904,6 @@ void callback(char* topic, byte* payload, unsigned int length)
       showLights = false;
     }
   }
-  if (newTopic == USER_MQTT_CLIENT_NAME"/modifier")
-  {
-    client.publish(USER_MQTT_CLIENT_NAME "/modifierState", charPayload); 
-    if(effect == "Double_Crash" || effect == "Single_Race")
-    {
-      raceSpeed = (intPayload/20);
-    }
-    if(effect == "BPM")
-    {
-      BeatsPerMinute = (intPayload/4);
-    }
-    if(effect == "Color_Chase" || effect == "Blocked_Colors")
-    {
-      chaseDelay = (intPayload*5);
-      if(chaseDelay < 100)
-      {
-        chaseDelay = 100;
-      }
-    }
-    if(effect == "Color_Glitter")
-    {
-      glitterChance = (intPayload/2);
-    }
-    if(effect == "Rainbow")
-    {
-      numberOfRainbows = (intPayload/30);
-    }
-    if(effect == "Twinkle")
-    {
-      twinkleChance = map(intPayload, 0, 500, 0, 255);
-    }
-    if(effect == "Spooky_Eyes")
-    {
-      eyeChance = map(intPayload, 0, 500, 0, 255);
-    }
-    if(effect == "LED_Locator")
-    {
-      locatorDelay = map(intPayload, 0, 500, 500, 5000);
-    }
-  }
 }
 
 
@@ -702,27 +940,27 @@ void choosePattern()
   {
    if(effect == "Color_Chase")
    {
-    #ifdef ZONEONE  
+    #if ZONEONE == 1 
     RGB_firstZone();
     #endif
 
-    #ifdef ZONETWO
+    #if ZONETWO == 1
     RGB_secondZone(); 
     #endif
 
-    #ifdef ZONETHREE
+    #if ZONETHREE == 1
     RGB_thirdZone();
     #endif
 
-    #ifdef ZONEFOUR
+    #if ZONEFOUR == 1
     RGB_fourthZone();
     #endif
 
-    #ifdef ZONEFIVE
+    #if ZONEFIVE == 1
     RGB_fifthZone();
     #endif
     
-    #ifdef ZONESIX
+    #if ZONESIX == 1
     RGB_sixthZone();
     #endif 
       
@@ -730,132 +968,132 @@ void choosePattern()
    if(effect == "Color_Glitter")
    {
 
-    #ifdef ZONEONE  
+    #if ZONEONE == 1 
     ColorGlitter_firstZone(glitterChance);
     #endif
 
-    #ifdef ZONETWO
+    #if ZONETWO == 1
     ColorGlitter_secondZone(glitterChance); 
     #endif
 
-    #ifdef ZONETHREE
+    #if ZONETHREE == 1
     ColorGlitter_thirdZone(glitterChance);
     #endif
 
-    #ifdef ZONEFOUR
+    #if ZONEFOUR == 1
     ColorGlitter_fourthZone(glitterChance);
     #endif
 
-    #ifdef ZONEFIVE
+    #if ZONEFIVE == 1
     ColorGlitter_fifthZone(glitterChance);
     #endif
     
-    #ifdef ZONESIX
+    #if ZONESIX == 1
     ColorGlitter_sixthZone(glitterChance);
     #endif  
    }
    if(effect == "Single_Race")
    {
 
-    #ifdef ZONEONE  
+    #if ZONEONE == 1 
     SingleRace_firstZone();
     #endif
 
-    #ifdef ZONETWO
+    #if ZONETWO == 1
     SingleRace_secondZone(); 
     #endif
 
-    #ifdef ZONETHREE
+    #if ZONETHREE == 1
     SingleRace_thirdZone();
     #endif
 
-    #ifdef ZONEFOUR
+    #if ZONEFOUR == 1
     SingleRace_fourthZone();
     #endif
 
-    #ifdef ZONEFIVE
+    #if ZONEFIVE == 1
     SingleRace_fifthZone();
     #endif
     
-    #ifdef ZONESIX
+    #if ZONESIX == 1
     SingleRace_sixthZone();
     #endif 
    }
    if(effect == "Double_Crash")
    {
-    #ifdef ZONEONE  
+    #if ZONEONE == 1
     Crash_firstZone();
     #endif
 
-    #ifdef ZONETWO
+    #if ZONETWO == 1
     Crash_secondZone(); 
     #endif
 
-    #ifdef ZONETHREE
+    #if ZONETHREE == 1
     Crash_thirdZone();
     #endif
 
-    #ifdef ZONEFOUR
+    #if ZONEFOUR == 1
     Crash_fourthZone();
     #endif
 
-    #ifdef ZONEFIVE
+    #if ZONEFIVE == 1
     Crash_fifthZone();
     #endif
     
-    #ifdef ZONESIX
+    #if ZONESIX == 1
     Crash_sixthZone();
     #endif 
    }
    if(effect == "Rainbow")
    {
-    #ifdef ZONEONE  
+    #if ZONEONE == 1  
     Rainbow_firstZone();
     #endif
 
-    #ifdef ZONETWO
+    #if ZONETWO == 1
     Rainbow_secondZone(); 
     #endif
 
-    #ifdef ZONETHREE
+    #if ZONETHREE == 1
     Rainbow_thirdZone();
     #endif
 
-    #ifdef ZONEFOUR
+    #if ZONEFOUR == 1
     Rainbow_fourthZone();
     #endif
 
-    #ifdef ZONEFIVE
+    #if ZONEFIVE == 1
     Rainbow_fifthZone();
     #endif
     
-    #ifdef ZONESIX
+    #if ZONESIX == 1
     Rainbow_sixthZone();
     #endif 
    }
    if(effect == "Blocked_Colors")
    {
-    #ifdef ZONEONE  
+    #if ZONEONE == 1
     Blocked_firstZone();
     #endif
 
-    #ifdef ZONETWO
+    #if ZONETWO == 1
     Blocked_secondZone(); 
     #endif
 
-    #ifdef ZONETHREE
+    #if ZONETHREE == 1
     Blocked_thirdZone();
     #endif
 
-    #ifdef ZONEFOUR
+    #if ZONEFOUR == 1
     Blocked_fourthZone();
     #endif
 
-    #ifdef ZONEFIVE
+    #if ZONEFIVE == 1
     Blocked_fifthZone();
     #endif
     
-    #ifdef ZONESIX
+    #if ZONESIX == 1
     Blocked_sixthZone();
     #endif 
 
@@ -863,107 +1101,107 @@ void choosePattern()
    if(effect == "BPM")
    {
 
-    #ifdef ZONEONE  
+    #if ZONEONE == 1
     BPM_firstZone();
     #endif
 
-    #ifdef ZONETWO
+    #if ZONETWO == 1
     BPM_secondZone(); 
     #endif
 
-    #ifdef ZONETHREE
+    #if ZONETHREE == 1
     BPM_thirdZone();
     #endif
 
-    #ifdef ZONEFOUR
+    #if ZONEFOUR == 1
     BPM_fourthZone();
     #endif
 
-    #ifdef ZONEFIVE
+    #if ZONEFIVE == 1
     BPM_fifthZone();
     #endif
     
-    #ifdef ZONESIX
+    #if ZONESIX == 1
     BPM_sixthZone();
     #endif 
    }
    if(effect == "Twinkle")
    {
-    #ifdef ZONEONE  
+    #if ZONEONE == 1
     Twinkle_firstZone();
     #endif
 
-    #ifdef ZONETWO
+    #if ZONETWO == 1
     Twinkle_secondZone(); 
     #endif
 
-    #ifdef ZONETHREE
+    #if ZONETHREE == 1
     Twinkle_thirdZone();
     #endif
 
-    #ifdef ZONEFOUR
+    #if ZONEFOUR == 1
     Twinkle_fourthZone();
     #endif
 
-    #ifdef ZONEFIVE
+    #if ZONEFIVE == 1
     Twinkle_fifthZone();
     #endif
     
-    #ifdef ZONESIX
+    #if ZONESIX == 1
     Twinkle_sixthZone();
     #endif 
 
    }
    if(effect == "Fill_Solid")
    {
-    #ifdef ZONEONE  
+    #if ZONEONE == 1
     Solid_firstZone();
     #endif
 
-    #ifdef ZONETWO
+    #if ZONETWO == 1
     Solid_secondZone(); 
     #endif
 
-    #ifdef ZONETHREE
+    #if ZONETHREE == 1
     Solid_thirdZone();
     #endif
 
-    #ifdef ZONEFOUR
+    #if ZONEFOUR == 1
     Solid_fourthZone();
     #endif
 
-    #ifdef ZONEFIVE
+    #if ZONEFIVE == 1
     Solid_fifthZone();
     #endif
     
-    #ifdef ZONESIX
+    #if ZONESIX == 1
     Solid_sixthZone();
     #endif
     
    }
    if(effect == "Spooky_Eyes")
    {
-    #ifdef ZONEONE  
+    #if ZONEONE == 1
     Eyes_firstZone();
     #endif
 
-    #ifdef ZONETWO
+    #if ZONETWO == 1
     Eyes_secondZone(); 
     #endif
 
-    #ifdef ZONETHREE
+    #if ZONETHREE == 1
     Eyes_thirdZone();
     #endif
 
-    #ifdef ZONEFOUR
+    #if ZONEFOUR == 1
     Eyes_fourthZone();
     #endif
 
-    #ifdef ZONEFIVE
+    #if ZONEFIVE == 1
     Eyes_fifthZone();
     #endif
     
-    #ifdef ZONESIX
+    #if ZONESIX == 1
     Eyes_sixthZone();
     #endif
 
@@ -971,27 +1209,27 @@ void choosePattern()
    
    if(effect == "LED_Locator")
    {
-    #ifdef ZONEONE  
+    #if ZONEONE == 1
     Locator_firstZone();
     #endif
 
-    #ifdef ZONETWO
+    #if ZONETWO == 1
     Locator_secondZone(); 
     #endif
 
-    #ifdef ZONETHREE
+    #if ZONETHREE == 1
     Locator_thirdZone();
     #endif
 
-    #ifdef ZONEFOUR
+    #if ZONEFOUR == 1
     Locator_fourthZone();
     #endif
 
-    #ifdef ZONEFIVE
+    #if ZONEFIVE == 1
     Locator_fifthZone();
     #endif
     
-    #ifdef ZONESIX
+    #if ZONESIX == 1
     Locator_sixthZone();
     #endif
 
@@ -999,54 +1237,237 @@ void choosePattern()
    if(effect == "Ripple")
    {
 
-    #ifdef ZONEONE  
+    #if ZONEONE == 1 
     Ripple_firstZone();
     #endif
 
-    #ifdef ZONETWO
+    #if ZONETWO == 1
     Ripple_secondZone(); 
     #endif
 
-    #ifdef ZONETHREE
+    #if ZONETHREE == 1
     Ripple_thirdZone();
     #endif
 
-    #ifdef ZONEFOUR
+    #if ZONEFOUR == 1
     Ripple_fourthZone();
     #endif
 
-    #ifdef ZONEFIVE
+    #if ZONEFIVE == 1
     Ripple_fifthZone();
     #endif
     
-    #ifdef ZONESIX
+    #if ZONESIX == 1
     Ripple_sixthZone();
+    #endif
+   }
+   if(effect == "Fire")
+   {
+
+    #if ZONEONE == 1 
+      #if FIRSTZONE_SECTIONS >= 1
+      fire_firstZone_SECTION1();
+      #endif
+      #if FIRSTZONE_SECTIONS >= 2
+      fire_firstZone_SECTION2();
+      #endif
+      #if FIRSTZONE_SECTIONS >= 3
+      fire_firstZone_SECTION3();
+      #endif
+      #if FIRSTZONE_SECTIONS >= 4
+      fire_firstZone_SECTION4();
+      #endif
+      #if FIRSTZONE_SECTIONS >= 5
+      fire_firstZone_SECTION5();
+      #endif
+      #if FIRSTZONE_SECTIONS >= 6
+      fire_firstZone_SECTION6();
+      #endif
+      #if FIRSTZONE_SECTIONS >= 7
+      fire_firstZone_SECTION7();
+      #endif
+      #if FIRSTZONE_SECTIONS >= 8
+      fire_firstZone_SECTION8();
+      #endif
+      #if FIRSTZONE_SECTIONS >= 9
+      fire_firstZone_SECTION9();
+      #endif
+    #endif
+
+    #if ZONETWO == 1 
+      #if SECONDZONE_SECTIONS >= 1
+      fire_secondZone_SECTION1();
+      #endif
+      #if SECONDZONE_SECTIONS >= 2
+      fire_secondZone_SECTION2();
+      #endif
+      #if SECONDZONE_SECTIONS >= 3
+      fire_secondZone_SECTION3();
+      #endif
+      #if SECONDZONE_SECTIONS >= 4
+      fire_secondZone_SECTION4();
+      #endif
+      #if SECONDZONE_SECTIONS >= 5
+      fire_secondZone_SECTION5();
+      #endif
+      #if SECONDZONE_SECTIONS >= 6
+      fire_secondZone_SECTION6();
+      #endif
+      #if SECONDZONE_SECTIONS >= 7
+      fire_secondZone_SECTION7();
+      #endif
+      #if SECONDZONE_SECTIONS >= 8
+      fire_secondZone_SECTION8();
+      #endif
+      #if SECONDZONE_SECTIONS >= 9
+      fire_secondZone_SECTION9();
+      #endif
+    #endif
+
+    #if ZONETHREE == 1 
+      #if THIRDZONE_SECTIONS >= 1
+      fire_thirdZone_SECTION1();
+      #endif
+      #if THIRDZONE_SECTIONS >= 2
+      fire_thirdZone_SECTION2();
+      #endif
+      #if THIRDZONE_SECTIONS >= 3
+      fire_thirdZone_SECTION3();
+      #endif
+      #if THIRDZONE_SECTIONS >= 4
+      fire_thirdZone_SECTION4();
+      #endif
+      #if THIRDZONE_SECTIONS >= 5
+      fire_thirdZone_SECTION5();
+      #endif
+      #if THIRDZONE_SECTIONS >= 6
+      fire_thirdZone_SECTION6();
+      #endif
+      #if THIRDZONE_SECTIONS >= 7
+      fire_thirdZone_SECTION7();
+      #endif
+      #if THIRDZONE_SECTIONS >= 8
+      fire_thirdZone_SECTION8();
+      #endif
+      #if THIRDZONE_SECTIONS >= 9
+      fire_thirdZone_SECTION9();
+      #endif
+    #endif
+
+    #if ZONEFOUR == 1 
+      #if FOURTHZONE_SECTIONS >= 1
+      fire_fourthZone_SECTION1();
+      #endif
+      #if FOURTHZONE_SECTIONS >= 2
+      fire_fourthZone_SECTION2();
+      #endif
+      #if FOURTHZONE_SECTIONS >= 3
+      fire_fourthZone_SECTION3();
+      #endif
+      #if FOURTHZONE_SECTIONS >= 4
+      fire_fourthZone_SECTION4();
+      #endif
+      #if FOURTHZONE_SECTIONS >= 5
+      fire_fourthZone_SECTION5();
+      #endif
+      #if FOURTHZONE_SECTIONS >= 6
+      fire_fourthZone_SECTION6();
+      #endif
+      #if FOURTHZONE_SECTIONS >= 7
+      fire_fourthZone_SECTION7();
+      #endif
+      #if FOURTHZONE_SECTIONS >= 8
+      fire_fourthZone_SECTION8();
+      #endif
+      #if FOURTHZONE_SECTIONS >= 9
+      fire_fourthZone_SECTION9();
+      #endif
+    #endif
+
+    #if ZONEFIVE == 1 
+      #if FIFTHZONE_SECTIONS >= 1
+      fire_fifthZone_SECTION1();
+      #endif
+      #if FIFTHZONE_SECTIONS >= 2
+      fire_fifthZone_SECTION2();
+      #endif
+      #if FIFTHZONE_SECTIONS >= 3
+      fire_fifthZone_SECTION3();
+      #endif
+      #if FIFTHZONE_SECTIONS >= 4
+      fire_fifthZone_SECTION4();
+      #endif
+      #if FIFTHZONE_SECTIONS >= 5
+      fire_fifthZone_SECTION5();
+      #endif
+      #if FIFTHZONE_SECTIONS >= 6
+      fire_fifthZone_SECTION6();
+      #endif
+      #if FIFTHZONE_SECTIONS >= 7
+      fire_fifthZone_SECTION7();
+      #endif
+      #if FIFTHZONE_SECTIONS >= 8
+      fire_fifthZone_SECTION8();
+      #endif
+      #if FIFTHZONE_SECTIONS >= 9
+      fire_fifthZone_SECTION9();
+      #endif
+    #endif
+
+    #if ZONESIX == 1 
+      #if SIXTHZONE_SECTIONS >= 1
+      fire_sixthZone_SECTION1();
+      #endif
+      #if SIXTHZONE_SECTIONS >= 2
+      fire_sixthZone_SECTION2();
+      #endif
+      #if SIXTHZONE_SECTIONS >= 3
+      fire_sixthZone_SECTION3();
+      #endif
+      #if SIXTHZONE_SECTIONS >= 4
+      fire_sixthZone_SECTION4();
+      #endif
+      #if SIXTHZONE_SECTIONS >= 5
+      fire_sixthZone_SECTION5();
+      #endif
+      #if SIXTHZONE_SECTIONS >= 6
+      fire_sixthZone_SECTION6();
+      #endif
+      #if SIXTHZONE_SECTIONS >= 7
+      fire_sixthZone_SECTION7();
+      #endif
+      #if SIXTHZONE_SECTIONS >= 8
+      fire_sixthZone_SECTION8();
+      #endif
+      #if SIXTHZONE_SECTIONS >= 9
+      fire_sixthZone_SECTION9();
+      #endif
     #endif
    }
   }
   if(showLights == false)
   {
-    #ifdef ZONEONE  
+    #if ZONEONE == 1 
     fill_solid(firstZone, FIRSTZONE_LEDS, CRGB::Black); 
     #endif
 
-    #ifdef ZONETWO
+    #if ZONETWO == 1
     fill_solid(secondZone, SECONDZONE_LEDS, CRGB::Black); 
     #endif
 
-    #ifdef ZONETHREE
+    #if ZONETHREE == 1
     fill_solid(thirdZone, THIRDZONE_LEDS, CRGB::Black);
     #endif
 
-    #ifdef ZONEFOUR
+    #if ZONEFOUR == 1
     fill_solid(fourthZone, FOURTHZONE_LEDS, CRGB::Black);
     #endif
 
-    #ifdef ZONEFIVE
+    #if ZONEFIVE == 1
     fill_solid(fifthZone, FIFTHZONE_LEDS, CRGB::Black); 
     #endif
     
-    #ifdef ZONESIX
+    #if ZONESIX == 1
     fill_solid(sixthZone, SIXTHZONE_LEDS, CRGB::Black);
     #endif
   }
@@ -1064,54 +1485,54 @@ void addLightning()
 {
   if(showLightning == true)
   {
-    #ifdef ZONEONE  
+    #if ZONEONE == 1 
     fadeToBlackBy(firstZone, FIRSTZONE_LEDS, 1); 
     #endif
 
-    #ifdef ZONETWO
+    #if ZONETWO == 1
     fadeToBlackBy(secondZone, SECONDZONE_LEDS, 1); 
     #endif
 
-    #ifdef ZONETHREE
+    #if ZONETHREE == 1
     fadeToBlackBy(thirdZone, THIRDZONE_LEDS, 1);
     #endif
 
-    #ifdef ZONEFOUR
+    #if ZONEFOUR == 1
     fadeToBlackBy(fourthZone, FOURTHZONE_LEDS, 1);
     #endif
 
-    #ifdef ZONEFIVE
+    #if ZONEFIVE == 1
     fadeToBlackBy(fifthZone, FIFTHZONE_LEDS, 1); 
     #endif
     
-    #ifdef ZONESIX
+    #if ZONESIX == 1
     fadeToBlackBy(sixthZone, SIXTHZONE_LEDS, 1);
     #endif
     
     unsigned int chance = random8();
     if( chance == 255) 
     {
-      #ifdef ZONEONE  
+      #if ZONEONE == 1 
       fill_solid(firstZone, FIRSTZONE_LEDS, CRGB::White); 
       #endif
   
-      #ifdef ZONETWO
+      #if ZONETWO == 1
       fill_solid(secondZone, SECONDZONE_LEDS, CRGB::White); 
       #endif
   
-      #ifdef ZONETHREE
+      #if ZONETHREE == 1
       fill_solid(thirdZone, THIRDZONE_LEDS, CRGB::White);
       #endif
   
-      #ifdef ZONEFOUR
+      #if ZONEFOUR == 1
       fill_solid(fourthZone, FOURTHZONE_LEDS, CRGB::White);
       #endif
   
-      #ifdef ZONEFIVE
+      #if ZONEFIVE == 1
       fill_solid(fifthZone, FIFTHZONE_LEDS, CRGB::White); 
       #endif
       
-      #ifdef ZONESIX
+      #if ZONESIX == 1
       fill_solid(sixthZone, SIXTHZONE_LEDS, CRGB::White);
       #endif
 
@@ -1133,27 +1554,27 @@ void addLightning()
     {
       if(lightning > 15)
       {
-        #ifdef ZONEONE  
+        #if ZONEONE == 1  
         fadeToBlackBy(firstZone, FIRSTZONE_LEDS, 150); 
         #endif
     
-        #ifdef ZONETWO
+        #if ZONETWO == 1
         fadeToBlackBy(secondZone, SECONDZONE_LEDS, 150); 
         #endif
     
-        #ifdef ZONETHREE
+        #if ZONETHREE == 1
         fadeToBlackBy(thirdZone, THIRDZONE_LEDS, 150);
         #endif
     
-        #ifdef ZONEFOUR
+        #if ZONEFOUR == 1
         fadeToBlackBy(fourthZone, FOURTHZONE_LEDS, 150);
         #endif
     
-        #ifdef ZONEFIVE
+        #if ZONEFIVE == 1
         fadeToBlackBy(fifthZone, FIFTHZONE_LEDS, 150); 
         #endif
         
-        #ifdef ZONESIX
+        #if ZONESIX == 1
         fadeToBlackBy(sixthZone, SIXTHZONE_LEDS, 150);
         #endif
 
@@ -1162,108 +1583,108 @@ void addLightning()
       if(lightning == 15)
       {
 
-        #ifdef ZONEONE  
+        #if ZONEONE == 1 
         fill_solid(firstZone, FIRSTZONE_LEDS, CRGB::White); 
         #endif
     
-        #ifdef ZONETWO
+        #if ZONETWO == 1
         fill_solid(secondZone, SECONDZONE_LEDS, CRGB::White); 
         #endif
     
-        #ifdef ZONETHREE
+        #if ZONETHREE == 1
         fill_solid(thirdZone, THIRDZONE_LEDS, CRGB::White);
         #endif
     
-        #ifdef ZONEFOUR
+        #if ZONEFOUR == 1
         fill_solid(fourthZone, FOURTHZONE_LEDS, CRGB::White);
         #endif
     
-        #ifdef ZONEFIVE
+        #if ZONEFIVE == 1
         fill_solid(fifthZone, FIFTHZONE_LEDS, CRGB::White); 
         #endif
         
-        #ifdef ZONESIX
+        #if ZONESIX == 1
         fill_solid(sixthZone, SIXTHZONE_LEDS, CRGB::White);
         #endif
         lightning--; 
       }
       if(lightning > 5 && lightning < 15)
       {
-        #ifdef ZONEONE  
+        #if ZONEONE == 1
         fadeToBlackBy(firstZone, FIRSTZONE_LEDS, 150); 
         #endif
     
-        #ifdef ZONETWO
+        #if ZONETWO == 1
         fadeToBlackBy(secondZone, SECONDZONE_LEDS, 150); 
         #endif
     
-        #ifdef ZONETHREE
+        #if ZONETHREE == 1
         fadeToBlackBy(thirdZone, THIRDZONE_LEDS, 150);
         #endif
     
-        #ifdef ZONEFOUR
+        #if ZONEFOUR == 1
         fadeToBlackBy(fourthZone, FOURTHZONE_LEDS, 150);
         #endif
     
-        #ifdef ZONEFIVE
+        #if ZONEFIVE == 1
         fadeToBlackBy(fifthZone, FIFTHZONE_LEDS, 150); 
         #endif
         
-        #ifdef ZONESIX
+        #if ZONESIX == 1
         fadeToBlackBy(sixthZone, SIXTHZONE_LEDS, 150);
         #endif
         lightning--;
       }
       if(lightning == 5)
       {
-        #ifdef ZONEONE  
+        #if ZONEONE == 1 
         fill_solid(firstZone, FIRSTZONE_LEDS, CRGB::White); 
         #endif
     
-        #ifdef ZONETWO
+        #if ZONETWO == 1
         fill_solid(secondZone, SECONDZONE_LEDS, CRGB::White); 
         #endif
     
-        #ifdef ZONETHREE
+        #if ZONETHREE == 1
         fill_solid(thirdZone, THIRDZONE_LEDS, CRGB::White);
         #endif
     
-        #ifdef ZONEFOUR
+        #if ZONEFOUR == 1
         fill_solid(fourthZone, FOURTHZONE_LEDS, CRGB::White);
         #endif
     
-        #ifdef ZONEFIVE
+        #if ZONEFIVE == 1
         fill_solid(fifthZone, FIFTHZONE_LEDS, CRGB::White); 
         #endif
         
-        #ifdef ZONESIX
+        #if ZONESIX == 1
         fill_solid(sixthZone, SIXTHZONE_LEDS, CRGB::White);
         #endif
         lightning--; 
       }
       if(lightning > 0 && lightning < 5)
       {
-        #ifdef ZONEONE  
+        #if ZONEONE == 1
         fadeToBlackBy(firstZone, FIRSTZONE_LEDS, 150); 
         #endif
     
-        #ifdef ZONETWO
+        #if ZONETWO == 1
         fadeToBlackBy(secondZone, SECONDZONE_LEDS, 150); 
         #endif
     
-        #ifdef ZONETHREE
+        #if ZONETHREE == 1
         fadeToBlackBy(thirdZone, THIRDZONE_LEDS, 150);
         #endif
     
-        #ifdef ZONEFOUR
+        #if ZONEFOUR == 1
         fadeToBlackBy(fourthZone, FOURTHZONE_LEDS, 150);
         #endif
     
-        #ifdef ZONEFIVE
+        #if ZONEFIVE == 1
         fadeToBlackBy(fifthZone, FIFTHZONE_LEDS, 150); 
         #endif
         
-        #ifdef ZONESIX
+        #if ZONESIX == 1
         fadeToBlackBy(sixthZone, SIXTHZONE_LEDS, 150);
         #endif
         lightning--;
@@ -1276,38 +1697,38 @@ void addGlitter( fract8 chanceOfGlitter)
 {
   if(showGlitter == true)
   {
-        #ifdef ZONEONE  
+        #if ZONEONE == 1 
         if( random8() < chanceOfGlitter) 
         {
           firstZone[ random16(FIRSTZONE_LEDS) ] += CRGB::White;
         }
         #endif
     
-        #ifdef ZONETWO
+        #if ZONETWO == 1
         {
           secondZone[ random16(SECONDZONE_LEDS) ] += CRGB::White;
         }
         #endif
     
-        #ifdef ZONETHREE
+        #if ZONETHREE == 1
         {
           thirdZone[ random16(THIRDZONE_LEDS) ] += CRGB::White;
         }
         #endif
     
-        #ifdef ZONEFOUR
+        #if ZONEFOUR == 1
         {
           fourthZone[ random16(FOURTHZONE_LEDS) ] += CRGB::White;
         }
         #endif
     
-        #ifdef ZONEFIVE
+        #if ZONEFIVE == 1
         {
           fifthZone[ random16(FIFTHZONE_LEDS) ] += CRGB::White;
         }
         #endif
         
-        #ifdef ZONESIX
+        #if ZONESIX == 1
         {
           sixthZone[ random16(SIXTHZONE_LEDS) ] += CRGB::White;
         }
@@ -1318,27 +1739,27 @@ void addGlitter( fract8 chanceOfGlitter)
 
 void setupZones()
 {
-    #ifdef ZONEONE  
+    #if ZONEONE == 1
     FastLED.addLeds<WS2812B, Pin_firstZone, FIRSTZONE_COLOR_ORDER>(firstZone, FIRSTZONE_LEDS);
     #endif
 
-    #ifdef ZONETWO
+    #if ZONETWO == 1
     FastLED.addLeds<WS2812B, Pin_secondZone, SECONDZONE_COLOR_ORDER>(secondZone, SECONDZONE_LEDS);
     #endif
 
-    #ifdef ZONETHREE
+    #if ZONETHREE == 1
     FastLED.addLeds<WS2812B, Pin_thirdZone, THIRDZONE_COLOR_ORDER>(thirdZone, THIRDZONE_LEDS);
     #endif
 
-    #ifdef ZONEFOUR
+    #if ZONEFOUR == 1
     FastLED.addLeds<WS2812B, Pin_fourthZone, FOURTHZONE_COLOR_ORDER>(fourthZone, FOURTHZONE_LEDS);
     #endif
 
-    #ifdef ZONEFIVE
+    #if ZONEFIVE == 1
     FastLED.addLeds<WS2812B, Pin_fifthZone, FIFTHZONE_COLOR_ORDER>(fifthZone, FIFTHZONE_LEDS);
     #endif
     
-    #ifdef ZONESIX
+    #if ZONESIX == 1
     FastLED.addLeds<WS2812B, Pin_sixthZone, SIXTHZONE_COLOR_ORDER>(sixthZone, SIXTHZONE_LEDS);
     #endif
 }
@@ -1374,6 +1795,7 @@ void locator_Move()
 
 void setup() {
   Serial.begin(115200);
+  calculateMax();
   setupZones();
   FastLED.setDither( 0 );
   WiFi.setSleepMode(WIFI_NONE_SLEEP);
@@ -1414,27 +1836,27 @@ void loop()
   EVERY_N_MILLISECONDS( 20 ) { gHue++; }
   choosePattern();
 
-  #ifdef ZONEONE  
+  #if ZONEONE == 1
   FastLED[0].showLeds(brightness);
   #endif
 
-  #ifdef ZONETWO
+  #if ZONETWO == 1
   FastLED[1].showLeds(brightness);
   #endif
 
-  #ifdef ZONETHREE
+  #if ZONETHREE == 1
   FastLED[2].showLeds(brightness);
   #endif
 
-  #ifdef ZONEFOUR
+  #if ZONEFOUR == 1
   FastLED[3].showLeds(brightness);
   #endif
 
-  #ifdef ZONEFIVE
+  #if ZONEFIVE == 1
   FastLED[4].showLeds(brightness);
   #endif
   
-  #ifdef ZONESIX
+  #if ZONESIX == 1
   FastLED[5].showLeds(brightness);
   #endif
   
@@ -1448,7 +1870,7 @@ void loop()
 /*****************  firstZone Animations  ****************************************/
 /*****************  firstZone Animations  ****************************************/
 
-#ifdef ZONEONE  
+#if ZONEONE == 1
 
 
 void Ripple_firstZone()
@@ -1802,6 +2224,420 @@ void Locator_firstZone()
   }
 }
 
+#ifdef ZONEONE_SECTION1_START
+void fire_firstZone_SECTION1()
+{
+  static byte heat[ZONEONE_SECTION1_END - ZONEONE_SECTION1_START];
+  for( int i = 0; i < ZONEONE_SECTION1_END - ZONEONE_SECTION1_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEONE_SECTION1_END - ZONEONE_SECTION1_START) + 2));
+  }
+
+  for( int k= ZONEONE_SECTION1_END - ZONEONE_SECTION1_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEONE_SECTION1_END - ZONEONE_SECTION1_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEONE_SECTION1_END - ZONEONE_SECTION1_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEONE_SECTION1_START && thisFlame <= ZONEONE_SECTION1_END)
+    
+    #if ZONEONE_SECTION1_START_FIRE == 1
+    {
+      firstZone[ZONEONE_SECTION1_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEONE_SECTION1_END_FIRE == 1
+    {
+      firstZone[ZONEONE_SECTION1_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEONE_SECTION2_START
+void fire_firstZone_SECTION2()
+{
+  static byte heat[ZONEONE_SECTION2_END - ZONEONE_SECTION2_START];
+  for( int i = 0; i < ZONEONE_SECTION2_END - ZONEONE_SECTION2_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEONE_SECTION2_END - ZONEONE_SECTION2_START) + 2));
+  }
+
+  for( int k= ZONEONE_SECTION2_END - ZONEONE_SECTION2_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEONE_SECTION2_END - ZONEONE_SECTION2_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEONE_SECTION2_END - ZONEONE_SECTION2_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEONE_SECTION2_START && thisFlame <= ZONEONE_SECTION2_END)
+    
+    #if ZONEONE_SECTION2_START_FIRE == 1
+    {
+      firstZone[ZONEONE_SECTION2_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEONE_SECTION2_END_FIRE == 1
+    {
+      firstZone[ZONEONE_SECTION2_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEONE_SECTION3_START
+void fire_firstZone_SECTION3()
+{
+  static byte heat[ZONEONE_SECTION3_END - ZONEONE_SECTION3_START];
+  for( int i = 0; i < ZONEONE_SECTION3_END - ZONEONE_SECTION3_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEONE_SECTION3_END - ZONEONE_SECTION3_START) + 2));
+  }
+
+  for( int k= ZONEONE_SECTION3_END - ZONEONE_SECTION3_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEONE_SECTION3_END - ZONEONE_SECTION3_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEONE_SECTION3_END - ZONEONE_SECTION3_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEONE_SECTION3_START && thisFlame <= ZONEONE_SECTION3_END)
+    
+    #if ZONEONE_SECTION3_START_FIRE == 1
+    {
+      firstZone[ZONEONE_SECTION3_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEONE_SECTION3_END_FIRE == 1
+    {
+      firstZone[ZONEONE_SECTION3_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEONE_SECTION4_START
+void fire_firstZone_SECTION4()
+{
+  static byte heat[ZONEONE_SECTION4_END - ZONEONE_SECTION4_START];
+  for( int i = 0; i < ZONEONE_SECTION4_END - ZONEONE_SECTION4_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEONE_SECTION4_END - ZONEONE_SECTION4_START) + 2));
+  }
+
+  for( int k= ZONEONE_SECTION4_END - ZONEONE_SECTION4_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEONE_SECTION4_END - ZONEONE_SECTION4_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEONE_SECTION4_END - ZONEONE_SECTION4_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEONE_SECTION4_START && thisFlame <= ZONEONE_SECTION4_END)
+    
+    #if ZONEONE_SECTION4_START_FIRE == 1
+    {
+      firstZone[ZONEONE_SECTION4_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEONE_SECTION4_END_FIRE == 1
+    {
+      firstZone[ZONEONE_SECTION4_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEONE_SECTION5_START
+void fire_firstZone_SECTION5()
+{
+  static byte heat[ZONEONE_SECTION5_END - ZONEONE_SECTION5_START];
+  for( int i = 0; i < ZONEONE_SECTION5_END - ZONEONE_SECTION5_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEONE_SECTION5_END - ZONEONE_SECTION5_START) + 2));
+  }
+
+  for( int k= ZONEONE_SECTION5_END - ZONEONE_SECTION5_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEONE_SECTION5_END - ZONEONE_SECTION5_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEONE_SECTION5_END - ZONEONE_SECTION5_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEONE_SECTION5_START && thisFlame <= ZONEONE_SECTION5_END)
+    
+    #if ZONEONE_SECTION5_START_FIRE == 1
+    {
+      firstZone[ZONEONE_SECTION5_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEONE_SECTION5_END_FIRE == 1
+    {
+      firstZone[ZONEONE_SECTION5_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEONE_SECTION6_START
+void fire_firstZone_SECTION6()
+{
+  static byte heat[ZONEONE_SECTION6_END - ZONEONE_SECTION6_START];
+  for( int i = 0; i < ZONEONE_SECTION6_END - ZONEONE_SECTION6_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEONE_SECTION6_END - ZONEONE_SECTION6_START) + 2));
+  }
+
+  for( int k= ZONEONE_SECTION6_END - ZONEONE_SECTION6_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEONE_SECTION6_END - ZONEONE_SECTION6_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEONE_SECTION6_END - ZONEONE_SECTION6_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEONE_SECTION6_START && thisFlame <= ZONEONE_SECTION6_END)
+    
+    #if ZONEONE_SECTION6_START_FIRE == 1
+    {
+      firstZone[ZONEONE_SECTION6_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEONE_SECTION6_END_FIRE == 1
+    {
+      firstZone[ZONEONE_SECTION6_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEONE_SECTION7_START
+void fire_firstZone_SECTION7()
+{
+  static byte heat[ZONEONE_SECTION7_END - ZONEONE_SECTION7_START];
+  for( int i = 0; i < ZONEONE_SECTION7_END - ZONEONE_SECTION7_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEONE_SECTION7_END - ZONEONE_SECTION7_START) + 2));
+  }
+
+  for( int k= ZONEONE_SECTION7_END - ZONEONE_SECTION7_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEONE_SECTION7_END - ZONEONE_SECTION7_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEONE_SECTION7_END - ZONEONE_SECTION7_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEONE_SECTION7_START && thisFlame <= ZONEONE_SECTION7_END)
+    
+    #if ZONEONE_SECTION7_START_FIRE == 1
+    {
+      firstZone[ZONEONE_SECTION7_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEONE_SECTION7_END_FIRE == 1
+    {
+      firstZone[ZONEONE_SECTION7_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEONE_SECTION8_START
+void fire_firstZone_SECTION8()
+{
+  static byte heat[ZONEONE_SECTION8_END - ZONEONE_SECTION8_START];
+  for( int i = 0; i < ZONEONE_SECTION8_END - ZONEONE_SECTION8_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEONE_SECTION8_END - ZONEONE_SECTION8_START) + 2));
+  }
+
+  for( int k= ZONEONE_SECTION8_END - ZONEONE_SECTION8_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEONE_SECTION8_END - ZONEONE_SECTION8_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEONE_SECTION8_END - ZONEONE_SECTION8_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEONE_SECTION8_START && thisFlame <= ZONEONE_SECTION8_END)
+    
+    #if ZONEONE_SECTION8_START_FIRE == 1
+    {
+      firstZone[ZONEONE_SECTION8_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEONE_SECTION8_END_FIRE == 1
+    {
+      firstZone[ZONEONE_SECTION8_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEONE_SECTION9_START
+void fire_firstZone_SECTION9()
+{
+  static byte heat[ZONEONE_SECTION9_END - ZONEONE_SECTION9_START];
+  for( int i = 0; i < ZONEONE_SECTION9_END - ZONEONE_SECTION9_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEONE_SECTION9_END - ZONEONE_SECTION9_START) + 2));
+  }
+
+  for( int k= ZONEONE_SECTION9_END - ZONEONE_SECTION9_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEONE_SECTION9_END - ZONEONE_SECTION9_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEONE_SECTION9_END - ZONEONE_SECTION9_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEONE_SECTION9_START && thisFlame <= ZONEONE_SECTION9_END)
+    
+    #if ZONEONE_SECTION9_START_FIRE == 1
+    {
+      firstZone[ZONEONE_SECTION9_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEONE_SECTION9_END_FIRE == 1
+    {
+      firstZone[ZONEONE_SECTION9_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
 #endif
 
 /*****************  secondZone Animations  ****************************************/
@@ -1810,7 +2646,7 @@ void Locator_firstZone()
 /*****************  secondZone Animations  ****************************************/
 /*****************  secondZone Animations  ****************************************/
 
-#ifdef ZONETWO  
+#if ZONETWO == 1  
 
 void Ripple_secondZone()
 {
@@ -2163,6 +2999,420 @@ void Locator_secondZone()
   }
 }
 
+#ifdef ZONETWO_SECTION1_START
+void fire_secondZone_SECTION1()
+{
+  static byte heat[ZONETWO_SECTION1_END - ZONETWO_SECTION1_START];
+  for( int i = 0; i < ZONETWO_SECTION1_END - ZONETWO_SECTION1_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETWO_SECTION1_END - ZONETWO_SECTION1_START) + 2));
+  }
+
+  for( int k= ZONETWO_SECTION1_END - ZONETWO_SECTION1_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONETWO_SECTION1_END - ZONETWO_SECTION1_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONETWO_SECTION1_END - ZONETWO_SECTION1_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONETWO_SECTION1_START && thisFlame <= ZONETWO_SECTION1_END)
+    
+    #if ZONETWO_SECTION1_START_FIRE == 1
+    {
+      secondZone[ZONETWO_SECTION1_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONETWO_SECTION1_END_FIRE == 1
+    {
+      secondZone[ZONETWO_SECTION1_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONETWO_SECTION2_START
+void fire_secondZone_SECTION2()
+{
+  static byte heat[ZONETWO_SECTION2_END - ZONETWO_SECTION2_START];
+  for( int i = 0; i < ZONETWO_SECTION2_END - ZONETWO_SECTION2_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETWO_SECTION2_END - ZONETWO_SECTION2_START) + 2));
+  }
+
+  for( int k= ZONETWO_SECTION2_END - ZONETWO_SECTION2_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONETWO_SECTION2_END - ZONETWO_SECTION2_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONETWO_SECTION2_END - ZONETWO_SECTION2_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONETWO_SECTION2_START && thisFlame <= ZONETWO_SECTION2_END)
+    
+    #if ZONETWO_SECTION2_START_FIRE == 1
+    {
+      secondZone[ZONETWO_SECTION2_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONETWO_SECTION2_END_FIRE == 1
+    {
+      secondZone[ZONETWO_SECTION2_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONETWO_SECTION3_START
+void fire_secondZone_SECTION3()
+{
+  static byte heat[ZONETWO_SECTION3_END - ZONETWO_SECTION3_START];
+  for( int i = 0; i < ZONETWO_SECTION3_END - ZONETWO_SECTION3_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETWO_SECTION3_END - ZONETWO_SECTION3_START) + 2));
+  }
+
+  for( int k= ZONETWO_SECTION3_END - ZONETWO_SECTION3_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONETWO_SECTION3_END - ZONETWO_SECTION3_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONETWO_SECTION3_END - ZONETWO_SECTION3_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONETWO_SECTION3_START && thisFlame <= ZONETWO_SECTION3_END)
+    
+    #if ZONETWO_SECTION3_START_FIRE == 1
+    {
+      secondZone[ZONETWO_SECTION3_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONETWO_SECTION3_END_FIRE == 1
+    {
+      secondZone[ZONETWO_SECTION3_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONETWO_SECTION4_START
+void fire_secondZone_SECTION4()
+{
+  static byte heat[ZONETWO_SECTION4_END - ZONETWO_SECTION4_START];
+  for( int i = 0; i < ZONETWO_SECTION4_END - ZONETWO_SECTION4_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETWO_SECTION4_END - ZONETWO_SECTION4_START) + 2));
+  }
+
+  for( int k= ZONETWO_SECTION4_END - ZONETWO_SECTION4_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONETWO_SECTION4_END - ZONETWO_SECTION4_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONETWO_SECTION4_END - ZONETWO_SECTION4_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONETWO_SECTION4_START && thisFlame <= ZONETWO_SECTION4_END)
+    
+    #if ZONETWO_SECTION4_START_FIRE == 1
+    {
+      secondZone[ZONETWO_SECTION4_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONETWO_SECTION4_END_FIRE == 1
+    {
+      secondZone[ZONETWO_SECTION4_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONETWO_SECTION5_START
+void fire_secondZone_SECTION5()
+{
+  static byte heat[ZONETWO_SECTION5_END - ZONETWO_SECTION5_START];
+  for( int i = 0; i < ZONETWO_SECTION5_END - ZONETWO_SECTION5_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETWO_SECTION5_END - ZONETWO_SECTION5_START) + 2));
+  }
+
+  for( int k= ZONETWO_SECTION5_END - ZONETWO_SECTION5_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONETWO_SECTION5_END - ZONETWO_SECTION5_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONETWO_SECTION5_END - ZONETWO_SECTION5_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONETWO_SECTION5_START && thisFlame <= ZONETWO_SECTION5_END)
+    
+    #if ZONETWO_SECTION5_START_FIRE == 1
+    {
+      secondZone[ZONETWO_SECTION5_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONETWO_SECTION5_END_FIRE == 1
+    {
+      secondZone[ZONETWO_SECTION5_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONETWO_SECTION6_START
+void fire_secondZone_SECTION6()
+{
+  static byte heat[ZONETWO_SECTION6_END - ZONETWO_SECTION6_START];
+  for( int i = 0; i < ZONETWO_SECTION6_END - ZONETWO_SECTION6_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETWO_SECTION6_END - ZONETWO_SECTION6_START) + 2));
+  }
+
+  for( int k= ZONETWO_SECTION6_END - ZONETWO_SECTION6_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONETWO_SECTION6_END - ZONETWO_SECTION6_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONETWO_SECTION6_END - ZONETWO_SECTION6_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONETWO_SECTION6_START && thisFlame <= ZONETWO_SECTION6_END)
+    
+    #if ZONETWO_SECTION6_START_FIRE == 1
+    {
+      secondZone[ZONETWO_SECTION6_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONETWO_SECTION6_END_FIRE == 1
+    {
+      secondZone[ZONETWO_SECTION6_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONETWO_SECTION7_START
+void fire_secondZone_SECTION7()
+{
+  static byte heat[ZONETWO_SECTION7_END - ZONETWO_SECTION7_START];
+  for( int i = 0; i < ZONETWO_SECTION7_END - ZONETWO_SECTION7_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETWO_SECTION7_END - ZONETWO_SECTION7_START) + 2));
+  }
+
+  for( int k= ZONETWO_SECTION7_END - ZONETWO_SECTION7_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONETWO_SECTION7_END - ZONETWO_SECTION7_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONETWO_SECTION7_END - ZONETWO_SECTION7_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONETWO_SECTION7_START && thisFlame <= ZONETWO_SECTION7_END)
+    
+    #if ZONETWO_SECTION7_START_FIRE == 1
+    {
+      secondZone[ZONETWO_SECTION7_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONETWO_SECTION7_END_FIRE == 1
+    {
+      secondZone[ZONETWO_SECTION7_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONETWO_SECTION8_START
+void fire_secondZone_SECTION8()
+{
+  static byte heat[ZONETWO_SECTION8_END - ZONETWO_SECTION8_START];
+  for( int i = 0; i < ZONETWO_SECTION8_END - ZONETWO_SECTION8_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETWO_SECTION8_END - ZONETWO_SECTION8_START) + 2));
+  }
+
+  for( int k= ZONETWO_SECTION8_END - ZONETWO_SECTION8_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONETWO_SECTION8_END - ZONETWO_SECTION8_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONETWO_SECTION8_END - ZONETWO_SECTION8_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONETWO_SECTION8_START && thisFlame <= ZONETWO_SECTION8_END)
+    
+    #if ZONETWO_SECTION8_START_FIRE == 1
+    {
+      secondZone[ZONETWO_SECTION8_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONETWO_SECTION8_END_FIRE == 1
+    {
+      secondZone[ZONETWO_SECTION8_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONETWO_SECTION9_START
+void fire_secondZone_SECTION9()
+{
+  static byte heat[ZONETWO_SECTION9_END - ZONETWO_SECTION9_START];
+  for( int i = 0; i < ZONETWO_SECTION9_END - ZONETWO_SECTION9_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETWO_SECTION9_END - ZONETWO_SECTION9_START) + 2));
+  }
+
+  for( int k= ZONETWO_SECTION9_END - ZONETWO_SECTION9_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONETWO_SECTION9_END - ZONETWO_SECTION9_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONETWO_SECTION9_END - ZONETWO_SECTION9_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONETWO_SECTION9_START && thisFlame <= ZONETWO_SECTION9_END)
+    
+    #if ZONETWO_SECTION9_START_FIRE == 1
+    {
+      secondZone[ZONETWO_SECTION9_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONETWO_SECTION9_END_FIRE == 1
+    {
+      secondZone[ZONETWO_SECTION9_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
 #endif
 
 /*****************  thirdZone Animations  ****************************************/
@@ -2171,7 +3421,7 @@ void Locator_secondZone()
 /*****************  thirdZone Animations  ****************************************/
 /*****************  thirdZone Animations  ****************************************/
 
-#ifdef ZONETHREE
+#if ZONETHREE == 1
 
 void Ripple_thirdZone()
 {
@@ -2524,6 +3774,420 @@ void Locator_thirdZone()
   }
 }
 
+#ifdef ZONETHREE_SECTION1_START
+void fire_thirdZone_SECTION1()
+{
+  static byte heat[ZONETHREE_SECTION1_END - ZONETHREE_SECTION1_START];
+  for( int i = 0; i < ZONETHREE_SECTION1_END - ZONETHREE_SECTION1_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETHREE_SECTION1_END - ZONETHREE_SECTION1_START) + 2));
+  }
+
+  for( int k= ZONETHREE_SECTION1_END - ZONETHREE_SECTION1_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONETHREE_SECTION1_END - ZONETHREE_SECTION1_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONETHREE_SECTION1_END - ZONETHREE_SECTION1_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONETHREE_SECTION1_START && thisFlame <= ZONETHREE_SECTION1_END)
+    
+    #if ZONETHREE_SECTION1_START_FIRE == 1
+    {
+      thirdZone[ZONETHREE_SECTION1_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONETHREE_SECTION1_END_FIRE == 1
+    {
+      thirdZone[ZONETHREE_SECTION1_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONETHREE_SECTION2_START
+void fire_thirdZone_SECTION2()
+{
+  static byte heat[ZONETHREE_SECTION2_END - ZONETHREE_SECTION2_START];
+  for( int i = 0; i < ZONETHREE_SECTION2_END - ZONETHREE_SECTION2_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETHREE_SECTION2_END - ZONETHREE_SECTION2_START) + 2));
+  }
+
+  for( int k= ZONETHREE_SECTION2_END - ZONETHREE_SECTION2_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONETHREE_SECTION2_END - ZONETHREE_SECTION2_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONETHREE_SECTION2_END - ZONETHREE_SECTION2_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONETHREE_SECTION2_START && thisFlame <= ZONETHREE_SECTION2_END)
+    
+    #if ZONETHREE_SECTION2_START_FIRE == 1
+    {
+      thirdZone[ZONETHREE_SECTION2_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONETHREE_SECTION2_END_FIRE == 1
+    {
+      thirdZone[ZONETHREE_SECTION2_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONETHREE_SECTION3_START
+void fire_thirdZone_SECTION3()
+{
+  static byte heat[ZONETHREE_SECTION3_END - ZONETHREE_SECTION3_START];
+  for( int i = 0; i < ZONETHREE_SECTION3_END - ZONETHREE_SECTION3_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETHREE_SECTION3_END - ZONETHREE_SECTION3_START) + 2));
+  }
+
+  for( int k= ZONETHREE_SECTION3_END - ZONETHREE_SECTION3_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONETHREE_SECTION3_END - ZONETHREE_SECTION3_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONETHREE_SECTION3_END - ZONETHREE_SECTION3_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONETHREE_SECTION3_START && thisFlame <= ZONETHREE_SECTION3_END)
+    
+    #if ZONETHREE_SECTION3_START_FIRE == 1
+    {
+      thirdZone[ZONETHREE_SECTION3_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONETHREE_SECTION3_END_FIRE == 1
+    {
+      thirdZone[ZONETHREE_SECTION3_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONETHREE_SECTION4_START
+void fire_thirdZone_SECTION4()
+{
+  static byte heat[ZONETHREE_SECTION4_END - ZONETHREE_SECTION4_START];
+  for( int i = 0; i < ZONETHREE_SECTION4_END - ZONETHREE_SECTION4_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETHREE_SECTION4_END - ZONETHREE_SECTION4_START) + 2));
+  }
+
+  for( int k= ZONETHREE_SECTION4_END - ZONETHREE_SECTION4_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONETHREE_SECTION4_END - ZONETHREE_SECTION4_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONETHREE_SECTION4_END - ZONETHREE_SECTION4_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONETHREE_SECTION4_START && thisFlame <= ZONETHREE_SECTION4_END)
+    
+    #if ZONETHREE_SECTION4_START_FIRE == 1
+    {
+      thirdZone[ZONETHREE_SECTION4_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONETHREE_SECTION4_END_FIRE == 1
+    {
+      thirdZone[ZONETHREE_SECTION4_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONETHREE_SECTION5_START
+void fire_thirdZone_SECTION5()
+{
+  static byte heat[ZONETHREE_SECTION5_END - ZONETHREE_SECTION5_START];
+  for( int i = 0; i < ZONETHREE_SECTION5_END - ZONETHREE_SECTION5_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETHREE_SECTION5_END - ZONETHREE_SECTION5_START) + 2));
+  }
+
+  for( int k= ZONETHREE_SECTION5_END - ZONETHREE_SECTION5_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONETHREE_SECTION5_END - ZONETHREE_SECTION5_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONETHREE_SECTION5_END - ZONETHREE_SECTION5_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONETHREE_SECTION5_START && thisFlame <= ZONETHREE_SECTION5_END)
+    
+    #if ZONETHREE_SECTION5_START_FIRE == 1
+    {
+      thirdZone[ZONETHREE_SECTION5_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONETHREE_SECTION5_END_FIRE == 1
+    {
+      thirdZone[ZONETHREE_SECTION5_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONETHREE_SECTION6_START
+void fire_thirdZone_SECTION6()
+{
+  static byte heat[ZONETHREE_SECTION6_END - ZONETHREE_SECTION6_START];
+  for( int i = 0; i < ZONETHREE_SECTION6_END - ZONETHREE_SECTION6_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETHREE_SECTION6_END - ZONETHREE_SECTION6_START) + 2));
+  }
+
+  for( int k= ZONETHREE_SECTION6_END - ZONETHREE_SECTION6_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONETHREE_SECTION6_END - ZONETHREE_SECTION6_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONETHREE_SECTION6_END - ZONETHREE_SECTION6_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONETHREE_SECTION6_START && thisFlame <= ZONETHREE_SECTION6_END)
+    
+    #if ZONETHREE_SECTION6_START_FIRE == 1
+    {
+      thirdZone[ZONETHREE_SECTION6_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONETHREE_SECTION6_END_FIRE == 1
+    {
+      thirdZone[ZONETHREE_SECTION6_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONETHREE_SECTION7_START
+void fire_thirdZone_SECTION7()
+{
+  static byte heat[ZONETHREE_SECTION7_END - ZONETHREE_SECTION7_START];
+  for( int i = 0; i < ZONETHREE_SECTION7_END - ZONETHREE_SECTION7_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETHREE_SECTION7_END - ZONETHREE_SECTION7_START) + 2));
+  }
+
+  for( int k= ZONETHREE_SECTION7_END - ZONETHREE_SECTION7_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONETHREE_SECTION7_END - ZONETHREE_SECTION7_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONETHREE_SECTION7_END - ZONETHREE_SECTION7_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONETHREE_SECTION7_START && thisFlame <= ZONETHREE_SECTION7_END)
+    
+    #if ZONETHREE_SECTION7_START_FIRE == 1
+    {
+      thirdZone[ZONETHREE_SECTION7_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONETHREE_SECTION7_END_FIRE == 1
+    {
+      thirdZone[ZONETHREE_SECTION7_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONETHREE_SECTION8_START
+void fire_thirdZone_SECTION8()
+{
+  static byte heat[ZONETHREE_SECTION8_END - ZONETHREE_SECTION8_START];
+  for( int i = 0; i < ZONETHREE_SECTION8_END - ZONETHREE_SECTION8_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETHREE_SECTION8_END - ZONETHREE_SECTION8_START) + 2));
+  }
+
+  for( int k= ZONETHREE_SECTION8_END - ZONETHREE_SECTION8_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONETHREE_SECTION8_END - ZONETHREE_SECTION8_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONETHREE_SECTION8_END - ZONETHREE_SECTION8_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONETHREE_SECTION8_START && thisFlame <= ZONETHREE_SECTION8_END)
+    
+    #if ZONETHREE_SECTION8_START_FIRE == 1
+    {
+      thirdZone[ZONETHREE_SECTION8_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONETHREE_SECTION8_END_FIRE == 1
+    {
+      thirdZone[ZONETHREE_SECTION8_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONETHREE_SECTION9_START
+void fire_thirdZone_SECTION9()
+{
+  static byte heat[ZONETHREE_SECTION9_END - ZONETHREE_SECTION9_START];
+  for( int i = 0; i < ZONETHREE_SECTION9_END - ZONETHREE_SECTION9_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETHREE_SECTION9_END - ZONETHREE_SECTION9_START) + 2));
+  }
+
+  for( int k= ZONETHREE_SECTION9_END - ZONETHREE_SECTION9_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONETHREE_SECTION9_END - ZONETHREE_SECTION9_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONETHREE_SECTION9_END - ZONETHREE_SECTION9_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONETHREE_SECTION9_START && thisFlame <= ZONETHREE_SECTION9_END)
+    
+    #if ZONETHREE_SECTION9_START_FIRE == 1
+    {
+      thirdZone[ZONETHREE_SECTION9_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONETHREE_SECTION9_END_FIRE == 1
+    {
+      thirdZone[ZONETHREE_SECTION9_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
 #endif
 
 /*****************  fourthZone Animations  ****************************************/
@@ -2532,7 +4196,7 @@ void Locator_thirdZone()
 /*****************  fourthZone Animations  ****************************************/
 /*****************  fourthZone Animations  ****************************************/
 
-#ifdef ZONEFOUR
+#if ZONEFOUR == 1
 
 void Ripple_fourthZone()
 {
@@ -2885,6 +4549,420 @@ void Locator_fourthZone()
   }
 }
 
+#ifdef ZONEFOUR_SECTION1_START
+void fire_fourthZone_SECTION1()
+{
+  static byte heat[ZONEFOUR_SECTION1_END - ZONEFOUR_SECTION1_START];
+  for( int i = 0; i < ZONEFOUR_SECTION1_END - ZONEFOUR_SECTION1_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFOUR_SECTION1_END - ZONEFOUR_SECTION1_START) + 2));
+  }
+
+  for( int k= ZONEFOUR_SECTION1_END - ZONEFOUR_SECTION1_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEFOUR_SECTION1_END - ZONEFOUR_SECTION1_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEFOUR_SECTION1_END - ZONEFOUR_SECTION1_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEFOUR_SECTION1_START && thisFlame <= ZONEFOUR_SECTION1_END)
+    
+    #if ZONEFOUR_SECTION1_START_FIRE == 1
+    {
+      fourthZone[ZONEFOUR_SECTION1_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEFOUR_SECTION1_END_FIRE == 1
+    {
+      fourthZone[ZONEFOUR_SECTION1_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEFOUR_SECTION2_START
+void fire_fourthZone_SECTION2()
+{
+  static byte heat[ZONEFOUR_SECTION2_END - ZONEFOUR_SECTION2_START];
+  for( int i = 0; i < ZONEFOUR_SECTION2_END - ZONEFOUR_SECTION2_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFOUR_SECTION2_END - ZONEFOUR_SECTION2_START) + 2));
+  }
+
+  for( int k= ZONEFOUR_SECTION2_END - ZONEFOUR_SECTION2_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEFOUR_SECTION2_END - ZONEFOUR_SECTION2_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEFOUR_SECTION2_END - ZONEFOUR_SECTION2_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEFOUR_SECTION2_START && thisFlame <= ZONEFOUR_SECTION2_END)
+    
+    #if ZONEFOUR_SECTION2_START_FIRE == 1
+    {
+      fourthZone[ZONEFOUR_SECTION2_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEFOUR_SECTION2_END_FIRE == 1
+    {
+      fourthZone[ZONEFOUR_SECTION2_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEFOUR_SECTION3_START
+void fire_fourthZone_SECTION3()
+{
+  static byte heat[ZONEFOUR_SECTION3_END - ZONEFOUR_SECTION3_START];
+  for( int i = 0; i < ZONEFOUR_SECTION3_END - ZONEFOUR_SECTION3_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFOUR_SECTION3_END - ZONEFOUR_SECTION3_START) + 2));
+  }
+
+  for( int k= ZONEFOUR_SECTION3_END - ZONEFOUR_SECTION3_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEFOUR_SECTION3_END - ZONEFOUR_SECTION3_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEFOUR_SECTION3_END - ZONEFOUR_SECTION3_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEFOUR_SECTION3_START && thisFlame <= ZONEFOUR_SECTION3_END)
+    
+    #if ZONEFOUR_SECTION3_START_FIRE == 1
+    {
+      fourthZone[ZONEFOUR_SECTION3_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEFOUR_SECTION3_END_FIRE == 1
+    {
+      fourthZone[ZONEFOUR_SECTION3_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEFOUR_SECTION4_START
+void fire_fourthZone_SECTION4()
+{
+  static byte heat[ZONEFOUR_SECTION4_END - ZONEFOUR_SECTION4_START];
+  for( int i = 0; i < ZONEFOUR_SECTION4_END - ZONEFOUR_SECTION4_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFOUR_SECTION4_END - ZONEFOUR_SECTION4_START) + 2));
+  }
+
+  for( int k= ZONEFOUR_SECTION4_END - ZONEFOUR_SECTION4_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEFOUR_SECTION4_END - ZONEFOUR_SECTION4_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEFOUR_SECTION4_END - ZONEFOUR_SECTION4_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEFOUR_SECTION4_START && thisFlame <= ZONEFOUR_SECTION4_END)
+    
+    #if ZONEFOUR_SECTION4_START_FIRE == 1
+    {
+      fourthZone[ZONEFOUR_SECTION4_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEFOUR_SECTION4_END_FIRE == 1
+    {
+      fourthZone[ZONEFOUR_SECTION4_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEFOUR_SECTION5_START
+void fire_fourthZone_SECTION5()
+{
+  static byte heat[ZONEFOUR_SECTION5_END - ZONEFOUR_SECTION5_START];
+  for( int i = 0; i < ZONEFOUR_SECTION5_END - ZONEFOUR_SECTION5_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFOUR_SECTION5_END - ZONEFOUR_SECTION5_START) + 2));
+  }
+
+  for( int k= ZONEFOUR_SECTION5_END - ZONEFOUR_SECTION5_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEFOUR_SECTION5_END - ZONEFOUR_SECTION5_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEFOUR_SECTION5_END - ZONEFOUR_SECTION5_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEFOUR_SECTION5_START && thisFlame <= ZONEFOUR_SECTION5_END)
+    
+    #if ZONEFOUR_SECTION5_START_FIRE == 1
+    {
+      fourthZone[ZONEFOUR_SECTION5_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEFOUR_SECTION5_END_FIRE == 1
+    {
+      fourthZone[ZONEFOUR_SECTION5_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEFOUR_SECTION6_START
+void fire_fourthZone_SECTION6()
+{
+  static byte heat[ZONEFOUR_SECTION6_END - ZONEFOUR_SECTION6_START];
+  for( int i = 0; i < ZONEFOUR_SECTION6_END - ZONEFOUR_SECTION6_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFOUR_SECTION6_END - ZONEFOUR_SECTION6_START) + 2));
+  }
+
+  for( int k= ZONEFOUR_SECTION6_END - ZONEFOUR_SECTION6_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEFOUR_SECTION6_END - ZONEFOUR_SECTION6_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEFOUR_SECTION6_END - ZONEFOUR_SECTION6_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEFOUR_SECTION6_START && thisFlame <= ZONEFOUR_SECTION6_END)
+    
+    #if ZONEFOUR_SECTION6_START_FIRE == 1
+    {
+      fourthZone[ZONEFOUR_SECTION6_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEFOUR_SECTION6_END_FIRE == 1
+    {
+      fourthZone[ZONEFOUR_SECTION6_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEFOUR_SECTION7_START
+void fire_fourthZone_SECTION7()
+{
+  static byte heat[ZONEFOUR_SECTION7_END - ZONEFOUR_SECTION7_START];
+  for( int i = 0; i < ZONEFOUR_SECTION7_END - ZONEFOUR_SECTION7_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFOUR_SECTION7_END - ZONEFOUR_SECTION7_START) + 2));
+  }
+
+  for( int k= ZONEFOUR_SECTION7_END - ZONEFOUR_SECTION7_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEFOUR_SECTION7_END - ZONEFOUR_SECTION7_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEFOUR_SECTION7_END - ZONEFOUR_SECTION7_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEFOUR_SECTION7_START && thisFlame <= ZONEFOUR_SECTION7_END)
+    
+    #if ZONEFOUR_SECTION7_START_FIRE == 1
+    {
+      fourthZone[ZONEFOUR_SECTION7_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEFOUR_SECTION7_END_FIRE == 1
+    {
+      fourthZone[ZONEFOUR_SECTION7_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEFOUR_SECTION8_START
+void fire_fourthZone_SECTION8()
+{
+  static byte heat[ZONEFOUR_SECTION8_END - ZONEFOUR_SECTION8_START];
+  for( int i = 0; i < ZONEFOUR_SECTION8_END - ZONEFOUR_SECTION8_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFOUR_SECTION8_END - ZONEFOUR_SECTION8_START) + 2));
+  }
+
+  for( int k= ZONEFOUR_SECTION8_END - ZONEFOUR_SECTION8_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEFOUR_SECTION8_END - ZONEFOUR_SECTION8_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEFOUR_SECTION8_END - ZONEFOUR_SECTION8_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEFOUR_SECTION8_START && thisFlame <= ZONEFOUR_SECTION8_END)
+    
+    #if ZONEFOUR_SECTION8_START_FIRE == 1
+    {
+      fourthZone[ZONEFOUR_SECTION8_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEFOUR_SECTION8_END_FIRE == 1
+    {
+      fourthZone[ZONEFOUR_SECTION8_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEFOUR_SECTION9_START
+void fire_fourthZone_SECTION9()
+{
+  static byte heat[ZONEFOUR_SECTION9_END - ZONEFOUR_SECTION9_START];
+  for( int i = 0; i < ZONEFOUR_SECTION9_END - ZONEFOUR_SECTION9_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFOUR_SECTION9_END - ZONEFOUR_SECTION9_START) + 2));
+  }
+
+  for( int k= ZONEFOUR_SECTION9_END - ZONEFOUR_SECTION9_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEFOUR_SECTION9_END - ZONEFOUR_SECTION9_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEFOUR_SECTION9_END - ZONEFOUR_SECTION9_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEFOUR_SECTION9_START && thisFlame <= ZONEFOUR_SECTION9_END)
+    
+    #if ZONEFOUR_SECTION9_START_FIRE == 1
+    {
+      fourthZone[ZONEFOUR_SECTION9_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEFOUR_SECTION9_END_FIRE == 1
+    {
+      fourthZone[ZONEFOUR_SECTION9_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
 #endif
 
 /*****************  fifthZone Animations  ****************************************/
@@ -2893,7 +4971,7 @@ void Locator_fourthZone()
 /*****************  fifthZone Animations  ****************************************/
 /*****************  fifthZone Animations  ****************************************/
 
-#ifdef ZONEFIVE
+#if ZONEFIVE == 1
 
 void Ripple_fifthZone()
 {
@@ -3246,6 +5324,420 @@ void Locator_fifthZone()
   }
 }
 
+#ifdef ZONEFIVE_SECTION1_START
+void fire_fifthZone_SECTION1()
+{
+  static byte heat[ZONEFIVE_SECTION1_END - ZONEFIVE_SECTION1_START];
+  for( int i = 0; i < ZONEFIVE_SECTION1_END - ZONEFIVE_SECTION1_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFIVE_SECTION1_END - ZONEFIVE_SECTION1_START) + 2));
+  }
+
+  for( int k= ZONEFIVE_SECTION1_END - ZONEFIVE_SECTION1_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEFIVE_SECTION1_END - ZONEFIVE_SECTION1_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEFIVE_SECTION1_END - ZONEFIVE_SECTION1_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEFIVE_SECTION1_START && thisFlame <= ZONEFIVE_SECTION1_END)
+    
+    #if ZONEFIVE_SECTION1_START_FIRE == 1
+    {
+      fifthZone[ZONEFIVE_SECTION1_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEFIVE_SECTION1_END_FIRE == 1
+    {
+      fifthZone[ZONEFIVE_SECTION1_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEFIVE_SECTION2_START
+void fire_fifthZone_SECTION2()
+{
+  static byte heat[ZONEFIVE_SECTION2_END - ZONEFIVE_SECTION2_START];
+  for( int i = 0; i < ZONEFIVE_SECTION2_END - ZONEFIVE_SECTION2_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFIVE_SECTION2_END - ZONEFIVE_SECTION2_START) + 2));
+  }
+
+  for( int k= ZONEFIVE_SECTION2_END - ZONEFIVE_SECTION2_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEFIVE_SECTION2_END - ZONEFIVE_SECTION2_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEFIVE_SECTION2_END - ZONEFIVE_SECTION2_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEFIVE_SECTION2_START && thisFlame <= ZONEFIVE_SECTION2_END)
+    
+    #if ZONEFIVE_SECTION2_START_FIRE == 1
+    {
+      fifthZone[ZONEFIVE_SECTION2_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEFIVE_SECTION2_END_FIRE == 1
+    {
+      fifthZone[ZONEFIVE_SECTION2_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEFIVE_SECTION3_START
+void fire_fifthZone_SECTION3()
+{
+  static byte heat[ZONEFIVE_SECTION3_END - ZONEFIVE_SECTION3_START];
+  for( int i = 0; i < ZONEFIVE_SECTION3_END - ZONEFIVE_SECTION3_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFIVE_SECTION3_END - ZONEFIVE_SECTION3_START) + 2));
+  }
+
+  for( int k= ZONEFIVE_SECTION3_END - ZONEFIVE_SECTION3_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEFIVE_SECTION3_END - ZONEFIVE_SECTION3_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEFIVE_SECTION3_END - ZONEFIVE_SECTION3_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEFIVE_SECTION3_START && thisFlame <= ZONEFIVE_SECTION3_END)
+    
+    #if ZONEFIVE_SECTION3_START_FIRE == 1
+    {
+      fifthZone[ZONEFIVE_SECTION3_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEFIVE_SECTION3_END_FIRE == 1
+    {
+      fifthZone[ZONEFIVE_SECTION3_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEFIVE_SECTION4_START
+void fire_fifthZone_SECTION4()
+{
+  static byte heat[ZONEFIVE_SECTION4_END - ZONEFIVE_SECTION4_START];
+  for( int i = 0; i < ZONEFIVE_SECTION4_END - ZONEFIVE_SECTION4_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFIVE_SECTION4_END - ZONEFIVE_SECTION4_START) + 2));
+  }
+
+  for( int k= ZONEFIVE_SECTION4_END - ZONEFIVE_SECTION4_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEFIVE_SECTION4_END - ZONEFIVE_SECTION4_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEFIVE_SECTION4_END - ZONEFIVE_SECTION4_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEFIVE_SECTION4_START && thisFlame <= ZONEFIVE_SECTION4_END)
+    
+    #if ZONEFIVE_SECTION4_START_FIRE == 1
+    {
+      fifthZone[ZONEFIVE_SECTION4_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEFIVE_SECTION4_END_FIRE == 1
+    {
+      fifthZone[ZONEFIVE_SECTION4_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEFIVE_SECTION5_START
+void fire_fifthZone_SECTION5()
+{
+  static byte heat[ZONEFIVE_SECTION5_END - ZONEFIVE_SECTION5_START];
+  for( int i = 0; i < ZONEFIVE_SECTION5_END - ZONEFIVE_SECTION5_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFIVE_SECTION5_END - ZONEFIVE_SECTION5_START) + 2));
+  }
+
+  for( int k= ZONEFIVE_SECTION5_END - ZONEFIVE_SECTION5_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEFIVE_SECTION5_END - ZONEFIVE_SECTION5_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEFIVE_SECTION5_END - ZONEFIVE_SECTION5_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEFIVE_SECTION5_START && thisFlame <= ZONEFIVE_SECTION5_END)
+    
+    #if ZONEFIVE_SECTION5_START_FIRE == 1
+    {
+      fifthZone[ZONEFIVE_SECTION5_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEFIVE_SECTION5_END_FIRE == 1
+    {
+      fifthZone[ZONEFIVE_SECTION5_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEFIVE_SECTION6_START
+void fire_fifthZone_SECTION6()
+{
+  static byte heat[ZONEFIVE_SECTION6_END - ZONEFIVE_SECTION6_START];
+  for( int i = 0; i < ZONEFIVE_SECTION6_END - ZONEFIVE_SECTION6_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFIVE_SECTION6_END - ZONEFIVE_SECTION6_START) + 2));
+  }
+
+  for( int k= ZONEFIVE_SECTION6_END - ZONEFIVE_SECTION6_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEFIVE_SECTION6_END - ZONEFIVE_SECTION6_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEFIVE_SECTION6_END - ZONEFIVE_SECTION6_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEFIVE_SECTION6_START && thisFlame <= ZONEFIVE_SECTION6_END)
+    
+    #if ZONEFIVE_SECTION6_START_FIRE == 1
+    {
+      fifthZone[ZONEFIVE_SECTION6_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEFIVE_SECTION6_END_FIRE == 1
+    {
+      fifthZone[ZONEFIVE_SECTION6_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEFIVE_SECTION7_START
+void fire_fifthZone_SECTION7()
+{
+  static byte heat[ZONEFIVE_SECTION7_END - ZONEFIVE_SECTION7_START];
+  for( int i = 0; i < ZONEFIVE_SECTION7_END - ZONEFIVE_SECTION7_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFIVE_SECTION7_END - ZONEFIVE_SECTION7_START) + 2));
+  }
+
+  for( int k= ZONEFIVE_SECTION7_END - ZONEFIVE_SECTION7_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEFIVE_SECTION7_END - ZONEFIVE_SECTION7_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEFIVE_SECTION7_END - ZONEFIVE_SECTION7_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEFIVE_SECTION7_START && thisFlame <= ZONEFIVE_SECTION7_END)
+    
+    #if ZONEFIVE_SECTION7_START_FIRE == 1
+    {
+      fifthZone[ZONEFIVE_SECTION7_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEFIVE_SECTION7_END_FIRE == 1
+    {
+      fifthZone[ZONEFIVE_SECTION7_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEFIVE_SECTION8_START
+void fire_fifthZone_SECTION8()
+{
+  static byte heat[ZONEFIVE_SECTION8_END - ZONEFIVE_SECTION8_START];
+  for( int i = 0; i < ZONEFIVE_SECTION8_END - ZONEFIVE_SECTION8_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFIVE_SECTION8_END - ZONEFIVE_SECTION8_START) + 2));
+  }
+
+  for( int k= ZONEFIVE_SECTION8_END - ZONEFIVE_SECTION8_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEFIVE_SECTION8_END - ZONEFIVE_SECTION8_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEFIVE_SECTION8_END - ZONEFIVE_SECTION8_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEFIVE_SECTION8_START && thisFlame <= ZONEFIVE_SECTION8_END)
+    
+    #if ZONEFIVE_SECTION8_START_FIRE == 1
+    {
+      fifthZone[ZONEFIVE_SECTION8_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEFIVE_SECTION8_END_FIRE == 1
+    {
+      fifthZone[ZONEFIVE_SECTION8_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONEFIVE_SECTION9_START
+void fire_fifthZone_SECTION9()
+{
+  static byte heat[ZONEFIVE_SECTION9_END - ZONEFIVE_SECTION9_START];
+  for( int i = 0; i < ZONEFIVE_SECTION9_END - ZONEFIVE_SECTION9_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFIVE_SECTION9_END - ZONEFIVE_SECTION9_START) + 2));
+  }
+
+  for( int k= ZONEFIVE_SECTION9_END - ZONEFIVE_SECTION9_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONEFIVE_SECTION9_END - ZONEFIVE_SECTION9_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONEFIVE_SECTION9_END - ZONEFIVE_SECTION9_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONEFIVE_SECTION9_START && thisFlame <= ZONEFIVE_SECTION9_END)
+    
+    #if ZONEFIVE_SECTION9_START_FIRE == 1
+    {
+      fifthZone[ZONEFIVE_SECTION9_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONEFIVE_SECTION9_END_FIRE == 1
+    {
+      fifthZone[ZONEFIVE_SECTION9_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
 #endif
 
 /*****************  sixthZone Animations  ****************************************/
@@ -3254,7 +5746,7 @@ void Locator_fifthZone()
 /*****************  sixthZone Animations  ****************************************/
 /*****************  sixthZone Animations  ****************************************/
 
-#ifdef ZONESIX
+#if ZONESIX == 1
 
 void Ripple_sixthZone()
 {
@@ -3606,5 +6098,419 @@ void Locator_sixthZone()
     sixthZone[locatorLED]=CRGB(red1, green1, blue1);
   }
 }
+
+#ifdef ZONESIX_SECTION1_START
+void fire_sixthZone_SECTION1()
+{
+  static byte heat[ZONESIX_SECTION1_END - ZONESIX_SECTION1_START];
+  for( int i = 0; i < ZONESIX_SECTION1_END - ZONESIX_SECTION1_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONESIX_SECTION1_END - ZONESIX_SECTION1_START) + 2));
+  }
+
+  for( int k= ZONESIX_SECTION1_END - ZONESIX_SECTION1_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONESIX_SECTION1_END - ZONESIX_SECTION1_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONESIX_SECTION1_END - ZONESIX_SECTION1_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONESIX_SECTION1_START && thisFlame <= ZONESIX_SECTION1_END)
+    
+    #if ZONESIX_SECTION1_START_FIRE == 1
+    {
+      sixthZone[ZONESIX_SECTION1_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONESIX_SECTION1_END_FIRE == 1
+    {
+      sixthZone[ZONESIX_SECTION1_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONESIX_SECTION2_START
+void fire_sixthZone_SECTION2()
+{
+  static byte heat[ZONESIX_SECTION2_END - ZONESIX_SECTION2_START];
+  for( int i = 0; i < ZONESIX_SECTION2_END - ZONESIX_SECTION2_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONESIX_SECTION2_END - ZONESIX_SECTION2_START) + 2));
+  }
+
+  for( int k= ZONESIX_SECTION2_END - ZONESIX_SECTION2_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONESIX_SECTION2_END - ZONESIX_SECTION2_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONESIX_SECTION2_END - ZONESIX_SECTION2_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONESIX_SECTION2_START && thisFlame <= ZONESIX_SECTION2_END)
+    
+    #if ZONESIX_SECTION2_START_FIRE == 1
+    {
+      sixthZone[ZONESIX_SECTION2_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONESIX_SECTION2_END_FIRE == 1
+    {
+      sixthZone[ZONESIX_SECTION2_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONESIX_SECTION3_START
+void fire_sixthZone_SECTION3()
+{
+  static byte heat[ZONESIX_SECTION3_END - ZONESIX_SECTION3_START];
+  for( int i = 0; i < ZONESIX_SECTION3_END - ZONESIX_SECTION3_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONESIX_SECTION3_END - ZONESIX_SECTION3_START) + 2));
+  }
+
+  for( int k= ZONESIX_SECTION3_END - ZONESIX_SECTION3_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONESIX_SECTION3_END - ZONESIX_SECTION3_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONESIX_SECTION3_END - ZONESIX_SECTION3_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONESIX_SECTION3_START && thisFlame <= ZONESIX_SECTION3_END)
+    
+    #if ZONESIX_SECTION3_START_FIRE == 1
+    {
+      sixthZone[ZONESIX_SECTION3_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONESIX_SECTION3_END_FIRE == 1
+    {
+      sixthZone[ZONESIX_SECTION3_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONESIX_SECTION4_START
+void fire_sixthZone_SECTION4()
+{
+  static byte heat[ZONESIX_SECTION4_END - ZONESIX_SECTION4_START];
+  for( int i = 0; i < ZONESIX_SECTION4_END - ZONESIX_SECTION4_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONESIX_SECTION4_END - ZONESIX_SECTION4_START) + 2));
+  }
+
+  for( int k= ZONESIX_SECTION4_END - ZONESIX_SECTION4_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONESIX_SECTION4_END - ZONESIX_SECTION4_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONESIX_SECTION4_END - ZONESIX_SECTION4_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONESIX_SECTION4_START && thisFlame <= ZONESIX_SECTION4_END)
+    
+    #if ZONESIX_SECTION4_START_FIRE == 1
+    {
+      sixthZone[ZONESIX_SECTION4_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONESIX_SECTION4_END_FIRE == 1
+    {
+      sixthZone[ZONESIX_SECTION4_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONESIX_SECTION5_START
+void fire_sixthZone_SECTION5()
+{
+  static byte heat[ZONESIX_SECTION5_END - ZONESIX_SECTION5_START];
+  for( int i = 0; i < ZONESIX_SECTION5_END - ZONESIX_SECTION5_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONESIX_SECTION5_END - ZONESIX_SECTION5_START) + 2));
+  }
+
+  for( int k= ZONESIX_SECTION5_END - ZONESIX_SECTION5_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONESIX_SECTION5_END - ZONESIX_SECTION5_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONESIX_SECTION5_END - ZONESIX_SECTION5_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONESIX_SECTION5_START && thisFlame <= ZONESIX_SECTION5_END)
+    
+    #if ZONESIX_SECTION5_START_FIRE == 1
+    {
+      sixthZone[ZONESIX_SECTION5_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONESIX_SECTION5_END_FIRE == 1
+    {
+      sixthZone[ZONESIX_SECTION5_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONESIX_SECTION6_START
+void fire_sixthZone_SECTION6()
+{
+  static byte heat[ZONESIX_SECTION6_END - ZONESIX_SECTION6_START];
+  for( int i = 0; i < ZONESIX_SECTION6_END - ZONESIX_SECTION6_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONESIX_SECTION6_END - ZONESIX_SECTION6_START) + 2));
+  }
+
+  for( int k= ZONESIX_SECTION6_END - ZONESIX_SECTION6_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONESIX_SECTION6_END - ZONESIX_SECTION6_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONESIX_SECTION6_END - ZONESIX_SECTION6_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONESIX_SECTION6_START && thisFlame <= ZONESIX_SECTION6_END)
+    
+    #if ZONESIX_SECTION6_START_FIRE == 1
+    {
+      sixthZone[ZONESIX_SECTION6_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONESIX_SECTION6_END_FIRE == 1
+    {
+      sixthZone[ZONESIX_SECTION6_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONESIX_SECTION7_START
+void fire_sixthZone_SECTION7()
+{
+  static byte heat[ZONESIX_SECTION7_END - ZONESIX_SECTION7_START];
+  for( int i = 0; i < ZONESIX_SECTION7_END - ZONESIX_SECTION7_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONESIX_SECTION7_END - ZONESIX_SECTION7_START) + 2));
+  }
+
+  for( int k= ZONESIX_SECTION7_END - ZONESIX_SECTION7_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONESIX_SECTION7_END - ZONESIX_SECTION7_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONESIX_SECTION7_END - ZONESIX_SECTION7_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONESIX_SECTION7_START && thisFlame <= ZONESIX_SECTION7_END)
+    
+    #if ZONESIX_SECTION7_START_FIRE == 1
+    {
+      sixthZone[ZONESIX_SECTION7_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONESIX_SECTION7_END_FIRE == 1
+    {
+      sixthZone[ZONESIX_SECTION7_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONESIX_SECTION8_START
+void fire_sixthZone_SECTION8()
+{
+  static byte heat[ZONESIX_SECTION8_END - ZONESIX_SECTION8_START];
+  for( int i = 0; i < ZONESIX_SECTION8_END - ZONESIX_SECTION8_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONESIX_SECTION8_END - ZONESIX_SECTION8_START) + 2));
+  }
+
+  for( int k= ZONESIX_SECTION8_END - ZONESIX_SECTION8_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONESIX_SECTION8_END - ZONESIX_SECTION8_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONESIX_SECTION8_END - ZONESIX_SECTION8_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONESIX_SECTION8_START && thisFlame <= ZONESIX_SECTION8_END)
+    
+    #if ZONESIX_SECTION8_START_FIRE == 1
+    {
+      sixthZone[ZONESIX_SECTION8_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONESIX_SECTION8_END_FIRE == 1
+    {
+      sixthZone[ZONESIX_SECTION8_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
+
+#ifdef ZONESIX_SECTION9_START
+void fire_sixthZone_SECTION9()
+{
+  static byte heat[ZONESIX_SECTION9_END - ZONESIX_SECTION9_START];
+  for( int i = 0; i < ZONESIX_SECTION9_END - ZONESIX_SECTION9_START; i++) 
+  {
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONESIX_SECTION9_END - ZONESIX_SECTION9_START) + 2));
+  }
+
+  for( int k= ZONESIX_SECTION9_END - ZONESIX_SECTION9_START - 1; k >= 2; k--) 
+  {
+    heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
+  }
+  if( random8() < SPARKING ) 
+  {
+    int y = random8(7);
+    heat[y] = qadd8( heat[y], random8(160,255) );
+  }
+  for( int j = 0; j < ZONESIX_SECTION9_END - ZONESIX_SECTION9_START; j++) 
+  {
+    byte colorindex = scale8( heat[j], 240);
+    CRGB color = ColorFromPalette( gPal, colorindex);
+    int pixelnumber;
+    if( gReverseDirection ) {
+      pixelnumber = (ZONESIX_SECTION9_END - ZONESIX_SECTION9_START -1) - j;
+    } else {
+      pixelnumber = j;
+    }
+    int thisFlame = ((pixelnumber * firesize)/100);
+    if(thisFlame >=  ZONESIX_SECTION9_START && thisFlame <= ZONESIX_SECTION9_END)
+    
+    #if ZONESIX_SECTION9_START_FIRE == 1
+    {
+      sixthZone[ZONESIX_SECTION9_START + thisFlame] = color;
+    }
+    #endif
+    
+    #if ZONESIX_SECTION9_END_FIRE == 1
+    {
+      sixthZone[ZONESIX_SECTION9_END - thisFlame] = color;
+    }
+    #endif
+  }
+}
+#endif
 
 #endif
