@@ -1777,7 +1777,7 @@ void locator_Move()
     }
     else
     {
-      locatorLED == 0;
+      locatorLED = 0;
     }
     locatorLED++; 
     timer.setTimeout(locatorDelay, locator_Move);
