@@ -26,22 +26,28 @@
 
 
 #define ZONEONE                                        //Comment out any unused zones, ZONEONE is pin D1
-#define FIRSTZONE_LEDS 300
+#define FIRSTZONE_LEDS 300                             //Number of LEDS in this zone (comment out if zone is unused)
+#define FIRSTZONE_COLOR_ORDER GRB                      //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
 
 #define ZONETWO                                        //Comment out any unused zones, ZONETWO is pin D2
-#define SECONDZONE_LEDS 300
+#define SECONDZONE_LEDS 300                            //Number of LEDS in this zone (comment out if zone is unused)
+#define SECONDZONE_COLOR_ORDER GRB                     //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
 
-#define ZONETHREE                                      //Comment out any unused zones, ZONETHREE is pin D5
-#define THIRDZONE_LEDS 300
+#define ZONETHREE                                      //Comment out any unused zones, ZONETHREE is pin D3
+#define THIRDZONE_LEDS 300                             //Number of LEDS in this zone (comment out if zone is unused)
+#define THIRDZONE_COLOR_ORDER GRB                      //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
 
-#define ZONEFOUR                                       //Comment out any unused zones, ZONEFOUR is pin D6
-#define FOURTHZONE_LEDS 300
+#define ZONEFOUR                                       //Comment out any unused zones, ZONEFOUR is pin D5
+#define FOURTHZONE_LEDS 300                            //Number of LEDS in this zone (comment out if zone is unused)
+#define FOURTHZONE_COLOR_ORDER GRB                     //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
 
-#define ZONEFIVE                                       //Comment out any unused zones, ZONEFIVE is pin D7
-#define FIFTHZONE_LEDS 300
+#define ZONEFIVE                                       //Comment out any unused zones, ZONEFIVE is pin D6
+#define FIFTHZONE_LEDS 300                             //Number of LEDS in this zone (comment out if zone is unused)
+#define FIFTHZONE_COLOR_ORDER GRB                      //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
 
-#define ZONESIX                                        //Comment out any unused zones, ZONESIX is pin D8
-#define SIXTHZONE_LEDS 300
+#define ZONESIX                                        //Comment out any unused zones, ZONESIX is pin D7
+#define SIXTHZONE_LEDS 300                             //Number of LEDS in this zone (comment out if zone is unused)
+#define SIXTHZONE_COLOR_ORDER GRB                      //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
 
 /*****************  ZONEONE ROOF SETUP              *********************************/
 /*****************  COMMENT OUT ANY UNUSED SECTIONS *********************************/
@@ -258,7 +264,7 @@ int previousLED_secondZone = 0;
 
 #ifdef ZONETHREE
 CRGB thirdZone[THIRDZONE_LEDS];
-const int Pin_thirdZone = 14; //marked as D5 on the board
+const int Pin_thirdZone = 0; //marked as D3 on the board
 int center_thirdZone = 0;
 int step_thirdZone = -1;
 int previousLED_thirdZone = 0;
@@ -266,7 +272,7 @@ int previousLED_thirdZone = 0;
 
 #ifdef ZONEFOUR
 CRGB fourthZone[FOURTHZONE_LEDS];
-const int Pin_fourthZone = 12; //marked as D6 on the board
+const int Pin_fourthZone = 14; //marked as D5 on the board
 int center_fourthZone = 0;
 int step_fourthZone = -1;
 int previousLED_fourthZone = 0;
@@ -274,7 +280,7 @@ int previousLED_fourthZone = 0;
 
 #ifdef ZONEFIVE
 CRGB fifthZone[FIFTHZONE_LEDS];
-const int Pin_fifthZone = 13; //marked as D7 on the board
+const int Pin_fifthZone = 12; //marked as D6 on the board
 int center_fifthZone = 0;
 int step_fifthZone = -1;
 int previousLED_fifthZone = 0;
@@ -282,7 +288,7 @@ int previousLED_fifthZone = 0;
 
 #ifdef ZONESIX
 CRGB sixthZone[SIXTHZONE_LEDS];
-const int Pin_sixthZone = 15; //marked as D8 on the board
+const int Pin_sixthZone = 13; //marked as D7 on the board
 int center_sixthZone = 0;
 int step_sixthZone = -1;
 int previousLED_sixthZone = 0;
@@ -1313,27 +1319,27 @@ void addGlitter( fract8 chanceOfGlitter)
 void setupZones()
 {
     #ifdef ZONEONE  
-    FastLED.addLeds<WS2812B, Pin_firstZone, GRB>(firstZone, FIRSTZONE_LEDS);
+    FastLED.addLeds<WS2812B, Pin_firstZone, FIRSTZONE_COLOR_ORDER>(firstZone, FIRSTZONE_LEDS);
     #endif
 
     #ifdef ZONETWO
-    FastLED.addLeds<WS2812B, Pin_secondZone, GRB>(secondZone, SECONDZONE_LEDS);
+    FastLED.addLeds<WS2812B, Pin_secondZone, SECONDZONE_COLOR_ORDER>(secondZone, SECONDZONE_LEDS);
     #endif
 
     #ifdef ZONETHREE
-    FastLED.addLeds<WS2812B, Pin_thirdZone, GRB>(thirdZone, THIRDZONE_LEDS);
+    FastLED.addLeds<WS2812B, Pin_thirdZone, THIRDZONE_COLOR_ORDER>(thirdZone, THIRDZONE_LEDS);
     #endif
 
     #ifdef ZONEFOUR
-    FastLED.addLeds<WS2812B, Pin_fourthZone, GRB>(fourthZone, FOURTHZONE_LEDS);
+    FastLED.addLeds<WS2812B, Pin_fourthZone, FOURTHZONE_COLOR_ORDER>(fourthZone, FOURTHZONE_LEDS);
     #endif
 
     #ifdef ZONEFIVE
-    FastLED.addLeds<WS2812B, Pin_fifthZone, GRB>(fifthZone, FIFTHZONE_LEDS);
+    FastLED.addLeds<WS2812B, Pin_fifthZone, FIFTHZONE_COLOR_ORDER>(fifthZone, FIFTHZONE_LEDS);
     #endif
     
     #ifdef ZONESIX
-    FastLED.addLeds<WS2812B, Pin_sixthZone, GRB>(sixthZone, SIXTHZONE_LEDS);
+    FastLED.addLeds<WS2812B, Pin_sixthZone, SIXTHZONE_COLOR_ORDER>(sixthZone, SIXTHZONE_LEDS);
     #endif
 }
 
