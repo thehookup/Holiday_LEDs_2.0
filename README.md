@@ -1,5 +1,7 @@
 # Holiday_LEDs_2.0
-Decently tested and 100% working, this new version is easier to setup and can support 6 zones dynamically
+Decently tested and working, Fire effect still under development.  
+
+this new version is easier to setup and can support 6 zones dynamically
 
 The node-red portion of the configuration is no longer needed, all processing is handled in the arduino code. 
 
