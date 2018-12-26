@@ -5,7 +5,7 @@
 /******************  LIBRARY SECTION *************************************/
 
 #include <FastLED.h>        //https://github.com/FastLED/FastLED
-#include <SimpleTimer.h>    //https://github.com/thehookup/Arduino-SimpleTimer
+#include <SimpleTimer.h>    //https://github.com/thehookup/Simple-Timer-Library
 #include <PubSubClient.h>   //https://github.com/knolleary/pubsubclient
 #include <ESP8266WiFi.h>    //if you get an error here you need to install the ESP8266 board manager 
 #include <ESP8266mDNS.h>    //if you get an error here you need to install the ESP8266 board manager 
