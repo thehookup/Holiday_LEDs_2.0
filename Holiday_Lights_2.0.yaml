@@ -6,7 +6,7 @@
 sensor:
   - platform: mqtt
     name: "Current LED"
-    state_topic: "LightMCU/locator"
+    state_topic: "[MQTT_CLIENT_ID]/locator"
 
 light:
   - platform: mqtt
