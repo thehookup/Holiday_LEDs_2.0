@@ -1,0 +1,29 @@
+##Example Group
+
+group:
+  houseLights:
+    name: Holiday Lights
+    control: hidden
+    entities:    
+      - light.holiday_lights
+      - light.color_1
+      - light.color_2
+      - light.color_3
+      - light.glitter
+      - light.lightning
+      - sensor.current_led
+
+##Example Lovelace
+
+    cards:
+      - type: entities
+        title: Holiday Lights
+        show_header_toggle: false
+        entities:    
+          - light.holiday_lights
+          - light.color_1
+          - light.color_2
+          - light.color_3
+          - light.glitter
+          - light.lightning
+          - sensor.current_led
