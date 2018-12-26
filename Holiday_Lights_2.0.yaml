@@ -1,34 +1,12 @@
 ##This version of the holiday lights code does not require the node red portion
-##The "W" slider under the main "holiday LED" switch modifies each effect
+##The "W" slider under the main "holiday LED" light modifies each effect
+##The "W" slider under "Glitter" light modifies the frequency of glitter, the RGB selection changes the color of the glitter
+##The "W" slider under "Lightning" switch modifies the frequency of lightning.
 ##You must replace the [MQTT_CLIENT_ID] with the USER_MQTT_CLIENT_NAME you specified in the arduino USER CONFIGURATION section
-
 sensor:
   - platform: mqtt
     name: "Current LED"
-    state_topic: "[MQTT_CLIENT_ID]/locator"
-
-switch:
-  - platform: mqtt
-    name: "Audio Effects"
-    state_topic: "[MQTT_CLIENT_ID]/audio/state"
-    command_topic: "[MQTT_CLIENT_ID]/addEffects"
-    payload_on: "Audio On"
-    payload_off: "Audio Off"
-    retain: false
-  - platform: mqtt
-    name: "Add Glitter"
-    state_topic: "[MQTT_CLIENT_ID]/glitter/state"
-    command_topic: "[MQTT_CLIENT_ID]/addEffects"
-    payload_on: "Glitter On"
-    payload_off: "Glitter Off"
-    retain: false
-  - platform: mqtt
-    name: "Add Lightning"
-    state_topic: "[MQTT_CLIENT_ID]/lightning/state"
-    command_topic: "[MQTT_CLIENT_ID]/addEffects"
-    payload_on: "Lightning On"
-    payload_off: "Lightning Off"
-    retain: false
+    state_topic: "LightMCU/locator"
 
 light:
   - platform: mqtt
@@ -79,3 +57,26 @@ light:
     rgb_command_topic: "[MQTT_CLIENT_ID]/color3"
     rgb_state_topic: "[MQTT_CLIENT_ID]/color3State"
     retain: true
+  - platform: mqtt
+    name: "Glitter"
+    state_topic: "[MQTT_CLIENT_ID]/glitter/state"
+    command_topic: "[MQTT_CLIENT_ID]/addEffects"
+    payload_on: "Glitter On"
+    payload_off: "Glitter Off"
+    rgb_command_topic: "[MQTT_CLIENT_ID]/glitterColor"
+    rgb_state_topic: "[MQTT_CLIENT_ID]/glitterColorState"
+    white_value_command_topic: "[MQTT_CLIENT_ID]/glitterChance"
+    white_value_state_topic: "[MQTT_CLIENT_ID]/glitterChanceState"
+    white_value_scale: 255
+    retain: true
+  - platform: mqtt
+    name: "Lightning"
+    state_topic: "[MQTT_CLIENT_ID]/lightning/state"
+    command_topic: "[MQTT_CLIENT_ID]/addEffects"
+    payload_on: "Lightning On"
+    payload_off: "Lightning Off"
+    white_value_command_topic: "[MQTT_CLIENT_ID]/lightningChance"
+    white_value_state_topic: "[MQTT_CLIENT_ID]/lightningChanceState"
+    white_value_scale: 500
+    retain: true
+  
