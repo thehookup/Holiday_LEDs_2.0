@@ -33,7 +33,6 @@ light:
       - Fire
       - Fill_Solid
       - Spooky_Eyes
-      - Halloween
       - LED_Locator
     retain: true
   - platform: mqtt
