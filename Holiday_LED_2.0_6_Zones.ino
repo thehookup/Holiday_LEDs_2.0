@@ -27,36 +27,33 @@
 
 #define ZONEONE                         1                   //ZONEONE is pin D1, 1 = zone used 0 = zone unused
 #define FIRSTZONE_SECTIONS              1                   //Number of roof sections setup below
-#define FIRSTZONE_LEDS                  300                 //Number of LEDS in this zone (comment out if zone is unused)
-#define FIRSTZONE_COLOR_ORDER           GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
-
+#define FIRSTZONE_LEDS                  300                 //Number of LEDS in this zone 
+#define FIRSTZONE_COLOR_ORDER           GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR 
 
 #define ZONETWO                         1                   //ZONETWO is pin D2, 1 = zone used 0 = zone unused
 #define SECONDZONE_SECTIONS             1                   //Number of roof sections setup below
-#define SECONDZONE_LEDS                 300                 //Number of LEDS in this zone (comment out if zone is unused)
-#define SECONDZONE_COLOR_ORDER          GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
-
+#define SECONDZONE_LEDS                 300                 //Number of LEDS in this zone 
+#define SECONDZONE_COLOR_ORDER          GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR 
 
 #define ZONETHREE                       1                   //ZONETHREE is pin D3, 1 = zone used 0 = zone unused
 #define THIRDZONE_SECTIONS              1                   //Number of roof sections setup below
-#define THIRDZONE_LEDS                  300                 //Number of LEDS in this zone (comment out if zone is unused)
-#define THIRDZONE_COLOR_ORDER           GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
-
+#define THIRDZONE_LEDS                  300                 //Number of LEDS in this zone 
+#define THIRDZONE_COLOR_ORDER           GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR 
 
 #define ZONEFOUR                        1                   //ZONEFOUR is pin D5, 1 = zone used 0 = zone unused
 #define FOURTHZONE_SECTIONS             1                   //Number of roof sections setup below
-#define FOURTHZONE_LEDS                 300                 //Number of LEDS in this zone (comment out if zone is unused)
-#define FOURTHZONE_COLOR_ORDER          GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
+#define FOURTHZONE_LEDS                 300                 //Number of LEDS in this zone 
+#define FOURTHZONE_COLOR_ORDER          GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR 
 
 #define ZONEFIVE                        1                   //ZONEFIVE is pin D6, 1 = zone used 0 = zone unused
 #define FIFTHZONE_SECTIONS              1                   //Number of roof sections setup below
-#define FIFTHZONE_LEDS                  300                 //Number of LEDS in this zone (comment out if zone is unused)
-#define FIFTHZONE_COLOR_ORDER           GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
+#define FIFTHZONE_LEDS                  300                 //Number of LEDS in this zone 
+#define FIFTHZONE_COLOR_ORDER           GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR
 
 #define ZONESIX                         1                   //ZONESIX is pin D7, 1 = zone used 0 = zone unused
 #define SIXTHZONE_SECTIONS              1                   //Number of roof sections setup below
-#define SIXTHZONE_LEDS                  300                 //Number of LEDS in this zone (comment out if zone is unused)
-#define SIXTHZONE_COLOR_ORDER           GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR (comment out if zone is unused)
+#define SIXTHZONE_LEDS                  300                 //Number of LEDS in this zone 
+#define SIXTHZONE_COLOR_ORDER           GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR 
 
 /*****************************    ZONEONE ROOF SETUP    *************************************/
 /*****************************    ZONEONE ROOF SETUP    *************************************/
