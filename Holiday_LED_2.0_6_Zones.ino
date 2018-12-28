@@ -656,6 +656,10 @@ void reconnect()
 
 void calculateMax()
 {
+  #if ZONEONE == 1
+  maxLEDs = FIRSTZONE_LEDS;
+  #endif
+  
   #if ZONETWO == 1
   maxLEDs = max(FIRSTZONE_LEDS, SECONDZONE_LEDS);
   #endif
