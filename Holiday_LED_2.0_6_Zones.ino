@@ -932,6 +932,12 @@ void callback(char* topic, byte* payload, unsigned int length)
     lightningChance = (65535 - intPayload);
   }
   
+  if (newTopic == USER_MQTT_CLIENT_NAME"/brightness") 
+  {
+    client.publish(USER_MQTT_CLIENT_NAME "/brightnessState", charPayload); 
+    brightness = intPayload;
+  }
+  
   if (newTopic == USER_MQTT_CLIENT_NAME"/power")
   {
     client.publish(USER_MQTT_CLIENT_NAME "/powerState", charPayload); 
