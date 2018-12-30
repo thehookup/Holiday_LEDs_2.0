@@ -58,66 +58,6 @@
 /*****************************    ZONEONE ROOF SETUP    *************************************/
 /*****************************    ZONEONE ROOF SETUP    *************************************/
 
-#if  FIRSTZONE_SECTIONS >= 1        /*****************  NEEDED TO MAKE NODEMCU WORK ***************************/
-#define FASTLED_INTERRUPT_RETRY_COUNT 0
-#define FASTLED_ESP8266_RAW_PIN_ORDER
-
-/******************  LIBRARY SECTION *************************************/
-
-#include <FastLED.h>        //https://github.com/FastLED/FastLED
-#include <SimpleTimer.h>    //https://github.com/thehookup/Simple-Timer-Library
-#include <PubSubClient.h>   //https://github.com/knolleary/pubsubclient
-#include <ESP8266WiFi.h>    //if you get an error here you need to install the ESP8266 board manager 
-#include <ESP8266mDNS.h>    //if you get an error here you need to install the ESP8266 board manager 
-#include <ArduinoOTA.h>     //ArduinoOTA is now included with the ArduinoIDE
-
-/*****************  START USER CONFIG SECTION *********************************/
-/*****************  START USER CONFIG SECTION *********************************/
-/*****************  START USER CONFIG SECTION *********************************/
-/*****************  START USER CONFIG SECTION *********************************/
-
-#define USER_SSID                 "YOUR_WIRELESS_SSID"
-#define USER_PASSWORD             "YOUR_WIRELESS_PW"
-#define USER_MQTT_SERVER          "YOUR_MQTT_SERVER_ADDRESS"
-#define USER_MQTT_PORT            1883
-#define USER_MQTT_USERNAME        "YOUR_MQTT_USERNAME"
-#define USER_MQTT_PASSWORD        "YOUR_MQTT_PASSWORD"
-#define USER_MQTT_CLIENT_NAME     "LightMCU"           // Used to define MQTT topics, MQTT Client ID, and ArduinoOTA
-
-
-#define ZONEONE                         1                   //ZONEONE is pin D1, 1 = zone used 0 = zone unused
-#define FIRSTZONE_SECTIONS              1                   //Number of roof sections setup below
-#define FIRSTZONE_LEDS                  300                 //Number of LEDS in this zone 
-#define FIRSTZONE_COLOR_ORDER           GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR 
-
-#define ZONETWO                         1                   //ZONETWO is pin D2, 1 = zone used 0 = zone unused
-#define SECONDZONE_SECTIONS             1                   //Number of roof sections setup below
-#define SECONDZONE_LEDS                 300                 //Number of LEDS in this zone 
-#define SECONDZONE_COLOR_ORDER          GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR 
-
-#define ZONETHREE                       1                   //ZONETHREE is pin D3, 1 = zone used 0 = zone unused
-#define THIRDZONE_SECTIONS              1                   //Number of roof sections setup below
-#define THIRDZONE_LEDS                  300                 //Number of LEDS in this zone 
-#define THIRDZONE_COLOR_ORDER           GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR 
-
-#define ZONEFOUR                        1                   //ZONEFOUR is pin D5, 1 = zone used 0 = zone unused
-#define FOURTHZONE_SECTIONS             1                   //Number of roof sections setup below
-#define FOURTHZONE_LEDS                 300                 //Number of LEDS in this zone 
-#define FOURTHZONE_COLOR_ORDER          GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR 
-
-#define ZONEFIVE                        1                   //ZONEFIVE is pin D6, 1 = zone used 0 = zone unused
-#define FIFTHZONE_SECTIONS              1                   //Number of roof sections setup below
-#define FIFTHZONE_LEDS                  300                 //Number of LEDS in this zone 
-#define FIFTHZONE_COLOR_ORDER           GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR
-
-#define ZONESIX                         1                   //ZONESIX is pin D7, 1 = zone used 0 = zone unused
-#define SIXTHZONE_SECTIONS              1                   //Number of roof sections setup below
-#define SIXTHZONE_LEDS                  300                 //Number of LEDS in this zone 
-#define SIXTHZONE_COLOR_ORDER           GRB                 //Color orders, can be RGB, RBG, GRB, GBR, BRG, BGR 
-
-/*****************************    ZONEONE ROOF SETUP    *************************************/
-/*****************************    ZONEONE ROOF SETUP    *************************************/
-
 #if  FIRSTZONE_SECTIONS >= 1        
 #define ZONEONE_SECTION1_START            0           //starting LED for this zone
 #define ZONEONE_SECTION1_END              100         //ending LED for this zone
