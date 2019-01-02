@@ -587,6 +587,7 @@ void setup_wifi()
   Serial.print("Connecting to ");
   Serial.println(ssid);
 
+  WiFi.hostname(USER_MQTT_CLIENT_NAME);
   WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED) {
