@@ -13,3 +13,5 @@ The node-red portion of the configuration is no longer needed, all processing is
 -If you get a linker error while compiling in arduino, update your ESP8266 boards manager
 
 
+For Openhab 2.4 support take a look at the addditions here (sitemap, things, rules and items files):
+https://github.com/JayJayJanssen/openhab-MQTTv2-LED-strip
