@@ -19,7 +19,7 @@ https://github.com/JayJayJanssen/openhab-MQTTv2-LED-strip
 
 ## Home Assistant YAML
 
-``yaml
+```yaml
 ##This version of the holiday lights code does not require the node red portion
 ##The "W" slider under the main "holiday LED" light modifies each effect
 ##The "W" slider under "Glitter" light modifies the frequency of glitter, the RGB selection changes the color of the glitter
@@ -100,4 +100,4 @@ light:
     white_value_state_topic: "[MQTT_CLIENT_ID]/lightningChanceState"
     white_value_scale: 500
     retain: true
-  ``
+  ```
