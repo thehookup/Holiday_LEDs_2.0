@@ -5,16 +5,16 @@ this new version is easier to setup and can support 6 zones dynamically
 
 The node-red portion of the configuration is no longer needed, all processing is handled in the arduino code. 
 
+## Setup Instructions
+Fill out the entire USER CONFIGURATION section of the code.
 
+It is recommended that you leave at least 2 zones enabled, leaving only a single zone seems to result in jittery animations. 
 
-
--Fill out the entire USER CONFIGURATION section of the code.
+## Troubleshooting
 
 -If you get a linker error while compiling in arduino, update your ESP8266 boards manager
 
-
-For Openhab 2.4 support take a look at the addditions here (sitemap, things, rules and items files):
-https://github.com/JayJayJanssen/openhab-MQTTv2-LED-strip
+-Fire animations are not currently working, I made a couple errors when making them modular, I will fix when I get a couple hours to devote to it.
 
 
 ## Home Assistant YAML
@@ -101,3 +101,7 @@ light:
     white_value_scale: 500
     retain: true
   ```
+## OpenHAB Support
+
+For Openhab 2.4 support take a look at the addditions here (sitemap, things, rules and items files):
+https://github.com/JayJayJanssen/openhab-MQTTv2-LED-strip
