@@ -2305,15 +2305,17 @@ void fire_firstZone_SECTION1()
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEONE_SECTION1_END - ZONEONE_SECTION1_START )
+    
     
     #if ZONEONE_SECTION1_START_FIRE == 1
+    if(thisFlame <=  ZONEONE_SECTION1_END - ZONEONE_SECTION1_START )
     {
       firstZone[ZONEONE_SECTION1_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEONE_SECTION1_END_FIRE == 1
+    if(thisFlame <=  ZONEONE_SECTION1_END - ZONEONE_SECTION1_START )
     {
       firstZone[ZONEONE_SECTION1_END - thisFlame] = color;
     }
@@ -2325,13 +2327,14 @@ void fire_firstZone_SECTION1()
 #ifdef ZONEONE_SECTION2_START
 void fire_firstZone_SECTION2()
 {
-  static byte heat[ZONEONE_SECTION2_END - ZONEONE_SECTION2_START];
-  for( int i = 0; i < ZONEONE_SECTION2_END - ZONEONE_SECTION2_START; i++) 
+  const int sizeOfSection = ZONEONE_SECTION2_END - ZONEONE_SECTION2_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEONE_SECTION2_END - ZONEONE_SECTION2_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEONE_SECTION2_END - ZONEONE_SECTION2_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -2340,26 +2343,28 @@ void fire_firstZone_SECTION2()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEONE_SECTION2_END - ZONEONE_SECTION2_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEONE_SECTION2_END - ZONEONE_SECTION2_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEONE_SECTION2_START && thisFlame <= ZONEONE_SECTION2_END)
+    
     
     #if ZONEONE_SECTION2_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       firstZone[ZONEONE_SECTION2_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEONE_SECTION2_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       firstZone[ZONEONE_SECTION2_END - thisFlame] = color;
     }
@@ -2371,13 +2376,14 @@ void fire_firstZone_SECTION2()
 #ifdef ZONEONE_SECTION3_START
 void fire_firstZone_SECTION3()
 {
-  static byte heat[ZONEONE_SECTION3_END - ZONEONE_SECTION3_START];
-  for( int i = 0; i < ZONEONE_SECTION3_END - ZONEONE_SECTION3_START; i++) 
+  const int sizeOfSection = ZONEONE_SECTION3_END - ZONEONE_SECTION3_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEONE_SECTION3_END - ZONEONE_SECTION3_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEONE_SECTION3_END - ZONEONE_SECTION3_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -2386,26 +2392,28 @@ void fire_firstZone_SECTION3()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEONE_SECTION3_END - ZONEONE_SECTION3_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEONE_SECTION3_END - ZONEONE_SECTION3_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEONE_SECTION3_START && thisFlame <= ZONEONE_SECTION3_END)
+    
     
     #if ZONEONE_SECTION3_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       firstZone[ZONEONE_SECTION3_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEONE_SECTION3_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       firstZone[ZONEONE_SECTION3_END - thisFlame] = color;
     }
@@ -2417,13 +2425,14 @@ void fire_firstZone_SECTION3()
 #ifdef ZONEONE_SECTION4_START
 void fire_firstZone_SECTION4()
 {
-  static byte heat[ZONEONE_SECTION4_END - ZONEONE_SECTION4_START];
-  for( int i = 0; i < ZONEONE_SECTION4_END - ZONEONE_SECTION4_START; i++) 
+  const int sizeOfSection = ZONEONE_SECTION4_END - ZONEONE_SECTION4_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEONE_SECTION4_END - ZONEONE_SECTION4_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEONE_SECTION4_END - ZONEONE_SECTION4_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -2432,26 +2441,28 @@ void fire_firstZone_SECTION4()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEONE_SECTION4_END - ZONEONE_SECTION4_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEONE_SECTION4_END - ZONEONE_SECTION4_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEONE_SECTION4_START && thisFlame <= ZONEONE_SECTION4_END)
+    
     
     #if ZONEONE_SECTION4_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       firstZone[ZONEONE_SECTION4_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEONE_SECTION4_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       firstZone[ZONEONE_SECTION4_END - thisFlame] = color;
     }
@@ -2463,13 +2474,14 @@ void fire_firstZone_SECTION4()
 #ifdef ZONEONE_SECTION5_START
 void fire_firstZone_SECTION5()
 {
-  static byte heat[ZONEONE_SECTION5_END - ZONEONE_SECTION5_START];
-  for( int i = 0; i < ZONEONE_SECTION5_END - ZONEONE_SECTION5_START; i++) 
+  const int sizeOfSection = ZONEONE_SECTION5_END - ZONEONE_SECTION5_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEONE_SECTION5_END - ZONEONE_SECTION5_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEONE_SECTION5_END - ZONEONE_SECTION5_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -2478,26 +2490,28 @@ void fire_firstZone_SECTION5()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEONE_SECTION5_END - ZONEONE_SECTION5_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEONE_SECTION5_END - ZONEONE_SECTION5_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEONE_SECTION5_START && thisFlame <= ZONEONE_SECTION5_END)
+    
     
     #if ZONEONE_SECTION5_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       firstZone[ZONEONE_SECTION5_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEONE_SECTION5_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       firstZone[ZONEONE_SECTION5_END - thisFlame] = color;
     }
@@ -2509,13 +2523,14 @@ void fire_firstZone_SECTION5()
 #ifdef ZONEONE_SECTION6_START
 void fire_firstZone_SECTION6()
 {
-  static byte heat[ZONEONE_SECTION6_END - ZONEONE_SECTION6_START];
-  for( int i = 0; i < ZONEONE_SECTION6_END - ZONEONE_SECTION6_START; i++) 
+  const int sizeOfSection = ZONEONE_SECTION6_END - ZONEONE_SECTION6_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEONE_SECTION6_END - ZONEONE_SECTION6_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEONE_SECTION6_END - ZONEONE_SECTION6_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -2524,26 +2539,28 @@ void fire_firstZone_SECTION6()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEONE_SECTION6_END - ZONEONE_SECTION6_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEONE_SECTION6_END - ZONEONE_SECTION6_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEONE_SECTION6_START && thisFlame <= ZONEONE_SECTION6_END)
+    
     
     #if ZONEONE_SECTION6_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       firstZone[ZONEONE_SECTION6_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEONE_SECTION6_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       firstZone[ZONEONE_SECTION6_END - thisFlame] = color;
     }
@@ -2555,13 +2572,14 @@ void fire_firstZone_SECTION6()
 #ifdef ZONEONE_SECTION7_START
 void fire_firstZone_SECTION7()
 {
-  static byte heat[ZONEONE_SECTION7_END - ZONEONE_SECTION7_START];
-  for( int i = 0; i < ZONEONE_SECTION7_END - ZONEONE_SECTION7_START; i++) 
+  const int sizeOfSection = ZONEONE_SECTION7_END - ZONEONE_SECTION7_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEONE_SECTION7_END - ZONEONE_SECTION7_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEONE_SECTION7_END - ZONEONE_SECTION7_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -2570,26 +2588,28 @@ void fire_firstZone_SECTION7()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEONE_SECTION7_END - ZONEONE_SECTION7_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEONE_SECTION7_END - ZONEONE_SECTION7_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEONE_SECTION7_START && thisFlame <= ZONEONE_SECTION7_END)
+    
     
     #if ZONEONE_SECTION7_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       firstZone[ZONEONE_SECTION7_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEONE_SECTION7_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       firstZone[ZONEONE_SECTION7_END - thisFlame] = color;
     }
@@ -2601,13 +2621,14 @@ void fire_firstZone_SECTION7()
 #ifdef ZONEONE_SECTION8_START
 void fire_firstZone_SECTION8()
 {
-  static byte heat[ZONEONE_SECTION8_END - ZONEONE_SECTION8_START];
-  for( int i = 0; i < ZONEONE_SECTION8_END - ZONEONE_SECTION8_START; i++) 
+  const int sizeOfSection = ZONEONE_SECTION8_END - ZONEONE_SECTION8_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEONE_SECTION8_END - ZONEONE_SECTION8_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEONE_SECTION8_END - ZONEONE_SECTION8_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -2616,26 +2637,28 @@ void fire_firstZone_SECTION8()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEONE_SECTION8_END - ZONEONE_SECTION8_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEONE_SECTION8_END - ZONEONE_SECTION8_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEONE_SECTION8_START && thisFlame <= ZONEONE_SECTION8_END)
+    
     
     #if ZONEONE_SECTION8_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       firstZone[ZONEONE_SECTION8_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEONE_SECTION8_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       firstZone[ZONEONE_SECTION8_END - thisFlame] = color;
     }
@@ -2647,13 +2670,14 @@ void fire_firstZone_SECTION8()
 #ifdef ZONEONE_SECTION9_START
 void fire_firstZone_SECTION9()
 {
-  static byte heat[ZONEONE_SECTION9_END - ZONEONE_SECTION9_START];
-  for( int i = 0; i < ZONEONE_SECTION9_END - ZONEONE_SECTION9_START; i++) 
+  const int sizeOfSection = ZONEONE_SECTION9_END - ZONEONE_SECTION9_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEONE_SECTION9_END - ZONEONE_SECTION9_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEONE_SECTION9_END - ZONEONE_SECTION9_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -2662,26 +2686,28 @@ void fire_firstZone_SECTION9()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEONE_SECTION9_END - ZONEONE_SECTION9_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEONE_SECTION9_END - ZONEONE_SECTION9_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEONE_SECTION9_START && thisFlame <= ZONEONE_SECTION9_END)
+    
     
     #if ZONEONE_SECTION9_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       firstZone[ZONEONE_SECTION9_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEONE_SECTION9_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       firstZone[ZONEONE_SECTION9_END - thisFlame] = color;
     }
@@ -3080,15 +3106,17 @@ void fire_secondZone_SECTION1()
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONETWO_SECTION1_START && thisFlame <= ZONETWO_SECTION1_END)
+    
     
     #if ZONETWO_SECTION1_START_FIRE == 1
+    if(thisFlame <=  ZONETWO_SECTION1_END - ZONETWO_SECTION1_START )
     {
       secondZone[ZONETWO_SECTION1_START + thisFlame] = color;
     }
     #endif
     
     #if ZONETWO_SECTION1_END_FIRE == 1
+    if(thisFlame <=  ZONETWO_SECTION1_END - ZONETWO_SECTION1_START )
     {
       secondZone[ZONETWO_SECTION1_END - thisFlame] = color;
     }
@@ -3100,13 +3128,14 @@ void fire_secondZone_SECTION1()
 #ifdef ZONETWO_SECTION2_START
 void fire_secondZone_SECTION2()
 {
-  static byte heat[ZONETWO_SECTION2_END - ZONETWO_SECTION2_START];
-  for( int i = 0; i < ZONETWO_SECTION2_END - ZONETWO_SECTION2_START; i++) 
+  const int sizeOfSection = ZONETWO_SECTION2_END - ZONETWO_SECTION2_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETWO_SECTION2_END - ZONETWO_SECTION2_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONETWO_SECTION2_END - ZONETWO_SECTION2_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -3115,26 +3144,28 @@ void fire_secondZone_SECTION2()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONETWO_SECTION2_END - ZONETWO_SECTION2_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONETWO_SECTION2_END - ZONETWO_SECTION2_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONETWO_SECTION2_START && thisFlame <= ZONETWO_SECTION2_END)
+    
     
     #if ZONETWO_SECTION2_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       secondZone[ZONETWO_SECTION2_START + thisFlame] = color;
     }
     #endif
     
     #if ZONETWO_SECTION2_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       secondZone[ZONETWO_SECTION2_END - thisFlame] = color;
     }
@@ -3146,13 +3177,14 @@ void fire_secondZone_SECTION2()
 #ifdef ZONETWO_SECTION3_START
 void fire_secondZone_SECTION3()
 {
-  static byte heat[ZONETWO_SECTION3_END - ZONETWO_SECTION3_START];
-  for( int i = 0; i < ZONETWO_SECTION3_END - ZONETWO_SECTION3_START; i++) 
+  const int sizeOfSection = ZONETWO_SECTION3_END - ZONETWO_SECTION3_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETWO_SECTION3_END - ZONETWO_SECTION3_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONETWO_SECTION3_END - ZONETWO_SECTION3_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -3161,26 +3193,28 @@ void fire_secondZone_SECTION3()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONETWO_SECTION3_END - ZONETWO_SECTION3_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONETWO_SECTION3_END - ZONETWO_SECTION3_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONETWO_SECTION3_START && thisFlame <= ZONETWO_SECTION3_END)
+    
     
     #if ZONETWO_SECTION3_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       secondZone[ZONETWO_SECTION3_START + thisFlame] = color;
     }
     #endif
     
     #if ZONETWO_SECTION3_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       secondZone[ZONETWO_SECTION3_END - thisFlame] = color;
     }
@@ -3192,13 +3226,14 @@ void fire_secondZone_SECTION3()
 #ifdef ZONETWO_SECTION4_START
 void fire_secondZone_SECTION4()
 {
-  static byte heat[ZONETWO_SECTION4_END - ZONETWO_SECTION4_START];
-  for( int i = 0; i < ZONETWO_SECTION4_END - ZONETWO_SECTION4_START; i++) 
+  const int sizeOfSection = ZONETWO_SECTION4_END - ZONETWO_SECTION4_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETWO_SECTION4_END - ZONETWO_SECTION4_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONETWO_SECTION4_END - ZONETWO_SECTION4_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -3207,26 +3242,28 @@ void fire_secondZone_SECTION4()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONETWO_SECTION4_END - ZONETWO_SECTION4_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONETWO_SECTION4_END - ZONETWO_SECTION4_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONETWO_SECTION4_START && thisFlame <= ZONETWO_SECTION4_END)
+    
     
     #if ZONETWO_SECTION4_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       secondZone[ZONETWO_SECTION4_START + thisFlame] = color;
     }
     #endif
     
     #if ZONETWO_SECTION4_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       secondZone[ZONETWO_SECTION4_END - thisFlame] = color;
     }
@@ -3238,13 +3275,14 @@ void fire_secondZone_SECTION4()
 #ifdef ZONETWO_SECTION5_START
 void fire_secondZone_SECTION5()
 {
-  static byte heat[ZONETWO_SECTION5_END - ZONETWO_SECTION5_START];
-  for( int i = 0; i < ZONETWO_SECTION5_END - ZONETWO_SECTION5_START; i++) 
+  const int sizeOfSection = ZONETWO_SECTION5_END - ZONETWO_SECTION5_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETWO_SECTION5_END - ZONETWO_SECTION5_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONETWO_SECTION5_END - ZONETWO_SECTION5_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -3253,26 +3291,28 @@ void fire_secondZone_SECTION5()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONETWO_SECTION5_END - ZONETWO_SECTION5_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONETWO_SECTION5_END - ZONETWO_SECTION5_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONETWO_SECTION5_START && thisFlame <= ZONETWO_SECTION5_END)
+    
     
     #if ZONETWO_SECTION5_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       secondZone[ZONETWO_SECTION5_START + thisFlame] = color;
     }
     #endif
     
     #if ZONETWO_SECTION5_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       secondZone[ZONETWO_SECTION5_END - thisFlame] = color;
     }
@@ -3284,13 +3324,14 @@ void fire_secondZone_SECTION5()
 #ifdef ZONETWO_SECTION6_START
 void fire_secondZone_SECTION6()
 {
-  static byte heat[ZONETWO_SECTION6_END - ZONETWO_SECTION6_START];
-  for( int i = 0; i < ZONETWO_SECTION6_END - ZONETWO_SECTION6_START; i++) 
+  const int sizeOfSection = ZONETWO_SECTION6_END - ZONETWO_SECTION6_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETWO_SECTION6_END - ZONETWO_SECTION6_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONETWO_SECTION6_END - ZONETWO_SECTION6_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -3299,26 +3340,28 @@ void fire_secondZone_SECTION6()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONETWO_SECTION6_END - ZONETWO_SECTION6_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONETWO_SECTION6_END - ZONETWO_SECTION6_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONETWO_SECTION6_START && thisFlame <= ZONETWO_SECTION6_END)
+    
     
     #if ZONETWO_SECTION6_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       secondZone[ZONETWO_SECTION6_START + thisFlame] = color;
     }
     #endif
     
     #if ZONETWO_SECTION6_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       secondZone[ZONETWO_SECTION6_END - thisFlame] = color;
     }
@@ -3330,13 +3373,14 @@ void fire_secondZone_SECTION6()
 #ifdef ZONETWO_SECTION7_START
 void fire_secondZone_SECTION7()
 {
-  static byte heat[ZONETWO_SECTION7_END - ZONETWO_SECTION7_START];
-  for( int i = 0; i < ZONETWO_SECTION7_END - ZONETWO_SECTION7_START; i++) 
+  const int sizeOfSection = ZONETWO_SECTION7_END - ZONETWO_SECTION7_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETWO_SECTION7_END - ZONETWO_SECTION7_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONETWO_SECTION7_END - ZONETWO_SECTION7_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -3345,26 +3389,28 @@ void fire_secondZone_SECTION7()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONETWO_SECTION7_END - ZONETWO_SECTION7_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONETWO_SECTION7_END - ZONETWO_SECTION7_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONETWO_SECTION7_START && thisFlame <= ZONETWO_SECTION7_END)
+    
     
     #if ZONETWO_SECTION7_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       secondZone[ZONETWO_SECTION7_START + thisFlame] = color;
     }
     #endif
     
     #if ZONETWO_SECTION7_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       secondZone[ZONETWO_SECTION7_END - thisFlame] = color;
     }
@@ -3376,13 +3422,14 @@ void fire_secondZone_SECTION7()
 #ifdef ZONETWO_SECTION8_START
 void fire_secondZone_SECTION8()
 {
-  static byte heat[ZONETWO_SECTION8_END - ZONETWO_SECTION8_START];
-  for( int i = 0; i < ZONETWO_SECTION8_END - ZONETWO_SECTION8_START; i++) 
+  const int sizeOfSection = ZONETWO_SECTION8_END - ZONETWO_SECTION8_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETWO_SECTION8_END - ZONETWO_SECTION8_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONETWO_SECTION8_END - ZONETWO_SECTION8_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -3391,26 +3438,28 @@ void fire_secondZone_SECTION8()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONETWO_SECTION8_END - ZONETWO_SECTION8_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONETWO_SECTION8_END - ZONETWO_SECTION8_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONETWO_SECTION8_START && thisFlame <= ZONETWO_SECTION8_END)
+    
     
     #if ZONETWO_SECTION8_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       secondZone[ZONETWO_SECTION8_START + thisFlame] = color;
     }
     #endif
     
     #if ZONETWO_SECTION8_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       secondZone[ZONETWO_SECTION8_END - thisFlame] = color;
     }
@@ -3422,13 +3471,14 @@ void fire_secondZone_SECTION8()
 #ifdef ZONETWO_SECTION9_START
 void fire_secondZone_SECTION9()
 {
-  static byte heat[ZONETWO_SECTION9_END - ZONETWO_SECTION9_START];
-  for( int i = 0; i < ZONETWO_SECTION9_END - ZONETWO_SECTION9_START; i++) 
+  const int sizeOfSection = ZONETWO_SECTION9_END - ZONETWO_SECTION9_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETWO_SECTION9_END - ZONETWO_SECTION9_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONETWO_SECTION9_END - ZONETWO_SECTION9_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -3437,26 +3487,28 @@ void fire_secondZone_SECTION9()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONETWO_SECTION9_END - ZONETWO_SECTION9_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONETWO_SECTION9_END - ZONETWO_SECTION9_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONETWO_SECTION9_START && thisFlame <= ZONETWO_SECTION9_END)
+    
     
     #if ZONETWO_SECTION9_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       secondZone[ZONETWO_SECTION9_START + thisFlame] = color;
     }
     #endif
     
     #if ZONETWO_SECTION9_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       secondZone[ZONETWO_SECTION9_END - thisFlame] = color;
     }
@@ -3855,15 +3907,17 @@ void fire_thirdZone_SECTION1()
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONETHREE_SECTION1_START && thisFlame <= ZONETHREE_SECTION1_END)
+    
     
     #if ZONETHREE_SECTION1_START_FIRE == 1
+    if(thisFlame <=  ZONETHREE_SECTION1_END - ZONETHREE_SECTION1_START )
     {
       thirdZone[ZONETHREE_SECTION1_START + thisFlame] = color;
     }
     #endif
     
     #if ZONETHREE_SECTION1_END_FIRE == 1
+    if(thisFlame <=  ZONETHREE_SECTION1_END - ZONETHREE_SECTION1_START )
     {
       thirdZone[ZONETHREE_SECTION1_END - thisFlame] = color;
     }
@@ -3875,13 +3929,14 @@ void fire_thirdZone_SECTION1()
 #ifdef ZONETHREE_SECTION2_START
 void fire_thirdZone_SECTION2()
 {
-  static byte heat[ZONETHREE_SECTION2_END - ZONETHREE_SECTION2_START];
-  for( int i = 0; i < ZONETHREE_SECTION2_END - ZONETHREE_SECTION2_START; i++) 
+  const int sizeOfSection = ZONETHREE_SECTION2_END - ZONETHREE_SECTION2_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETHREE_SECTION2_END - ZONETHREE_SECTION2_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONETHREE_SECTION2_END - ZONETHREE_SECTION2_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -3890,26 +3945,28 @@ void fire_thirdZone_SECTION2()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONETHREE_SECTION2_END - ZONETHREE_SECTION2_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONETHREE_SECTION2_END - ZONETHREE_SECTION2_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONETHREE_SECTION2_START && thisFlame <= ZONETHREE_SECTION2_END)
+    
     
     #if ZONETHREE_SECTION2_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       thirdZone[ZONETHREE_SECTION2_START + thisFlame] = color;
     }
     #endif
     
     #if ZONETHREE_SECTION2_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       thirdZone[ZONETHREE_SECTION2_END - thisFlame] = color;
     }
@@ -3921,13 +3978,14 @@ void fire_thirdZone_SECTION2()
 #ifdef ZONETHREE_SECTION3_START
 void fire_thirdZone_SECTION3()
 {
-  static byte heat[ZONETHREE_SECTION3_END - ZONETHREE_SECTION3_START];
-  for( int i = 0; i < ZONETHREE_SECTION3_END - ZONETHREE_SECTION3_START; i++) 
+  const int sizeOfSection = ZONETHREE_SECTION3_END - ZONETHREE_SECTION3_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETHREE_SECTION3_END - ZONETHREE_SECTION3_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONETHREE_SECTION3_END - ZONETHREE_SECTION3_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -3936,26 +3994,28 @@ void fire_thirdZone_SECTION3()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONETHREE_SECTION3_END - ZONETHREE_SECTION3_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONETHREE_SECTION3_END - ZONETHREE_SECTION3_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONETHREE_SECTION3_START && thisFlame <= ZONETHREE_SECTION3_END)
+    
     
     #if ZONETHREE_SECTION3_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       thirdZone[ZONETHREE_SECTION3_START + thisFlame] = color;
     }
     #endif
     
     #if ZONETHREE_SECTION3_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       thirdZone[ZONETHREE_SECTION3_END - thisFlame] = color;
     }
@@ -3967,13 +4027,14 @@ void fire_thirdZone_SECTION3()
 #ifdef ZONETHREE_SECTION4_START
 void fire_thirdZone_SECTION4()
 {
-  static byte heat[ZONETHREE_SECTION4_END - ZONETHREE_SECTION4_START];
-  for( int i = 0; i < ZONETHREE_SECTION4_END - ZONETHREE_SECTION4_START; i++) 
+  const int sizeOfSection = ZONETHREE_SECTION4_END - ZONETHREE_SECTION4_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETHREE_SECTION4_END - ZONETHREE_SECTION4_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONETHREE_SECTION4_END - ZONETHREE_SECTION4_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -3982,26 +4043,28 @@ void fire_thirdZone_SECTION4()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONETHREE_SECTION4_END - ZONETHREE_SECTION4_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONETHREE_SECTION4_END - ZONETHREE_SECTION4_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONETHREE_SECTION4_START && thisFlame <= ZONETHREE_SECTION4_END)
+    
     
     #if ZONETHREE_SECTION4_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       thirdZone[ZONETHREE_SECTION4_START + thisFlame] = color;
     }
     #endif
     
     #if ZONETHREE_SECTION4_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       thirdZone[ZONETHREE_SECTION4_END - thisFlame] = color;
     }
@@ -4013,13 +4076,14 @@ void fire_thirdZone_SECTION4()
 #ifdef ZONETHREE_SECTION5_START
 void fire_thirdZone_SECTION5()
 {
-  static byte heat[ZONETHREE_SECTION5_END - ZONETHREE_SECTION5_START];
-  for( int i = 0; i < ZONETHREE_SECTION5_END - ZONETHREE_SECTION5_START; i++) 
+  const int sizeOfSection = ZONETHREE_SECTION5_END - ZONETHREE_SECTION5_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETHREE_SECTION5_END - ZONETHREE_SECTION5_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONETHREE_SECTION5_END - ZONETHREE_SECTION5_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -4028,26 +4092,28 @@ void fire_thirdZone_SECTION5()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONETHREE_SECTION5_END - ZONETHREE_SECTION5_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONETHREE_SECTION5_END - ZONETHREE_SECTION5_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONETHREE_SECTION5_START && thisFlame <= ZONETHREE_SECTION5_END)
+    
     
     #if ZONETHREE_SECTION5_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       thirdZone[ZONETHREE_SECTION5_START + thisFlame] = color;
     }
     #endif
     
     #if ZONETHREE_SECTION5_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       thirdZone[ZONETHREE_SECTION5_END - thisFlame] = color;
     }
@@ -4059,13 +4125,14 @@ void fire_thirdZone_SECTION5()
 #ifdef ZONETHREE_SECTION6_START
 void fire_thirdZone_SECTION6()
 {
-  static byte heat[ZONETHREE_SECTION6_END - ZONETHREE_SECTION6_START];
-  for( int i = 0; i < ZONETHREE_SECTION6_END - ZONETHREE_SECTION6_START; i++) 
+  const int sizeOfSection = ZONETHREE_SECTION6_END - ZONETHREE_SECTION6_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETHREE_SECTION6_END - ZONETHREE_SECTION6_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONETHREE_SECTION6_END - ZONETHREE_SECTION6_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -4074,26 +4141,28 @@ void fire_thirdZone_SECTION6()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONETHREE_SECTION6_END - ZONETHREE_SECTION6_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONETHREE_SECTION6_END - ZONETHREE_SECTION6_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONETHREE_SECTION6_START && thisFlame <= ZONETHREE_SECTION6_END)
+    
     
     #if ZONETHREE_SECTION6_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       thirdZone[ZONETHREE_SECTION6_START + thisFlame] = color;
     }
     #endif
     
     #if ZONETHREE_SECTION6_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       thirdZone[ZONETHREE_SECTION6_END - thisFlame] = color;
     }
@@ -4105,13 +4174,14 @@ void fire_thirdZone_SECTION6()
 #ifdef ZONETHREE_SECTION7_START
 void fire_thirdZone_SECTION7()
 {
-  static byte heat[ZONETHREE_SECTION7_END - ZONETHREE_SECTION7_START];
-  for( int i = 0; i < ZONETHREE_SECTION7_END - ZONETHREE_SECTION7_START; i++) 
+  const int sizeOfSection = ZONETHREE_SECTION7_END - ZONETHREE_SECTION7_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETHREE_SECTION7_END - ZONETHREE_SECTION7_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONETHREE_SECTION7_END - ZONETHREE_SECTION7_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -4120,26 +4190,28 @@ void fire_thirdZone_SECTION7()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONETHREE_SECTION7_END - ZONETHREE_SECTION7_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONETHREE_SECTION7_END - ZONETHREE_SECTION7_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONETHREE_SECTION7_START && thisFlame <= ZONETHREE_SECTION7_END)
+    
     
     #if ZONETHREE_SECTION7_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       thirdZone[ZONETHREE_SECTION7_START + thisFlame] = color;
     }
     #endif
     
     #if ZONETHREE_SECTION7_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       thirdZone[ZONETHREE_SECTION7_END - thisFlame] = color;
     }
@@ -4151,13 +4223,14 @@ void fire_thirdZone_SECTION7()
 #ifdef ZONETHREE_SECTION8_START
 void fire_thirdZone_SECTION8()
 {
-  static byte heat[ZONETHREE_SECTION8_END - ZONETHREE_SECTION8_START];
-  for( int i = 0; i < ZONETHREE_SECTION8_END - ZONETHREE_SECTION8_START; i++) 
+  const int sizeOfSection = ZONETHREE_SECTION8_END - ZONETHREE_SECTION8_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETHREE_SECTION8_END - ZONETHREE_SECTION8_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONETHREE_SECTION8_END - ZONETHREE_SECTION8_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -4166,26 +4239,28 @@ void fire_thirdZone_SECTION8()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONETHREE_SECTION8_END - ZONETHREE_SECTION8_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONETHREE_SECTION8_END - ZONETHREE_SECTION8_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONETHREE_SECTION8_START && thisFlame <= ZONETHREE_SECTION8_END)
+    
     
     #if ZONETHREE_SECTION8_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       thirdZone[ZONETHREE_SECTION8_START + thisFlame] = color;
     }
     #endif
     
     #if ZONETHREE_SECTION8_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       thirdZone[ZONETHREE_SECTION8_END - thisFlame] = color;
     }
@@ -4197,13 +4272,14 @@ void fire_thirdZone_SECTION8()
 #ifdef ZONETHREE_SECTION9_START
 void fire_thirdZone_SECTION9()
 {
-  static byte heat[ZONETHREE_SECTION9_END - ZONETHREE_SECTION9_START];
-  for( int i = 0; i < ZONETHREE_SECTION9_END - ZONETHREE_SECTION9_START; i++) 
+  const int sizeOfSection = ZONETHREE_SECTION9_END - ZONETHREE_SECTION9_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONETHREE_SECTION9_END - ZONETHREE_SECTION9_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONETHREE_SECTION9_END - ZONETHREE_SECTION9_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -4212,26 +4288,28 @@ void fire_thirdZone_SECTION9()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONETHREE_SECTION9_END - ZONETHREE_SECTION9_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONETHREE_SECTION9_END - ZONETHREE_SECTION9_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONETHREE_SECTION9_START && thisFlame <= ZONETHREE_SECTION9_END)
+    
     
     #if ZONETHREE_SECTION9_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       thirdZone[ZONETHREE_SECTION9_START + thisFlame] = color;
     }
     #endif
     
     #if ZONETHREE_SECTION9_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       thirdZone[ZONETHREE_SECTION9_END - thisFlame] = color;
     }
@@ -4630,15 +4708,17 @@ void fire_fourthZone_SECTION1()
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEFOUR_SECTION1_START && thisFlame <= ZONEFOUR_SECTION1_END)
+    
     
     #if ZONEFOUR_SECTION1_START_FIRE == 1
+    if(thisFlame <=  ZONEFOUR_SECTION1_END - ZONEFOUR_SECTION1_START )
     {
       fourthZone[ZONEFOUR_SECTION1_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEFOUR_SECTION1_END_FIRE == 1
+    if(thisFlame <=  ZONEFOUR_SECTION1_END - ZONEFOUR_SECTION1_START )
     {
       fourthZone[ZONEFOUR_SECTION1_END - thisFlame] = color;
     }
@@ -4650,13 +4730,14 @@ void fire_fourthZone_SECTION1()
 #ifdef ZONEFOUR_SECTION2_START
 void fire_fourthZone_SECTION2()
 {
-  static byte heat[ZONEFOUR_SECTION2_END - ZONEFOUR_SECTION2_START];
-  for( int i = 0; i < ZONEFOUR_SECTION2_END - ZONEFOUR_SECTION2_START; i++) 
+  const int sizeOfSection = ZONEFOUR_SECTION2_END - ZONEFOUR_SECTION2_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFOUR_SECTION2_END - ZONEFOUR_SECTION2_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEFOUR_SECTION2_END - ZONEFOUR_SECTION2_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -4665,26 +4746,28 @@ void fire_fourthZone_SECTION2()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEFOUR_SECTION2_END - ZONEFOUR_SECTION2_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEFOUR_SECTION2_END - ZONEFOUR_SECTION2_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEFOUR_SECTION2_START && thisFlame <= ZONEFOUR_SECTION2_END)
+    
     
     #if ZONEFOUR_SECTION2_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fourthZone[ZONEFOUR_SECTION2_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEFOUR_SECTION2_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fourthZone[ZONEFOUR_SECTION2_END - thisFlame] = color;
     }
@@ -4696,13 +4779,14 @@ void fire_fourthZone_SECTION2()
 #ifdef ZONEFOUR_SECTION3_START
 void fire_fourthZone_SECTION3()
 {
-  static byte heat[ZONEFOUR_SECTION3_END - ZONEFOUR_SECTION3_START];
-  for( int i = 0; i < ZONEFOUR_SECTION3_END - ZONEFOUR_SECTION3_START; i++) 
+  const int sizeOfSection = ZONEFOUR_SECTION3_END - ZONEFOUR_SECTION3_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFOUR_SECTION3_END - ZONEFOUR_SECTION3_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEFOUR_SECTION3_END - ZONEFOUR_SECTION3_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -4711,26 +4795,28 @@ void fire_fourthZone_SECTION3()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEFOUR_SECTION3_END - ZONEFOUR_SECTION3_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEFOUR_SECTION3_END - ZONEFOUR_SECTION3_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEFOUR_SECTION3_START && thisFlame <= ZONEFOUR_SECTION3_END)
+    
     
     #if ZONEFOUR_SECTION3_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fourthZone[ZONEFOUR_SECTION3_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEFOUR_SECTION3_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fourthZone[ZONEFOUR_SECTION3_END - thisFlame] = color;
     }
@@ -4742,13 +4828,14 @@ void fire_fourthZone_SECTION3()
 #ifdef ZONEFOUR_SECTION4_START
 void fire_fourthZone_SECTION4()
 {
-  static byte heat[ZONEFOUR_SECTION4_END - ZONEFOUR_SECTION4_START];
-  for( int i = 0; i < ZONEFOUR_SECTION4_END - ZONEFOUR_SECTION4_START; i++) 
+  const int sizeOfSection = ZONEFOUR_SECTION4_END - ZONEFOUR_SECTION4_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFOUR_SECTION4_END - ZONEFOUR_SECTION4_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEFOUR_SECTION4_END - ZONEFOUR_SECTION4_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -4757,26 +4844,28 @@ void fire_fourthZone_SECTION4()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEFOUR_SECTION4_END - ZONEFOUR_SECTION4_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEFOUR_SECTION4_END - ZONEFOUR_SECTION4_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEFOUR_SECTION4_START && thisFlame <= ZONEFOUR_SECTION4_END)
+    
     
     #if ZONEFOUR_SECTION4_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fourthZone[ZONEFOUR_SECTION4_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEFOUR_SECTION4_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fourthZone[ZONEFOUR_SECTION4_END - thisFlame] = color;
     }
@@ -4788,13 +4877,14 @@ void fire_fourthZone_SECTION4()
 #ifdef ZONEFOUR_SECTION5_START
 void fire_fourthZone_SECTION5()
 {
-  static byte heat[ZONEFOUR_SECTION5_END - ZONEFOUR_SECTION5_START];
-  for( int i = 0; i < ZONEFOUR_SECTION5_END - ZONEFOUR_SECTION5_START; i++) 
+  const int sizeOfSection = ZONEFOUR_SECTION5_END - ZONEFOUR_SECTION5_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFOUR_SECTION5_END - ZONEFOUR_SECTION5_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEFOUR_SECTION5_END - ZONEFOUR_SECTION5_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -4803,26 +4893,28 @@ void fire_fourthZone_SECTION5()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEFOUR_SECTION5_END - ZONEFOUR_SECTION5_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEFOUR_SECTION5_END - ZONEFOUR_SECTION5_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEFOUR_SECTION5_START && thisFlame <= ZONEFOUR_SECTION5_END)
+    
     
     #if ZONEFOUR_SECTION5_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fourthZone[ZONEFOUR_SECTION5_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEFOUR_SECTION5_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fourthZone[ZONEFOUR_SECTION5_END - thisFlame] = color;
     }
@@ -4834,13 +4926,14 @@ void fire_fourthZone_SECTION5()
 #ifdef ZONEFOUR_SECTION6_START
 void fire_fourthZone_SECTION6()
 {
-  static byte heat[ZONEFOUR_SECTION6_END - ZONEFOUR_SECTION6_START];
-  for( int i = 0; i < ZONEFOUR_SECTION6_END - ZONEFOUR_SECTION6_START; i++) 
+  const int sizeOfSection = ZONEFOUR_SECTION6_END - ZONEFOUR_SECTION6_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFOUR_SECTION6_END - ZONEFOUR_SECTION6_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEFOUR_SECTION6_END - ZONEFOUR_SECTION6_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -4849,26 +4942,28 @@ void fire_fourthZone_SECTION6()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEFOUR_SECTION6_END - ZONEFOUR_SECTION6_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEFOUR_SECTION6_END - ZONEFOUR_SECTION6_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEFOUR_SECTION6_START && thisFlame <= ZONEFOUR_SECTION6_END)
+    
     
     #if ZONEFOUR_SECTION6_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fourthZone[ZONEFOUR_SECTION6_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEFOUR_SECTION6_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fourthZone[ZONEFOUR_SECTION6_END - thisFlame] = color;
     }
@@ -4880,13 +4975,14 @@ void fire_fourthZone_SECTION6()
 #ifdef ZONEFOUR_SECTION7_START
 void fire_fourthZone_SECTION7()
 {
-  static byte heat[ZONEFOUR_SECTION7_END - ZONEFOUR_SECTION7_START];
-  for( int i = 0; i < ZONEFOUR_SECTION7_END - ZONEFOUR_SECTION7_START; i++) 
+  const int sizeOfSection = ZONEFOUR_SECTION7_END - ZONEFOUR_SECTION7_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFOUR_SECTION7_END - ZONEFOUR_SECTION7_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEFOUR_SECTION7_END - ZONEFOUR_SECTION7_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -4895,26 +4991,28 @@ void fire_fourthZone_SECTION7()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEFOUR_SECTION7_END - ZONEFOUR_SECTION7_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEFOUR_SECTION7_END - ZONEFOUR_SECTION7_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEFOUR_SECTION7_START && thisFlame <= ZONEFOUR_SECTION7_END)
+    
     
     #if ZONEFOUR_SECTION7_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fourthZone[ZONEFOUR_SECTION7_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEFOUR_SECTION7_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fourthZone[ZONEFOUR_SECTION7_END - thisFlame] = color;
     }
@@ -4926,13 +5024,14 @@ void fire_fourthZone_SECTION7()
 #ifdef ZONEFOUR_SECTION8_START
 void fire_fourthZone_SECTION8()
 {
-  static byte heat[ZONEFOUR_SECTION8_END - ZONEFOUR_SECTION8_START];
-  for( int i = 0; i < ZONEFOUR_SECTION8_END - ZONEFOUR_SECTION8_START; i++) 
+  const int sizeOfSection = ZONEFOUR_SECTION8_END - ZONEFOUR_SECTION8_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFOUR_SECTION8_END - ZONEFOUR_SECTION8_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEFOUR_SECTION8_END - ZONEFOUR_SECTION8_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -4941,26 +5040,28 @@ void fire_fourthZone_SECTION8()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEFOUR_SECTION8_END - ZONEFOUR_SECTION8_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEFOUR_SECTION8_END - ZONEFOUR_SECTION8_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEFOUR_SECTION8_START && thisFlame <= ZONEFOUR_SECTION8_END)
+    
     
     #if ZONEFOUR_SECTION8_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fourthZone[ZONEFOUR_SECTION8_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEFOUR_SECTION8_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fourthZone[ZONEFOUR_SECTION8_END - thisFlame] = color;
     }
@@ -4972,13 +5073,14 @@ void fire_fourthZone_SECTION8()
 #ifdef ZONEFOUR_SECTION9_START
 void fire_fourthZone_SECTION9()
 {
-  static byte heat[ZONEFOUR_SECTION9_END - ZONEFOUR_SECTION9_START];
-  for( int i = 0; i < ZONEFOUR_SECTION9_END - ZONEFOUR_SECTION9_START; i++) 
+  const int sizeOfSection = ZONEFOUR_SECTION9_END - ZONEFOUR_SECTION9_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFOUR_SECTION9_END - ZONEFOUR_SECTION9_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEFOUR_SECTION9_END - ZONEFOUR_SECTION9_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -4987,26 +5089,28 @@ void fire_fourthZone_SECTION9()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEFOUR_SECTION9_END - ZONEFOUR_SECTION9_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEFOUR_SECTION9_END - ZONEFOUR_SECTION9_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEFOUR_SECTION9_START && thisFlame <= ZONEFOUR_SECTION9_END)
+    
     
     #if ZONEFOUR_SECTION9_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fourthZone[ZONEFOUR_SECTION9_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEFOUR_SECTION9_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fourthZone[ZONEFOUR_SECTION9_END - thisFlame] = color;
     }
@@ -5405,15 +5509,17 @@ void fire_fifthZone_SECTION1()
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEFIVE_SECTION1_START && thisFlame <= ZONEFIVE_SECTION1_END)
+    
     
     #if ZONEFIVE_SECTION1_START_FIRE == 1
+    if(thisFlame <=  ZONEFIVE_SECTION1_END - ZONEFIVE_SECTION1_START )
     {
       fifthZone[ZONEFIVE_SECTION1_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEFIVE_SECTION1_END_FIRE == 1
+    if(thisFlame <=  ZONEFIVE_SECTION1_END - ZONEFIVE_SECTION1_START )
     {
       fifthZone[ZONEFIVE_SECTION1_END - thisFlame] = color;
     }
@@ -5425,13 +5531,14 @@ void fire_fifthZone_SECTION1()
 #ifdef ZONEFIVE_SECTION2_START
 void fire_fifthZone_SECTION2()
 {
-  static byte heat[ZONEFIVE_SECTION2_END - ZONEFIVE_SECTION2_START];
-  for( int i = 0; i < ZONEFIVE_SECTION2_END - ZONEFIVE_SECTION2_START; i++) 
+  const int sizeOfSection = ZONEFIVE_SECTION2_END - ZONEFIVE_SECTION2_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFIVE_SECTION2_END - ZONEFIVE_SECTION2_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEFIVE_SECTION2_END - ZONEFIVE_SECTION2_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -5440,26 +5547,28 @@ void fire_fifthZone_SECTION2()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEFIVE_SECTION2_END - ZONEFIVE_SECTION2_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEFIVE_SECTION2_END - ZONEFIVE_SECTION2_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEFIVE_SECTION2_START && thisFlame <= ZONEFIVE_SECTION2_END)
+    
     
     #if ZONEFIVE_SECTION2_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fifthZone[ZONEFIVE_SECTION2_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEFIVE_SECTION2_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fifthZone[ZONEFIVE_SECTION2_END - thisFlame] = color;
     }
@@ -5471,13 +5580,14 @@ void fire_fifthZone_SECTION2()
 #ifdef ZONEFIVE_SECTION3_START
 void fire_fifthZone_SECTION3()
 {
-  static byte heat[ZONEFIVE_SECTION3_END - ZONEFIVE_SECTION3_START];
-  for( int i = 0; i < ZONEFIVE_SECTION3_END - ZONEFIVE_SECTION3_START; i++) 
+  const int sizeOfSection = ZONEFIVE_SECTION3_END - ZONEFIVE_SECTION3_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFIVE_SECTION3_END - ZONEFIVE_SECTION3_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEFIVE_SECTION3_END - ZONEFIVE_SECTION3_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -5486,26 +5596,28 @@ void fire_fifthZone_SECTION3()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEFIVE_SECTION3_END - ZONEFIVE_SECTION3_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEFIVE_SECTION3_END - ZONEFIVE_SECTION3_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEFIVE_SECTION3_START && thisFlame <= ZONEFIVE_SECTION3_END)
+    
     
     #if ZONEFIVE_SECTION3_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fifthZone[ZONEFIVE_SECTION3_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEFIVE_SECTION3_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fifthZone[ZONEFIVE_SECTION3_END - thisFlame] = color;
     }
@@ -5517,13 +5629,14 @@ void fire_fifthZone_SECTION3()
 #ifdef ZONEFIVE_SECTION4_START
 void fire_fifthZone_SECTION4()
 {
-  static byte heat[ZONEFIVE_SECTION4_END - ZONEFIVE_SECTION4_START];
-  for( int i = 0; i < ZONEFIVE_SECTION4_END - ZONEFIVE_SECTION4_START; i++) 
+  const int sizeOfSection = ZONEFIVE_SECTION4_END - ZONEFIVE_SECTION4_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFIVE_SECTION4_END - ZONEFIVE_SECTION4_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEFIVE_SECTION4_END - ZONEFIVE_SECTION4_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -5532,26 +5645,28 @@ void fire_fifthZone_SECTION4()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEFIVE_SECTION4_END - ZONEFIVE_SECTION4_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEFIVE_SECTION4_END - ZONEFIVE_SECTION4_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEFIVE_SECTION4_START && thisFlame <= ZONEFIVE_SECTION4_END)
+    
     
     #if ZONEFIVE_SECTION4_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fifthZone[ZONEFIVE_SECTION4_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEFIVE_SECTION4_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fifthZone[ZONEFIVE_SECTION4_END - thisFlame] = color;
     }
@@ -5563,13 +5678,14 @@ void fire_fifthZone_SECTION4()
 #ifdef ZONEFIVE_SECTION5_START
 void fire_fifthZone_SECTION5()
 {
-  static byte heat[ZONEFIVE_SECTION5_END - ZONEFIVE_SECTION5_START];
-  for( int i = 0; i < ZONEFIVE_SECTION5_END - ZONEFIVE_SECTION5_START; i++) 
+  const int sizeOfSection = ZONEFIVE_SECTION5_END - ZONEFIVE_SECTION5_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFIVE_SECTION5_END - ZONEFIVE_SECTION5_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEFIVE_SECTION5_END - ZONEFIVE_SECTION5_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -5578,26 +5694,28 @@ void fire_fifthZone_SECTION5()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEFIVE_SECTION5_END - ZONEFIVE_SECTION5_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEFIVE_SECTION5_END - ZONEFIVE_SECTION5_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEFIVE_SECTION5_START && thisFlame <= ZONEFIVE_SECTION5_END)
+    
     
     #if ZONEFIVE_SECTION5_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fifthZone[ZONEFIVE_SECTION5_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEFIVE_SECTION5_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fifthZone[ZONEFIVE_SECTION5_END - thisFlame] = color;
     }
@@ -5609,13 +5727,14 @@ void fire_fifthZone_SECTION5()
 #ifdef ZONEFIVE_SECTION6_START
 void fire_fifthZone_SECTION6()
 {
-  static byte heat[ZONEFIVE_SECTION6_END - ZONEFIVE_SECTION6_START];
-  for( int i = 0; i < ZONEFIVE_SECTION6_END - ZONEFIVE_SECTION6_START; i++) 
+  const int sizeOfSection = ZONEFIVE_SECTION6_END - ZONEFIVE_SECTION6_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFIVE_SECTION6_END - ZONEFIVE_SECTION6_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEFIVE_SECTION6_END - ZONEFIVE_SECTION6_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -5624,26 +5743,28 @@ void fire_fifthZone_SECTION6()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEFIVE_SECTION6_END - ZONEFIVE_SECTION6_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEFIVE_SECTION6_END - ZONEFIVE_SECTION6_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEFIVE_SECTION6_START && thisFlame <= ZONEFIVE_SECTION6_END)
+    
     
     #if ZONEFIVE_SECTION6_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fifthZone[ZONEFIVE_SECTION6_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEFIVE_SECTION6_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fifthZone[ZONEFIVE_SECTION6_END - thisFlame] = color;
     }
@@ -5655,13 +5776,14 @@ void fire_fifthZone_SECTION6()
 #ifdef ZONEFIVE_SECTION7_START
 void fire_fifthZone_SECTION7()
 {
-  static byte heat[ZONEFIVE_SECTION7_END - ZONEFIVE_SECTION7_START];
-  for( int i = 0; i < ZONEFIVE_SECTION7_END - ZONEFIVE_SECTION7_START; i++) 
+  const int sizeOfSection = ZONEFIVE_SECTION7_END - ZONEFIVE_SECTION7_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFIVE_SECTION7_END - ZONEFIVE_SECTION7_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEFIVE_SECTION7_END - ZONEFIVE_SECTION7_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -5670,26 +5792,28 @@ void fire_fifthZone_SECTION7()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEFIVE_SECTION7_END - ZONEFIVE_SECTION7_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEFIVE_SECTION7_END - ZONEFIVE_SECTION7_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEFIVE_SECTION7_START && thisFlame <= ZONEFIVE_SECTION7_END)
+    
     
     #if ZONEFIVE_SECTION7_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fifthZone[ZONEFIVE_SECTION7_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEFIVE_SECTION7_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fifthZone[ZONEFIVE_SECTION7_END - thisFlame] = color;
     }
@@ -5701,13 +5825,14 @@ void fire_fifthZone_SECTION7()
 #ifdef ZONEFIVE_SECTION8_START
 void fire_fifthZone_SECTION8()
 {
-  static byte heat[ZONEFIVE_SECTION8_END - ZONEFIVE_SECTION8_START];
-  for( int i = 0; i < ZONEFIVE_SECTION8_END - ZONEFIVE_SECTION8_START; i++) 
+  const int sizeOfSection = ZONEFIVE_SECTION8_END - ZONEFIVE_SECTION8_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFIVE_SECTION8_END - ZONEFIVE_SECTION8_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEFIVE_SECTION8_END - ZONEFIVE_SECTION8_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -5716,26 +5841,28 @@ void fire_fifthZone_SECTION8()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEFIVE_SECTION8_END - ZONEFIVE_SECTION8_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEFIVE_SECTION8_END - ZONEFIVE_SECTION8_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEFIVE_SECTION8_START && thisFlame <= ZONEFIVE_SECTION8_END)
+    
     
     #if ZONEFIVE_SECTION8_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fifthZone[ZONEFIVE_SECTION8_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEFIVE_SECTION8_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fifthZone[ZONEFIVE_SECTION8_END - thisFlame] = color;
     }
@@ -5747,13 +5874,14 @@ void fire_fifthZone_SECTION8()
 #ifdef ZONEFIVE_SECTION9_START
 void fire_fifthZone_SECTION9()
 {
-  static byte heat[ZONEFIVE_SECTION9_END - ZONEFIVE_SECTION9_START];
-  for( int i = 0; i < ZONEFIVE_SECTION9_END - ZONEFIVE_SECTION9_START; i++) 
+  const int sizeOfSection = ZONEFIVE_SECTION9_END - ZONEFIVE_SECTION9_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONEFIVE_SECTION9_END - ZONEFIVE_SECTION9_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONEFIVE_SECTION9_END - ZONEFIVE_SECTION9_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -5762,26 +5890,28 @@ void fire_fifthZone_SECTION9()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONEFIVE_SECTION9_END - ZONEFIVE_SECTION9_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONEFIVE_SECTION9_END - ZONEFIVE_SECTION9_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONEFIVE_SECTION9_START && thisFlame <= ZONEFIVE_SECTION9_END)
+    
     
     #if ZONEFIVE_SECTION9_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fifthZone[ZONEFIVE_SECTION9_START + thisFlame] = color;
     }
     #endif
     
     #if ZONEFIVE_SECTION9_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       fifthZone[ZONEFIVE_SECTION9_END - thisFlame] = color;
     }
@@ -6180,15 +6310,17 @@ void fire_sixthZone_SECTION1()
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONESIX_SECTION1_START && thisFlame <= ZONESIX_SECTION1_END)
+    
     
     #if ZONESIX_SECTION1_START_FIRE == 1
+    if(thisFlame <=  ZONESIX_SECTION1_END - ZONESIX_SECTION1_START )
     {
       sixthZone[ZONESIX_SECTION1_START + thisFlame] = color;
     }
     #endif
     
     #if ZONESIX_SECTION1_END_FIRE == 1
+    if(thisFlame <=  ZONESIX_SECTION1_END - ZONESIX_SECTION1_START )
     {
       sixthZone[ZONESIX_SECTION1_END - thisFlame] = color;
     }
@@ -6200,13 +6332,14 @@ void fire_sixthZone_SECTION1()
 #ifdef ZONESIX_SECTION2_START
 void fire_sixthZone_SECTION2()
 {
-  static byte heat[ZONESIX_SECTION2_END - ZONESIX_SECTION2_START];
-  for( int i = 0; i < ZONESIX_SECTION2_END - ZONESIX_SECTION2_START; i++) 
+  const int sizeOfSection = ZONESIX_SECTION2_END - ZONESIX_SECTION2_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONESIX_SECTION2_END - ZONESIX_SECTION2_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONESIX_SECTION2_END - ZONESIX_SECTION2_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -6215,26 +6348,28 @@ void fire_sixthZone_SECTION2()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONESIX_SECTION2_END - ZONESIX_SECTION2_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONESIX_SECTION2_END - ZONESIX_SECTION2_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONESIX_SECTION2_START && thisFlame <= ZONESIX_SECTION2_END)
+    
     
     #if ZONESIX_SECTION2_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       sixthZone[ZONESIX_SECTION2_START + thisFlame] = color;
     }
     #endif
     
     #if ZONESIX_SECTION2_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       sixthZone[ZONESIX_SECTION2_END - thisFlame] = color;
     }
@@ -6246,13 +6381,14 @@ void fire_sixthZone_SECTION2()
 #ifdef ZONESIX_SECTION3_START
 void fire_sixthZone_SECTION3()
 {
-  static byte heat[ZONESIX_SECTION3_END - ZONESIX_SECTION3_START];
-  for( int i = 0; i < ZONESIX_SECTION3_END - ZONESIX_SECTION3_START; i++) 
+  const int sizeOfSection = ZONESIX_SECTION3_END - ZONESIX_SECTION3_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONESIX_SECTION3_END - ZONESIX_SECTION3_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONESIX_SECTION3_END - ZONESIX_SECTION3_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -6261,26 +6397,28 @@ void fire_sixthZone_SECTION3()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONESIX_SECTION3_END - ZONESIX_SECTION3_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONESIX_SECTION3_END - ZONESIX_SECTION3_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONESIX_SECTION3_START && thisFlame <= ZONESIX_SECTION3_END)
+    
     
     #if ZONESIX_SECTION3_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       sixthZone[ZONESIX_SECTION3_START + thisFlame] = color;
     }
     #endif
     
     #if ZONESIX_SECTION3_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       sixthZone[ZONESIX_SECTION3_END - thisFlame] = color;
     }
@@ -6292,13 +6430,14 @@ void fire_sixthZone_SECTION3()
 #ifdef ZONESIX_SECTION4_START
 void fire_sixthZone_SECTION4()
 {
-  static byte heat[ZONESIX_SECTION4_END - ZONESIX_SECTION4_START];
-  for( int i = 0; i < ZONESIX_SECTION4_END - ZONESIX_SECTION4_START; i++) 
+  const int sizeOfSection = ZONESIX_SECTION4_END - ZONESIX_SECTION4_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONESIX_SECTION4_END - ZONESIX_SECTION4_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONESIX_SECTION4_END - ZONESIX_SECTION4_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -6307,26 +6446,28 @@ void fire_sixthZone_SECTION4()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONESIX_SECTION4_END - ZONESIX_SECTION4_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONESIX_SECTION4_END - ZONESIX_SECTION4_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONESIX_SECTION4_START && thisFlame <= ZONESIX_SECTION4_END)
+    
     
     #if ZONESIX_SECTION4_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       sixthZone[ZONESIX_SECTION4_START + thisFlame] = color;
     }
     #endif
     
     #if ZONESIX_SECTION4_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       sixthZone[ZONESIX_SECTION4_END - thisFlame] = color;
     }
@@ -6338,13 +6479,14 @@ void fire_sixthZone_SECTION4()
 #ifdef ZONESIX_SECTION5_START
 void fire_sixthZone_SECTION5()
 {
-  static byte heat[ZONESIX_SECTION5_END - ZONESIX_SECTION5_START];
-  for( int i = 0; i < ZONESIX_SECTION5_END - ZONESIX_SECTION5_START; i++) 
+  const int sizeOfSection = ZONESIX_SECTION5_END - ZONESIX_SECTION5_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONESIX_SECTION5_END - ZONESIX_SECTION5_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONESIX_SECTION5_END - ZONESIX_SECTION5_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -6353,26 +6495,28 @@ void fire_sixthZone_SECTION5()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONESIX_SECTION5_END - ZONESIX_SECTION5_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONESIX_SECTION5_END - ZONESIX_SECTION5_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONESIX_SECTION5_START && thisFlame <= ZONESIX_SECTION5_END)
+    
     
     #if ZONESIX_SECTION5_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       sixthZone[ZONESIX_SECTION5_START + thisFlame] = color;
     }
     #endif
     
     #if ZONESIX_SECTION5_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       sixthZone[ZONESIX_SECTION5_END - thisFlame] = color;
     }
@@ -6384,13 +6528,14 @@ void fire_sixthZone_SECTION5()
 #ifdef ZONESIX_SECTION6_START
 void fire_sixthZone_SECTION6()
 {
-  static byte heat[ZONESIX_SECTION6_END - ZONESIX_SECTION6_START];
-  for( int i = 0; i < ZONESIX_SECTION6_END - ZONESIX_SECTION6_START; i++) 
+  const int sizeOfSection = ZONESIX_SECTION6_END - ZONESIX_SECTION6_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONESIX_SECTION6_END - ZONESIX_SECTION6_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONESIX_SECTION6_END - ZONESIX_SECTION6_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -6399,26 +6544,28 @@ void fire_sixthZone_SECTION6()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONESIX_SECTION6_END - ZONESIX_SECTION6_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONESIX_SECTION6_END - ZONESIX_SECTION6_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONESIX_SECTION6_START && thisFlame <= ZONESIX_SECTION6_END)
+    
     
     #if ZONESIX_SECTION6_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       sixthZone[ZONESIX_SECTION6_START + thisFlame] = color;
     }
     #endif
     
     #if ZONESIX_SECTION6_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       sixthZone[ZONESIX_SECTION6_END - thisFlame] = color;
     }
@@ -6430,13 +6577,14 @@ void fire_sixthZone_SECTION6()
 #ifdef ZONESIX_SECTION7_START
 void fire_sixthZone_SECTION7()
 {
-  static byte heat[ZONESIX_SECTION7_END - ZONESIX_SECTION7_START];
-  for( int i = 0; i < ZONESIX_SECTION7_END - ZONESIX_SECTION7_START; i++) 
+  const int sizeOfSection = ZONESIX_SECTION7_END - ZONESIX_SECTION7_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONESIX_SECTION7_END - ZONESIX_SECTION7_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONESIX_SECTION7_END - ZONESIX_SECTION7_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -6445,26 +6593,28 @@ void fire_sixthZone_SECTION7()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONESIX_SECTION7_END - ZONESIX_SECTION7_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONESIX_SECTION7_END - ZONESIX_SECTION7_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONESIX_SECTION7_START && thisFlame <= ZONESIX_SECTION7_END)
+    
     
     #if ZONESIX_SECTION7_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       sixthZone[ZONESIX_SECTION7_START + thisFlame] = color;
     }
     #endif
     
     #if ZONESIX_SECTION7_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       sixthZone[ZONESIX_SECTION7_END - thisFlame] = color;
     }
@@ -6476,13 +6626,14 @@ void fire_sixthZone_SECTION7()
 #ifdef ZONESIX_SECTION8_START
 void fire_sixthZone_SECTION8()
 {
-  static byte heat[ZONESIX_SECTION8_END - ZONESIX_SECTION8_START];
-  for( int i = 0; i < ZONESIX_SECTION8_END - ZONESIX_SECTION8_START; i++) 
+  const int sizeOfSection = ZONESIX_SECTION8_END - ZONESIX_SECTION8_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONESIX_SECTION8_END - ZONESIX_SECTION8_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONESIX_SECTION8_END - ZONESIX_SECTION8_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -6491,26 +6642,28 @@ void fire_sixthZone_SECTION8()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONESIX_SECTION8_END - ZONESIX_SECTION8_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONESIX_SECTION8_END - ZONESIX_SECTION8_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONESIX_SECTION8_START && thisFlame <= ZONESIX_SECTION8_END)
+    
     
     #if ZONESIX_SECTION8_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       sixthZone[ZONESIX_SECTION8_START + thisFlame] = color;
     }
     #endif
     
     #if ZONESIX_SECTION8_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       sixthZone[ZONESIX_SECTION8_END - thisFlame] = color;
     }
@@ -6522,13 +6675,14 @@ void fire_sixthZone_SECTION8()
 #ifdef ZONESIX_SECTION9_START
 void fire_sixthZone_SECTION9()
 {
-  static byte heat[ZONESIX_SECTION9_END - ZONESIX_SECTION9_START];
-  for( int i = 0; i < ZONESIX_SECTION9_END - ZONESIX_SECTION9_START; i++) 
+  const int sizeOfSection = ZONESIX_SECTION9_END - ZONESIX_SECTION9_START;
+  static byte heat[sizeOfSection];
+  for( int i = 0; i < sizeOfSection; i++) 
   {
-    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / ZONESIX_SECTION9_END - ZONESIX_SECTION9_START) + 2));
+    heat[i] = qsub8( heat[i],  random8(0, ((COOLING * 10) / sizeOfSection) + 2));
   }
 
-  for( int k= ZONESIX_SECTION9_END - ZONESIX_SECTION9_START - 1; k >= 2; k--) 
+  for( int k= sizeOfSection - 1; k >= 2; k--) 
   {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2] ) / 3;
   }
@@ -6537,26 +6691,28 @@ void fire_sixthZone_SECTION9()
     int y = random8(7);
     heat[y] = qadd8( heat[y], random8(160,255) );
   }
-  for( int j = 0; j < ZONESIX_SECTION9_END - ZONESIX_SECTION9_START; j++) 
+  for( int j = 0; j < sizeOfSection; j++) 
   {
     byte colorindex = scale8( heat[j], 240);
     CRGB color = ColorFromPalette( gPal, colorindex);
     int pixelnumber;
     if( gReverseDirection ) {
-      pixelnumber = (ZONESIX_SECTION9_END - ZONESIX_SECTION9_START -1) - j;
+      pixelnumber = (sizeOfSection -1) - j;
     } else {
       pixelnumber = j;
     }
     int thisFlame = ((pixelnumber * firesize)/100);
-    if(thisFlame <=  ZONESIX_SECTION9_START && thisFlame <= ZONESIX_SECTION9_END)
+    
     
     #if ZONESIX_SECTION9_START_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       sixthZone[ZONESIX_SECTION9_START + thisFlame] = color;
     }
     #endif
     
     #if ZONESIX_SECTION9_END_FIRE == 1
+    if(thisFlame <=  sizeOfSection )
     {
       sixthZone[ZONESIX_SECTION9_END - thisFlame] = color;
     }
