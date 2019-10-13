@@ -1,4 +1,7 @@
 # Holiday_LEDs_2.0
+
+## Currently not working with ESP8266 Core 2.5.2, working on it.  For now please use 2.3.0.
+
 This repository is to accompany my Holiday LED 2.0 youtube video:
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/90n8cZJcFaU/0.jpg)](https://www.youtube.com/watch?v=90n8cZJcFaU)
