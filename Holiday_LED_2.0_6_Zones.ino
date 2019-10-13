@@ -734,7 +734,11 @@ void callback(char* topic, byte* payload, unsigned int length)
     }
     if(effect == "Spooky_Eyes")
     {
-      eyeChance = map(intPayload, 0, 500, 220, 255);
+      eyeChance = map(intPayload, 0, 500, 200, 255);
+    }
+    if(effect == "Fire")
+    {
+      firesize = map(intPayload, 0, 500, 10, 120);
     }
     if(effect == "LED_Locator")
     {
