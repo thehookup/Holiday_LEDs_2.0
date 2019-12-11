@@ -4,7 +4,7 @@
 
 This repository is to accompany my Holiday LED 2.0 youtube video:
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/90n8cZJcFaU/0.jpg)](https://www.youtube.com/watch?v=90n8cZJcFaU)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/2j3UyrBjB4g/0.jpg)](https://www.youtube.com/watch?v=2j3UyrBjB4g)
 
 this new version is easier to setup and can support 6 zones dynamically
 
