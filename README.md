@@ -15,6 +15,13 @@ Fill out the entire USER CONFIGURATION section of the code.
 
 It is recommended that you leave at least 2 zones enabled, leaving only a single zone seems to result in jittery animations. 
 
+## SK6812 RGBW Use
+
+This library is a drop in replacement for FastLED: https://github.com/coryking/FastLED?fbclid=IwAR2wB4Y355hAVIkJ_OOriP5czAUnqmLCtXT8DnbRf3vbUHPRnAR-ceZjJ74
+ just switch out your FastLED library folder (arduino/libraries/FastLED) with the one from that link and add #define FASTLED_RGBW at the top of the sketch.
+I also had to compile with ESP core 2.4.2, but that's an issue with my program, not the library.
+
+
 ## Troubleshooting
 
 -If you get a linker error while compiling in arduino, update your ESP8266 boards manager
