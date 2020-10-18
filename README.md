@@ -1,6 +1,7 @@
 # Holiday_LEDs_2.0
 
-## Currently not working with ESP8266 Core 2.5.2, working on it.  For now please use 2.4.2.
+## I'm leaving this repository up for reference purposes, but I highly recommend using WLED instead for your holiday lights: https://github.com/Aircoookie/WLED
+### Currently not working with ESP8266 Core 2.5.2, working on it.  For now please use 2.4.2.
 
 This repository is to accompany my Holiday LED 2.0 youtube video:
 
